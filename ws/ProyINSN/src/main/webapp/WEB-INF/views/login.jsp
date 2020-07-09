@@ -18,14 +18,14 @@
 				<div class="container-fluid">
 					<div class="container d-flex justify-content-center">
 						<div class="transparent-form">
-							<div class="card">
-								<div class="card-header p-1 bg-info text-white">
+							<div class="card border-info">
+								<div class="card-header p-1">
 									<h4 class="text-center">Iniciar sesión</h4>
 								</div>
 								<div class="card-body">
 									<div class="row">
 										<div class="col-sm-12">
-											<form action="Login" method="post" class="form" role="form"
+											<form action="auth" method="post" class="form" role="form"
 												id="frmLogin">
 												<div class="row">
 													<div class="col-sm-12">
