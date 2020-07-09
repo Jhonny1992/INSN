@@ -5,13 +5,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<jsp:include page="./includes/head.jsp" />
+<jsp:include page="include_head.jsp" />
 </head>
 <body
 	class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 	<div class="wrapper">
-		<jsp:include page="./includes/navbar.jsp" />
-		<jsp:include page="./includes/aside.jsp" />
+		<jsp:include page="include_navbar.jsp" />
+		<jsp:include page="include_aside.jsp" />
 		<div class="content-wrapper">
 			<!-- Main content -->
 			<section class="content">
@@ -81,7 +81,7 @@
 		</div>
 	</div>
 </body>
-<jsp:include page="./includes/scripts.jsp" />
+<jsp:include page="include_scripts.jsp" />
 </html>
 
 

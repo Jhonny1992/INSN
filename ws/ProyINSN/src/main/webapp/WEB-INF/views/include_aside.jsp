@@ -3,7 +3,18 @@
 	pageEncoding="ISO-8859-1"%>
 
 <c:choose>
-	<c:when test="${sessionScope.user != null}">
+	<c:when test="${sessionScope.user == null}">
+		<!-- Main Sidebar Container -->
+		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+			<!-- Brand Logo -->
+			<a href="https://www.cibertec.edu.pe/" target="_blank"
+				class="brand-link"> <img src="../resources/img/favicon.png"
+				class="brand-image img-circle elevation-3" style="opacity: .8" /> <span
+				class="brand-text font-weight-light">Proyecto INSN</span>
+			</a>
+		</aside>
+	</c:when>
+	<c:otherwise>
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
@@ -97,18 +108,6 @@
 				<!-- /.sidebar-menu -->
 			</div>
 			<!-- /.sidebar -->
-		</aside>
-
-	</c:when>
-	<c:otherwise>
-		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
-			<!-- Brand Logo -->
-			<a href="https://www.cibertec.edu.pe/" target="_blank"
-				class="brand-link"> <img src="../resources/img/favicon.png"
-				class="brand-image img-circle elevation-3" style="opacity: .8" /> <span
-				class="brand-text font-weight-light">Proyecto INSN</span>
-			</a>
 		</aside>
 	</c:otherwise>
 </c:choose>
