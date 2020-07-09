@@ -24,7 +24,7 @@
 		<c:otherwise>
 			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="Login" id="loginLink">Iniciar sesión</a></li>
+				<li class="nav-item"><a class="nav-link" href="login" id="loginLink">Iniciar sesión</a></li>
 			</ul>
 		</c:otherwise>
 	</c:choose>
