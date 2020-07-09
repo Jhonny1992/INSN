@@ -1,0 +1,12 @@
+<script src="../resources/libs/Modernizr/modernizr-2.6.2.js"></script>
+<script src="../resources/libs/JQuery/Core/jquery-3.3.1.js"></script>
+<script src="../resources/libs/Popper/js/Popper.min.js"></script>
+<script src="../resources/libs/Bootstrap/Core/js/bootstrap.min.js"></script>
+<script src="../resources/libs/Responsive/respond.min.js"></script>
+<script src="../resources/libs/Bootstrap/Bundle/js/bootstrap.bundle.min.js"></script>
+<script src="../resources/libs/FontAwesome/js/all.min.js"></script>
+<script src="../resources/libs/Bootstrap/Select/js/bootstrap-select.min.js"></script>
+<script src="../resources/libs/Bootstrap/bootstrap4-toggle/js/bootstrap4-toggle.js"></script>
+<script src="../resources/libs/JQuery/Validate/jquery.validate.min.js"></script>
+<script src="../resources/libs/AdminLTE/js/adminlte.min.js"></script>
+<script src="../resources/libs/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
