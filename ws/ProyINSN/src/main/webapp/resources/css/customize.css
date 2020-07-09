@@ -1,0 +1,8 @@
+.table-condensed {
+    font-size: 12px;
+}
+
+table thead, table.dataTable thead {
+    background-color: #2f7c67;
+    color: white;
+}
