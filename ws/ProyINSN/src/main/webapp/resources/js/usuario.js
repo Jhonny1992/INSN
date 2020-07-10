@@ -3,7 +3,7 @@ $(function() {
 });
 
 function fInicializar() {
-	//fConfigurarGrilla();
+	fConfigurarGrilla();
 	swal("Bienvenido!", "Mantenedor de usuarios!", "success");
 }
 
@@ -26,7 +26,7 @@ function fConfigurarGrilla() {
 		       "<'row.text-center'<'col-sm-12'l>>",
         
         "responsive": true,
-		"searching": false,
+        /*"searching": false,
 		"ordering": false,
 		"order": [[1, "asc"]],
 		"info": true,
@@ -61,7 +61,7 @@ function fConfigurarGrilla() {
         "processing": false,
         "serverSide": false,
         "filter": false,
-        "orderMulti": false
+        "orderMulti": false*/
 	};
 	
 	window.tbUsuario = $('#' + tableId).DataTable(jsonDT);
