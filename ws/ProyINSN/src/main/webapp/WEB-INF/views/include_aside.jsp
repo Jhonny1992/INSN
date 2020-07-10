@@ -47,19 +47,19 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="politicas" class="nav-link">
+									<a href="<c:url value="/usuario/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Usuarios</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="usuarios" class="nav-link">
+									<a href="<c:url value="/donante/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Donantes</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="bloqueos" class="nav-link">
+									<a href="<c:url value="/proveedor/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Proveedores</p>
 									</a>
@@ -74,13 +74,13 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="roles" class="nav-link">
+									<a href="<c:url value="/donacion/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Donación</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="asignacion" class="nav-link">
+									<a href="<c:url value="/ordenCompra/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Orden de compra</p>
 									</a>
