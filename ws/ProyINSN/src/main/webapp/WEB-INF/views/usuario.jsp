@@ -70,7 +70,7 @@
 										
 									</div>
 									<div class="col-lg-9 col-md-8 col-sm-6">
-										<table id="tbProveedor"
+										<table id="tbUsuario"
 											class="table table-hover table-bordered display"
 											style="width: 100%">
 											<thead>

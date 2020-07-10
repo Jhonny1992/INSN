@@ -10,4 +10,5 @@
 	</div>
 </body>
 <jsp:include page="include_scripts.jsp"/>
+<script type="text/javascript" src="../resources/js/home.js"></script>
 </html>
