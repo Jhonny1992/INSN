@@ -1,10 +1,10 @@
-package com.ecosystems.dao;
+package com.ecosystems.services;
 
 import java.util.List;
 
 import com.ecosystems.entity.UsuarioBean;
 
-public interface UsuarioDAO {
+public interface UsuarioService {
 	public UsuarioBean agregar(UsuarioBean bean);
 	public UsuarioBean actualizar(UsuarioBean bean);
 	public List<UsuarioBean> buscar(String nombres, String apellidos);
