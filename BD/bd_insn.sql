@@ -409,7 +409,7 @@ CREATE TABLE `usuario` (
   `clave` varchar(45) DEFAULT NULL,
   `correo` varchar(45) DEFAULT NULL,
   `fec_reg` date DEFAULT NULL,
-  `estado` varchar(45) DEFAULT 'Habilitado',
+  `estado` bit DEFAULT 0,
   PRIMARY KEY (`cod_usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

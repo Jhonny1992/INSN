@@ -40,69 +40,53 @@
 						data-widget="treeview" role="menu" data-accordion="false">
 						<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
-						<li class="nav-header">SEGURIDAD</li>
-						<li class="nav-item has-treeview"><a href="#"
-							class="nav-link"> <i class="nav-icon fas fa-circle"></i>
-								<p>
-									Usuarios <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
+						<li class="nav-header">Mis opciones</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link"><i class="nav-icon fas fa-circle"></i>
+								<p>Mantenedores <i class="right fas fa-angle-left"></i></p>
+							</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="politicas" class="nav-link">
+								<li class="nav-item">
+									<a href="politicas" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Política de seguridad</p>
-								</a></li>
-								<li class="nav-item"><a href="usuarios" class="nav-link">
+										<p>Usuarios</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="usuarios" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Gestión de usuarios</p>
-								</a></li>
-								<li class="nav-item"><a href="bloqueos" class="nav-link">
+										<p>Donantes</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="bloqueos" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Bloqueos/Desbloqueos</p>
-								</a></li>
-							</ul></li>
+										<p>Proveedores</p>
+									</a>
+								</li>
+							</ul>
+						</li>
 
-						<li class="nav-item has-treeview"><a href="#"
-							class="nav-link"> <i class="nav-icon fas fa-circle"></i>
-								<p>
-									Roles <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-circle"></i>
+								<p>Procesos <i class="right fas fa-angle-left"></i></p>
+							</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="roles" class="nav-link">
+								<li class="nav-item">
+									<a href="roles" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Roles</p>
-								</a></li>
-								<li class="nav-item"><a href="asignacion" class="nav-link">
+										<p>Donación</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="asignacion" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Asignación de roles</p>
-								</a></li>
-								<li class="nav-item"><a href="permisos" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Accesos de rol</p>
-								</a></li>
-							</ul></li>
-
-						<li class="nav-item has-treeview"><a href="#"
-							class="nav-link"> <i class="nav-icon fas fa-circle"></i>
-								<p>
-									Accesos <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="modulos" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Módulo</p>
-								</a></li>
-								<li class="nav-item"><a href="recursos" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Recursos</p>
-								</a></li>
-								<li class="nav-item"><a href="operaciones" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Operaciones</p>
-								</a></li>
-							</ul></li>
+										<p>Orden de compra</p>
+									</a>
+								</li>
+							</ul>
+						</li>
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
