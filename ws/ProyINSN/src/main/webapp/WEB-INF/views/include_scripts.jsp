@@ -10,3 +10,4 @@
 <script src="../resources/libs/JQuery/Validate/jquery.validate.min.js"></script>
 <script src="../resources/libs/AdminLTE/js/adminlte.min.js"></script>
 <script src="../resources/libs/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="../resources/libs/SweetAlert/js/sweetalert.min.js"></script>
