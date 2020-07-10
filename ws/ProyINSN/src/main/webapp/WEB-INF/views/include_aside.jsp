@@ -55,13 +55,13 @@
 								<li class="nav-item">
 									<a href="<c:url value="/donante/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Donantes</p>
+										<p>Bienes</p>
 									</a>
 								</li>
 								<li class="nav-item">
 									<a href="<c:url value="/proveedor/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Proveedores</p>
+										<p>Unidades orgánicas</p>
 									</a>
 								</li>
 							</ul>
@@ -76,13 +76,13 @@
 								<li class="nav-item">
 									<a href="<c:url value="/donacion/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Donación</p>
+										<p>Gestión de requerimientos</p>
 									</a>
 								</li>
 								<li class="nav-item">
 									<a href="<c:url value="/ordenCompra/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Orden de compra</p>
+										<p>Consolidado anual</p>
 									</a>
 								</li>
 							</ul>
