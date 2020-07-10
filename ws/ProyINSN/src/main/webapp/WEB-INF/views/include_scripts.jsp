@@ -1,6 +1,6 @@
 <script src="../resources/libs/Modernizr/modernizr-2.6.2.js"></script>
 <script src="../resources/libs/jquery/Core/jquery-3.3.1.js"></script>
-<script src="../resources/libs/Popper/js/Popper.min.js"></script>
+<script src="../resources/libs/Popper/umd/popper.min.js"></script>
 <script src="../resources/libs/bootstrap/Core/js/bootstrap.min.js"></script>
 <script src="../resources/libs/Responsive/respond.min.js"></script>
 <script src="../resources/libs/bootstrap/Bundle/js/bootstrap.bundle.min.js"></script>
