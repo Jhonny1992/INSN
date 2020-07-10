@@ -1,9 +1,9 @@
 $(function() {
-	//fInicializar();
+	fInicializar();
 });
 
 function fInicializar() {
-	fConfigurarGrilla();
+	//fConfigurarGrilla();
 	swal("Bienvenido!", "Mantenedor de usuarios!", "success");
 }
 
@@ -59,30 +59,12 @@ function fConfigurarGrilla() {
         ],
         
         "processing": false,
-        "serverSide": true,
+        "serverSide": false,
         "filter": false,
-        "orderMulti": false,
-        "ajax": {
-            "url": 'Usuario',
-            "type": "post",
-            "dataType": "json",
-            "data": function (d) {
-            	d.op = '2';
-            	
-                d.usuario = $.trim($("#usuario").val());
-                d.nombreApellido = $.trim($("#nombreApellido").val());
-                d.estado = $('#estado').val();
-            },
-            "dataSrc": function (json) {
-	        	var r = json.data;
-	        	
-	        	if (r != null) return r;
-	        	window.location.href = json.Data
-	    	}
-        }
+        "orderMulti": false
 	};
 	
-	window.tbMaestro = $('#' + tableId).DataTable(jsonDT);
+	window.tbUsuario = $('#' + tableId).DataTable(jsonDT);
 }
 
 function reloadGrid() {
