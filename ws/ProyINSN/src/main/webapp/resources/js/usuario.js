@@ -3,8 +3,23 @@ $(function() {
 });
 
 function fInicializar() {
-	//fConfigurarGrilla();
+	fConfigurarEventos();
 	fCargarLista();
+}
+
+function fConfigurarEventos() {
+	$('#txtNombreBusqueda, #txtApellidoBusqueda').bind('keyup', function () {
+		fCargarLista();
+    });
+	
+	$('#btnBuscar').bind('click', function () {
+		fCargarLista();
+    });
+
+    $('#btnLimpiar').bind('click', function () {
+        $('#txtNombreBusqueda, #txtApellidoBusqueda').val('');
+        fCargarLista();
+    });
 }
 
 function fCargarLista() {
@@ -14,21 +29,6 @@ function fCargarLista() {
 	$.get('buscar', { nombres: nombres, apellidos: apellidos })
 	.done(function (data) {
 		fConfigurarGrilla(data);
-		
-		console.log(data);
-		/*$('#tbUsuario tbody').html('');
-		data.map(function(e, i) {
-			$('#tbUsuario tbody').append('<tr>' +
-											'<td>' + 'edit' + '</td>' +
-											'<td>' + e.codUsuario + '</td>' +
-											'<td>' + e.nombres + '</td>' +
-											'<td>' + e.apellidos + '</td>' +
-											'<td>' + e.username + '</td>' +
-											'<td>' + e.correo + '</td>' +
-											'<td>' + e.estado + '</td>' +
-											'<td>' + 'del' + '</td>' +
-										 '</tr>');
-		});*/
 	})
 	.fail(function(data) {
 		swal('Error', 'Los sentimo, ocurró un error', 'error');
@@ -67,7 +67,8 @@ function fConfigurarGrilla(data) {
         "scrollX": true,
         "info": true,
         "lengthChange": true,
-        "lengthMenu": [[2, 10, 50], [2, 10, 50]],
+        "lengthMenu": [[2, 10, 50, -1], ['2 filas', '10 filas', '50 filas', 'Todo']],
+        "destroy": true,
         "data": rows
 	};
 	
