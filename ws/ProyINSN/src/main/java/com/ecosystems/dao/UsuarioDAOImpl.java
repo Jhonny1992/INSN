@@ -44,7 +44,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			ant.setUsername(bean.getUsername());
 			ant.setPassword(bean.getPassword());
 			ant.setCorreo(bean.getCorreo());
-			ant.setEstado(bean.isEstado());
 			
 			sesion.update(ant);
 			

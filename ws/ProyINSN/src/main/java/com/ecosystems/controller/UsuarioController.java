@@ -45,8 +45,7 @@ public class UsuarioController {
 								  @RequestParam("apellidos") String apellidos,
 								  @RequestParam("username") String username,
 								  @RequestParam("clave") String clave,
-								  @RequestParam("correo") String correo,
-								  @RequestParam("estado") boolean estado) {
+								  @RequestParam("correo") String correo) {
 		UsuarioBean bean = new UsuarioBean();
 		bean.setCodUsuario(codUsuario);
 		bean.setNombres(nombres);
@@ -54,7 +53,6 @@ public class UsuarioController {
 		bean.setUsername(username);
 		bean.setPassword(clave);
 		bean.setCorreo(correo);
-		bean.setEstado(estado);
 		
 		return service.actualizar(bean);
 	}
