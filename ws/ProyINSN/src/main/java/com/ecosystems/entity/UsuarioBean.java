@@ -20,11 +20,11 @@ public class UsuarioBean {
 	@Column(name = "cod_usuario")
 	private int codUsuario;
 	
-	@Column(name = "ape_usua")
-	private String apellidos;
-	
 	@Column(name = "nom_usua")
 	private String nombres;
+	
+	@Column(name = "ape_usua")
+	private String apellidos;
 	
 	@Column(name = "login")
 	private String username;

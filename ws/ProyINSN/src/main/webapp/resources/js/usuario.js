@@ -3,11 +3,39 @@ $(function() {
 });
 
 function fInicializar() {
-	fConfigurarGrilla();
+	//fConfigurarGrilla();
 	fCargarLista();
 }
 
-function fConfigurarGrilla() {
+function fCargarLista() {
+	let nombres = $('#txtNombreBusqueda').val();
+	let apellidos = $('#txtApellidoBusqueda').val();
+	
+	$.get('buscar', { nombres: nombres, apellidos: apellidos })
+	.done(function (data) {
+		fConfigurarGrilla(data);
+		
+		console.log(data);
+		/*$('#tbUsuario tbody').html('');
+		data.map(function(e, i) {
+			$('#tbUsuario tbody').append('<tr>' +
+											'<td>' + 'edit' + '</td>' +
+											'<td>' + e.codUsuario + '</td>' +
+											'<td>' + e.nombres + '</td>' +
+											'<td>' + e.apellidos + '</td>' +
+											'<td>' + e.username + '</td>' +
+											'<td>' + e.correo + '</td>' +
+											'<td>' + e.estado + '</td>' +
+											'<td>' + 'del' + '</td>' +
+										 '</tr>');
+		});*/
+	})
+	.fail(function(data) {
+		swal('Error', 'Los sentimo, ocurró un error', 'error');
+	});
+}
+
+function fConfigurarGrilla(data) {
 	var strJSON = window.localStorage.getItem('dts');
 	var tableId = 'tbUsuario';
 	
@@ -18,6 +46,21 @@ function fConfigurarGrilla() {
 	var deleteIcon = function (data, type, row, meta) {
 		return "<i title='eliminar' class='far fa-trash-alt cursorHand' onclick=fEliminar(" + row.usuarioId + ")></i>";
 	};
+	
+	var rows = [];
+	data.map(function(e, i) {
+		var r = [];
+		r[0] = 'editar';
+		r[1] = e['codUsuario'];
+		r[2] = e['nombres'];
+		r[3] = e['apellidos'];
+		r[4] = e['username'];
+		r[5] = e['correo'];
+		r[6] = e['estado'];
+		r[7] = 'eliminar';
+		
+		rows.push(r);
+	});
 	
 	var jsonDT = {
 		"language": JSON.parse(strJSON),
@@ -31,36 +74,12 @@ function fConfigurarGrilla() {
         "scrollCollapse": true,
         "scrollX": true,
         "info": true,
-        "lengthChange": true
+        "lengthChange": true,
+        "lengthMenu": [[2, 10, 50], [2, 10, 50]],
+        "data": rows
 	};
 	
-	window.tbUsuario = $('#' + tableId).DataTable();
-}
-
-function fCargarLista() {
-	let nombres = $('#txtNombreBusqueda').val();
-	let apellidos = $('#txtApellidoBusqueda').val();
-	
-	$.get('buscar', { nombres: nombres, apellidos: apellidos })
-	.done(function (data) {
-		console.log(data);
-		$('#tbUsuario tbody').html('');
-		data.map(function(e, i) {
-			$('#tbUsuario tbody').append('<tr>' +
-											'<td>' + 'edit' + '</td>' +
-											'<td>' + e.codUsuario + '</td>' +
-											'<td>' + e.nombres + '</td>' +
-											'<td>' + e.apellidos + '</td>' +
-											'<td>' + e.username + '</td>' +
-											'<td>' + e.correo + '</td>' +
-											'<td>' + e.estado + '</td>' +
-											'<td>' + 'del' + '</td>' +
-										 '</tr>');
-		});
-	})
-	.fail(function(data) {
-		swal('Error', 'Los sentimo, ocurró un error', 'error');
-	});
+	window.tbUsuario = $('#' + tableId).DataTable(jsonDT);
 }
 
 function reloadGrid() {
