@@ -23,13 +23,13 @@ public class UsuarioBean implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cod_usuario")
+	@Column(name = "codUsuario")
 	private int codUsuario;
 	
-	@Column(name = "nom_usua")
+	@Column(name = "nombres")
 	private String nombres;
 	
-	@Column(name = "ape_usua")
+	@Column(name = "apellidos")
 	private String apellidos;
 	
 	@Column(name = "login")
@@ -41,11 +41,11 @@ public class UsuarioBean implements Serializable {
 	@Column(name = "correo")
 	private String correo;
 	
-	@Column(name = "fec_reg")
+	@Column(name = "fechaRegistro")
 	@Temporal(TemporalType.DATE)
 	private Date fechaRegistro;
 	
-	@Column(name = "estado")
+	@Column(name = "eliminado")
 	private boolean estado;
 	
 	public UsuarioBean() {

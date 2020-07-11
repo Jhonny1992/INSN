@@ -1,4 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `bd_insn` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+DROP DATABASE IF EXISTS bd_insn;
+
+CREATE DATABASE `bd_insn` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `bd_insn`;
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
@@ -25,16 +27,15 @@ DROP TABLE IF EXISTS `bien`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bien` (
-  `idBien` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(90) DEFAULT NULL,
-  `descripcion` varchar(500) DEFAULT NULL,
-  `tipo` int(11) DEFAULT NULL,
-  `fechaRegistro` date DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idBien`)
+  `codBien` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(90) NOT NULL,
+  `descripcion` varchar(500) NOT NULL,
+  `tipo` int(11) NOT NULL,
+  `fechaRegistro` date NOT NULL,
+  `eliminado` bit NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codBien`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 --
 -- Dumping data for table `bien`
 --
@@ -52,22 +53,14 @@ DROP TABLE IF EXISTS `cargo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cargo` (
-  `cod_cargo` int(11) NOT NULL AUTO_INCREMENT,
+  `codCargo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`cod_cargo`)
+  PRIMARY KEY (`codCargo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `cargo`
---
-
-LOCK TABLES `cargo` WRITE;
-/*!40000 ALTER TABLE `cargo` DISABLE KEYS */;
-INSERT INTO `cargo` VALUES (1,'Técnico de Almacén y Distribución'),(2,'Almacenero de Orden de Compra'),(3,'Almacenero de Donación');
-/*!40000 ALTER TABLE `cargo` ENABLE KEYS */;
-UNLOCK TABLES;
-
 --
 -- Table structure for table `cargo_enlace`
 --
@@ -76,11 +69,11 @@ DROP TABLE IF EXISTS `cargo_enlace`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cargo_enlace` (
-  `idCargo` int(11) NOT NULL,
-  `idEnlace` int(11) NOT NULL,
-  PRIMARY KEY (`idCargo`,`idEnlace`),
-  KEY `fk_CARGO_has_ENLACE_ENLACE1_idx` (`idEnlace`),
-  KEY `fk_CARGO_has_ENLACE_CARGO1_idx` (`idCargo`)
+  `codCargo` int(11) NOT NULL,
+  `codEnlace` int(11) NOT NULL,
+  PRIMARY KEY (`codCargo`,`codEnlace`),
+  KEY `fk_CARGO_has_ENLACE_ENLACE1_idx` (`codCargo`),
+  KEY `fk_CARGO_has_ENLACE_CARGO1_idx` (`codEnlace`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -101,22 +94,16 @@ DROP TABLE IF EXISTS `enlace`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `enlace` (
-  `idEnlace` int(11) NOT NULL,
+  `codEnlace` int(11) NOT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
   `ruta` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idEnlace`)
+  PRIMARY KEY (`codEnlace`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `enlace`
 --
-
-LOCK TABLES `enlace` WRITE;
-/*!40000 ALTER TABLE `enlace` DISABLE KEYS */;
-INSERT INTO `enlace` VALUES (1,'Mantener Bienes','mantenerBienes.jsp'),(2,'Mantener Donaciones','mantenerDonaciones.jsp'),(3,'Mantener Donadores','mantenerDonadores.jsp'),(4,'Mantener Ordenes De Compra','mantenerOrdenesDeCompra.jsp'),(5,'Mantener Proveedores','mantenerProveedores.jsp'),(6,'Mantener Usuarios','mantenerUsuarios.jsp'),(7,'Registrar Orden de Compra','RegistrarOrdenDeCompra.jsp'),(8,'Registrar Nota de Entrada','RegistrarNotaDeEntrada.jsp'),(9,'Registrar Donacion','RegistrarDonacion.jsp'),(10,'Registrar Donador','RegistrarDonador.jsp'),(11,'Consultar Donante','consultaDonante.jsp'),(12,'Consultar Proveedor','consultaProveedor.jsp');
-/*!40000 ALTER TABLE `enlace` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `unidadorganica`
@@ -126,14 +113,14 @@ DROP TABLE IF EXISTS `unidadorganica`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `unidadorganica` (
-  `idUnidad` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(90) DEFAULT NULL,
-  `descripcion` varchar(500) DEFAULT NULL,
-  `anexo` varchar(5) DEFAULT NULL,
-  `jefeEncargado` int(11) DEFAULT NULL,
-  `fechaRegistro` date DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idUnidad`)
+  `codUnidad` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(90) NOT NULL,
+  `descripcion` varchar(500) NOT NULL,
+  `anexo` varchar(5) NOT NULL,
+  `jefeEncargado` int(11) NOT NULL,
+  `fechaRegistro` date NOT NULL,
+  `eliminado` bit NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codUnidad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -154,29 +141,22 @@ DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nroDocumento` varchar(8) DEFAULT NULL,
-  `apellidos` varchar(45) DEFAULT NULL,
-  `nombres` varchar(45) DEFAULT NULL,
-  `login` varchar(45) DEFAULT NULL,
-  `clave` varchar(45) DEFAULT NULL,
-  `correo` varchar(45) DEFAULT NULL,
-  `fechaRegistro` date DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL,
+  `codUsuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nroDocumento` varchar(8) NOT NULL,
+  `apellidos` varchar(45) NOT NULL,
+  `nombres` varchar(45) NOT NULL,
+  `login` varchar(10) NOT NULL,
+  `clave` varchar(15) NOT NULL,
+  `correo` varchar(30) NOT NULL,
+  `fechaRegistro` date NOT NULL,
+  `eliminado` bit NOT NULL DEFAULT 0,
   `idCargo` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idUsuario`)
+  PRIMARY KEY (`codUsuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `usuario`
---
-
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,NULL,'Ramirez','Juan','juan','juan','juramirez@insn.gob.pe','2017-10-06',1,NULL),(2,NULL,'Carvajal','Luis','luis','luis','lucarvajal@insn.gob.pe','2016-08-09',1,NULL),(3,NULL,'Condezo','David','david','david','dacondezo@insn.gob.pe','2017-04-22',1,NULL),(4,NULL,'Arbulu','Ernesto','ernesto','ernesto','erarbulu@insn.gob.pe','2016-11-12',1,NULL),(5,NULL,'Palomino','Luis','luisito','luisito','lupalomino@insn.gob.p0e','2016-01-12',1,NULL);
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'bd_insn'
@@ -190,5 +170,13 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+ALTER TABLE usuario
+CHANGE COLUMN fechaRegistro fechaRegistro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE bien
+CHANGE COLUMN fechaRegistro fechaRegistro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE unidadorganica
+CHANGE COLUMN fechaRegistro fechaRegistro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
 
 -- Dump completed on 2020-07-10 13:24:29
