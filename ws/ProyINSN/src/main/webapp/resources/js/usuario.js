@@ -71,7 +71,7 @@ function fConfigurarGrilla(data) {
         "scrollX": true,
         "info": true,
         "lengthChange": true,
-        "lengthMenu": [[2, 10, 50, -1], ['2 filas', '10 filas', '50 filas', 'Todo']],
+        "lengthMenu": [[2, 10, 50, -1], ['2', '10', '50', 'Todo']],
         "destroy": true,
         "data": rows
 	};
