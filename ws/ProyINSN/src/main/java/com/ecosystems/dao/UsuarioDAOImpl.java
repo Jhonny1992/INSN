@@ -38,7 +38,15 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		try {
 			Session sesion = factory.getCurrentSession();
 			
-			sesion.update(bean);
+			UsuarioBean ant = sesion.get(UsuarioBean.class, bean.getCodUsuario());
+			ant.setNombres(bean.getNombres());
+			ant.setApellidos(bean.getApellidos());
+			ant.setUsername(bean.getUsername());
+			ant.setPassword(bean.getPassword());
+			ant.setCorreo(bean.getCorreo());
+			ant.setEstado(bean.isEstado());
+			
+			sesion.update(ant);
 			
 			return bean;
 		} catch (Exception e) {

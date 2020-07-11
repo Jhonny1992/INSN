@@ -113,12 +113,10 @@
                             <div class="form-group col-md-6">
                                 <label for="nombres" class="col-form-label">Nombres:</label>
                                 <input type="text" class="form-control" id="nombres" name="nombres">
-                                <span class="error" for="nombres"></span>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="apellidos" class="col-form-label">Apellidos:</label>
                                 <input type="text" class="form-control" id="apellidos" name="apellidos">
-                                <span class="error" for="apellidos"></span>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="username" class="col-form-label">Usuario:</label>
@@ -128,12 +126,10 @@
                             <div class="form-group col-md-6">
                                 <label for="clave" class="col-form-label">Clave:</label>
                                 <input type="text" class="form-control" id="clave" name="clave">
-                                <span class="error" for="clave"></span>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="clave" class="col-form-label">Correo:</label>
                                 <input type="text" class="form-control" id="correo" name="correo">
-                                <span class="error" for="correo"></span>
                             </div>
                             <div class="form-group col-md-6 text-right">
                             	<label for="clave" class="col-form-label"> </label>
@@ -146,7 +142,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="btnGrabar"></button>
+                        <button type="submit" class="btn btn-primary" id="btnGrabar"></button>
                     </div>
                 </form>
             </div>

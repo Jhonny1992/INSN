@@ -3,6 +3,7 @@ $(function() {
 });
 
 function fInicializar() {
+	fConfigurarFormulario();
 	fConfigurarEventos();
 	fCargarLista();
 }
@@ -25,22 +26,10 @@ function fConfigurarEventos() {
     	fLimpiarFormulario();
     });
     
+    $('#frmRegistro').bind('submit', frmRegistro_submit);
+    
     $('#btnGrabar').bind('click', function() {
-    	var reg = {
-			codUsuario: $('#id').val(),
-			nombres: $('#nombres').val(),
-			apellidos: $('#apellidos').val(),
-			username: $('#username').val(),
-			clave: $('#clave').val(),
-			correo: $('#correo').val(),
-			estado: $('#estado').prop('checked')
-    	};
     	
-    	const id = $('#id').val();
-    	if (id == '')
-    		fAddUsuario(reg);
-    	else
-    		fEditUsuario(reg);
     });
 }
 
@@ -156,4 +145,83 @@ function fEditUsuario(reg) {
 
 function fLimpiarFormulario() {
 	$('#frmRegistro input').val('');
+	window.validator.resetForm();
+}
+
+function frmRegistro_submit(e) {
+    var isValid = $('#frmRegistro').valid();
+
+    if (isValid) {
+        e.preventDefault();
+        
+        var reg = {
+			codUsuario: $('#id').val(),
+			nombres: $('#nombres').val(),
+			apellidos: $('#apellidos').val(),
+			username: $('#username').val(),
+			clave: $('#clave').val(),
+			correo: $('#correo').val(),
+			estado: $('#estado').prop('checked')
+    	};
+        
+    	if (reg.codUsuario == '')
+    		fAddUsuario(reg);
+    	else
+    		fEditUsuario(reg);
+    }
+}
+
+function fConfigurarFormulario() {
+    window.validator = $("#frmRegistro").validate({
+        rules: {
+          nombres: {
+              required: true,
+              maxlength: 45
+          },
+          apellidos: {
+              required: true,
+              maxlength: 45
+          },
+          username: {
+              required: true,
+              minlength: 3,
+              maxlength: 10
+          },
+          clave: {
+              required: true,
+              minlength: 6,
+              maxlength: 15
+          },
+          correo: {
+              required: true,
+              maxlength: 30,
+              email: true
+          },
+        },
+        messages: {
+            nombres: {
+                required: "Debe ingresar nombre",
+                maxlength: "Maximo {0} caracteres"
+            },
+            apellidos: {
+                required: "Debe ingresar apellidos",
+                maxlength: "Maximo {0} caracteres"
+            },
+            username: {
+                required: "Debe ingresar usuario",
+                minlength: "Debe tener al menos {0} caracteres",
+                maxlength: "Máximo {0} caracteres"
+            },
+            clave: {
+                required: "Debe ingresar clave",
+                minlength: "Debe tener al menos {0} caracteres",
+                maxlength: "Máximo {0} caracteres"
+            },
+            correo: {
+                required: "Debe ingresar correo",
+                maxlength: "Máximo {0} caracteres",
+                email: "Ingrese un correo válido"
+            },
+        }
+  });
 }
