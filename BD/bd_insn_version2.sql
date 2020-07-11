@@ -32,7 +32,6 @@ CREATE TABLE `bien` (
   `descripcion` varchar(500) NOT NULL,
   `tipo` int(11) NOT NULL,
   `fechaRegistro` date NOT NULL,
-  `eliminado` bit NOT NULL DEFAULT 0,
   PRIMARY KEY (`codBien`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -119,7 +118,6 @@ CREATE TABLE `unidadorganica` (
   `anexo` varchar(5) NOT NULL,
   `jefeEncargado` int(11) NOT NULL,
   `fechaRegistro` date NOT NULL,
-  `eliminado` bit NOT NULL DEFAULT 0,
   PRIMARY KEY (`codUnidad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -149,7 +147,6 @@ CREATE TABLE `usuario` (
   `clave` varchar(15) NOT NULL,
   `correo` varchar(30) NOT NULL,
   `fechaRegistro` date NOT NULL,
-  `eliminado` bit NOT NULL DEFAULT 0,
   `idCargo` int(11) DEFAULT NULL,
   PRIMARY KEY (`codUsuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
