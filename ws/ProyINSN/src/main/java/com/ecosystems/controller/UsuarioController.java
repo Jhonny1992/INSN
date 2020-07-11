@@ -30,4 +30,10 @@ public class UsuarioController {
 									@RequestParam("apellidos") String apellidos) {
 		return service.buscar(nombres, apellidos);
 	}
+	
+	@RequestMapping("/obtener")
+	@ResponseBody
+	public UsuarioBean obtenerPorId(@RequestParam("id") int id) {
+		return service.obtenerPorId(id);
+	}
 }

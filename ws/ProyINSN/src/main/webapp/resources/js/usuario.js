@@ -20,6 +20,10 @@ function fConfigurarEventos() {
         $('#txtNombreBusqueda, #txtApellidoBusqueda').val('');
         fCargarLista();
     });
+    
+    $('#modalUsuario').on('hide.bs.modal', function (e) {
+    	fLimpiarFormulario();
+    });
 }
 
 function fCargarLista() {
@@ -81,7 +85,23 @@ function reloadGrid() {
 }
 
 function fEditar(id) {
-	window.location.href = 'Usuario?op=5&id=' + id;
+	$.get('obtener', { id: id })
+	.done(function (data) {
+		console.log(data);
+		
+		$('#nombres').val(data.nombres);
+		$('#apellidos').val(data.apellidos);
+		$('#username').val(data.username);
+		$('#clave').val(data.password);
+		$('#correo').val(data.correo);
+		$('#estado').prop('checked', data.estado);
+		
+		$('#modalUsuario .modal-title').html('Editar usuario');
+		$('#modalUsuario').modal('show');
+	})
+	.fail(function(data) {
+		swal('Error', 'Los sentimo, ocurró un error', 'error');
+	});
 }
 
 function fEliminar(id) {
@@ -101,4 +121,8 @@ function fEliminar(id) {
     };
 
     var ajax = uf_ajaxRequest(jsonReq);
+}
+
+function fLimpiarFormulario() {
+	$('#frmRegistro input').val('');
 }

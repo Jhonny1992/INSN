@@ -95,6 +95,61 @@
 			</section>
 		</div>
 	</div>
+	
+	<div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="frmRegistro" autocomplete="off">
+                    <div class="modal-header bg-info text-white p-2">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="nombres" class="col-form-label">Nombres:</label>
+                                <input type="text" class="form-control" id="nombres" name="nombres">
+                                <span class="error" for="nombres"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="apellidos" class="col-form-label">Apellidos:</label>
+                                <input type="text" class="form-control" id="apellidos" name="apellidos">
+                                <span class="error" for="apellidos"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="username" class="col-form-label">Usuario:</label>
+                                <input type="text" class="form-control" id="username" name="username">
+                                <span class="error" for="username"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="clave" class="col-form-label">Clave:</label>
+                                <input type="text" class="form-control" id="clave" name="clave">
+                                <span class="error" for="clave"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="clave" class="col-form-label">Correo:</label>
+                                <input type="text" class="form-control" id="correo" name="correo">
+                                <span class="error" for="correo"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+							    <div class="form-check">
+							    	<input class="form-check-input" type="checkbox" id="estado">
+							    	<label class="form-check-label" for="estado">Activo</label>
+							    </div>
+						  </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 <jsp:include page="include_scripts.jsp" />
 <script type="text/javascript" src="../resources/js/usuario.js"></script>
