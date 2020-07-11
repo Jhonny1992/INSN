@@ -53,7 +53,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<c:url value="/donante/"/>" class="nav-link">
+									<a href="<c:url value="/bien/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Bienes</p>
 									</a>

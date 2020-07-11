@@ -36,7 +36,7 @@
 		<property name="jdbcUrl"
 			value="jdbc:mysql://localhost:3306/bd_insn?useSSL=false" />
 		<property name="user" value="root" />
-		<property name="password" value="root_pass" />
+		<property name="password" value="mysql" />
 
 		<!-- these are connection pool properties for C3P0 -->
 		<property name="minPoolSize" value="5" />
