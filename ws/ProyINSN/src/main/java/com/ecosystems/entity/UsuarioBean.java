@@ -45,8 +45,6 @@ public class UsuarioBean implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date fechaRegistro;
 	
-	@Column(name = "eliminado")
-	private boolean estado;
 	
 	public UsuarioBean() {
 		super();
@@ -54,7 +52,7 @@ public class UsuarioBean implements Serializable {
 	}
 	
 	public UsuarioBean(String apellidos, String nombres, String username, String password, String correo,
-			Date fechaRegistro, boolean estado) {
+			Date fechaRegistro) {
 		super();
 		this.apellidos = apellidos;
 		this.nombres = nombres;
@@ -62,7 +60,6 @@ public class UsuarioBean implements Serializable {
 		this.password = password;
 		this.correo = correo;
 		this.fechaRegistro = fechaRegistro;
-		this.estado = estado;
 	}
 	public int getCodUsuario() {
 		return codUsuario;
@@ -105,11 +102,5 @@ public class UsuarioBean implements Serializable {
 	}
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
-	}
-	public boolean isEstado() {
-		return estado;
-	}
-	public void setEstado(boolean estado) {
-		this.estado = estado;
 	}
 }

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <jsp:include page="include_head.jsp" />
 </head>
 <body
@@ -20,7 +20,7 @@
 					<div class="container-fluid">
 						<div class="card">
 							<div class="card-header p-1 bg-info text-white">
-								<h4 class="text-center">Mantenedor de usuarios</h4>
+								<h4 class="text-center">Mantenedor de Unidad Organica</h4>
 							</div>
 							<div class="card-body">
 								<div class="row">
@@ -45,15 +45,7 @@
 										                            <div class="input-group-prepend">
 										                                <label for="txtNombreBusqueda" class="input-group-text"><i class="fa fa-search"></i></label>
 										                            </div>
-										                            <input type="text" class="form-control" placeholder="Ingrese nombres" id="txtNombreBusqueda" />
-										                        </div>
-										                    </div>
-										                    <div class="form-group">
-										                        <div class="input-group input-group-sm">
-										                            <div class="input-group-prepend">
-										                                <label for="txtApellidoBusqueda" class="input-group-text"><i class="fa fa-search"></i></label>
-										                            </div>
-										                            <input type="text" class="form-control" placeholder="Ingrese apellidos" id="txtApellidoBusqueda" />
+										                            <input type="text" class="form-control" placeholder="Ingrese nombre" id="txtNombreBusqueda" />
 										                        </div>
 										                    </div>
 										                </div>
@@ -71,18 +63,17 @@
 										
 									</div>
 									<div class="col-lg-9 col-md-8 col-sm-6">
-										<table id="tbUsuario"
+										<table id="tbUnidadOrganica"
 											class="table table-hover table-bordered display"
 											style="width: 100%">
 											<thead>
 												<tr>
 													<th></th>
 													<th>Id</th>
-													<th>Nombres</th>
-													<th>Apellidos</th>
-													<th>Username</th>
-													<th>Correo</th>
-													<th>Estado</th>
+													<th>Nombre</th>
+													<th>Descripcion</th>
+													<th>Anexo</th>
+													<th>JefeEncargado</th>
 													<th></th>
 												</tr>
 											</thead>
@@ -113,7 +104,7 @@
                         	<input type="hidden" id="id" name="id">
                             <div class="form-group col-md-6">
                                 <label for="nombres" class="col-form-label">Nombres:</label>
-                                <input type="text" class="form-control" id="nombres" name="nombres">
+                                <input type="text" class="form-control" id="nombre" name="nombres">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="apellidos" class="col-form-label">Apellidos:</label>
@@ -151,5 +142,5 @@
     </div>
 </body>
 <jsp:include page="include_scripts.jsp" />
-<script type="text/javascript" src="../resources/js/usuario.js"></script>
+<script type="text/javascript" src="../resources/js/unidadorganica.js"></script>
 </html>

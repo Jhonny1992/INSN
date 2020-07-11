@@ -59,7 +59,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<c:url value="/proveedor/"/>" class="nav-link">
+									<a href="<c:url value="/unidadorganica/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Unidades orgánicas</p>
 									</a>

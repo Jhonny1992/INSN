@@ -10,17 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ecosystems.entity.UnidadOrganicaBean;
 import com.ecosystems.entity.UsuarioBean;
-
 @Repository
-public class UsuarioDAOImpl implements UsuarioDAO {
-	
-	@Autowired
-	private SessionFactory factory;
+public class UnidadOrganicaDAOImpl implements UnidadOrganicaDAO {
 
-	@Override
+	@Autowired
+	public SessionFactory factory;
+	
 	@Transactional
-	public UsuarioBean agregar(UsuarioBean bean) {
+	@Override
+	public UnidadOrganicaBean agregar(UnidadOrganicaBean bean) {
 		try {
 			Session sesion = factory.getCurrentSession();
 			
@@ -31,20 +31,18 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		
 		return bean;
 	}
-
-	@Override
 	@Transactional
-	public UsuarioBean actualizar(UsuarioBean bean) {
+	@Override
+	public UnidadOrganicaBean actualizar(UnidadOrganicaBean bean) {
 		try {
 			Session sesion = factory.getCurrentSession();
 			
-			UsuarioBean ant = sesion.get(UsuarioBean.class, bean.getCodUsuario());
-			ant.setNombres(bean.getNombres());
-			ant.setApellidos(bean.getApellidos());
-			ant.setUsername(bean.getUsername());
-			ant.setPassword(bean.getPassword());
-			ant.setCorreo(bean.getCorreo());
-			
+			UnidadOrganicaBean ant = sesion.get(UnidadOrganicaBean.class, bean.getcodUnidadOrganica());
+			ant.setNombre(bean.getNombre());
+			ant.setDescripcion(bean.getDescripcion());
+			ant.setAnexo(bean.getAnexo());
+			ant.setJefeEncargado(bean.getJefeEncargado());
+
 			sesion.update(ant);
 			
 			return bean;
@@ -55,17 +53,16 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Transactional(readOnly=true)
 	@Override
-	@Transactional(readOnly = true)
-	public List<UsuarioBean> buscar(String nombres, String apellidos) {
+	public List<UnidadOrganicaBean> buscar(String nombre) {
 		try {
 			Session sesion = factory.getCurrentSession();
 			
-			String hql = "from UsuarioBean WHERE (:nombres = '' or nombres like CONCAT('%', :nombres, '%')) AND (:apellidos is null or apellidos like CONCAT('%', :apellidos, '%'))";
+			String hql = "from UnidadOrganicaBean WHERE (:nombre = '' or nombre like CONCAT('%', :nombre, '%'))";
 			
 			Query query = sesion.createQuery(hql);
-			query.setParameter("nombres", nombres == null ? "" : nombres);
-			query.setParameter("apellidos", apellidos == null ? "" : apellidos);
+			query.setParameter("nombre", nombre == null ? "" : nombre);
 			
 			return query.getResultList();
 		} catch (Exception e) {
@@ -74,29 +71,31 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		}
 	}
 
+	@Transactional(readOnly=true)
 	@Override
-	@Transactional(readOnly = true)
-	public UsuarioBean obtenerPorId(int id) {
+	public UnidadOrganicaBean obtenerPorId(int id) {
 		try {
 			Session sesion = factory.getCurrentSession();
 			
-			return sesion.get(UsuarioBean.class, id);
+			return sesion.get(UnidadOrganicaBean.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
 
+	@Transactional
 	@Override
-	@Transactional(readOnly = true)
-	public void eliminar(int id) {		
+	public void eliminar(int id) {
 		try {
 			Session sesion = factory.getCurrentSession();
-			UsuarioBean bean = sesion.get(UsuarioBean.class, id);
+			UnidadOrganicaBean bean = sesion.get(UnidadOrganicaBean.class, id);
 			sesion.delete(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
+	
 
 }
