@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../resources/libs/FontAwesome/css/all.min.css">
 
 <link rel="stylesheet" href="../resources/css/customize.css">
+<link rel="stylesheet" href="../resources/css/main.css">
 
 <style>
 .error {

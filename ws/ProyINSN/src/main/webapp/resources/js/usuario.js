@@ -39,25 +39,17 @@ function fConfigurarGrilla(data) {
 	var strJSON = window.localStorage.getItem('dts');
 	var tableId = 'tbUsuario';
 	
-	var editIcon = function (data, type, row, meta) {
-		return "<i title='editar' class='far fa-edit cursorHand' onclick=fEditar(" + row.usuarioId  + ")></i>";
-	};
-	
-	var deleteIcon = function (data, type, row, meta) {
-		return "<i title='eliminar' class='far fa-trash-alt cursorHand' onclick=fEliminar(" + row.usuarioId + ")></i>";
-	};
-	
 	var rows = [];
 	data.map(function(e, i) {
 		var r = [];
-		r[0] = 'editar';
+		r[0] = "<i title='editar' class='far fa-edit text-warning cursorHand' onclick=fEditar(" + e['codUsuario']  + ")></i>";
 		r[1] = e['codUsuario'];
 		r[2] = e['nombres'];
 		r[3] = e['apellidos'];
 		r[4] = e['username'];
 		r[5] = e['correo'];
 		r[6] = e['estado'];
-		r[7] = 'eliminar';
+		r[7] = "<i title='eliminar' class='far fa-trash-alt text-danger cursorHand' onclick=fEliminar(" + e['codUsuario'] + ")></i>";
 		
 		rows.push(r);
 	});
