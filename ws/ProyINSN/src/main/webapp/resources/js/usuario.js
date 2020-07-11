@@ -4,7 +4,7 @@ $(function() {
 
 function fInicializar() {
 	fConfigurarGrilla();
-	swal("Bienvenido!", "Mantenedor de usuarios!", "success");
+	fCargarLista();
 }
 
 function fConfigurarGrilla() {
@@ -26,45 +26,41 @@ function fConfigurarGrilla() {
 		       "<'row.text-center'<'col-sm-12'l>>",
         
         "responsive": true,
-        /*"searching": false,
-		"ordering": false,
-		"order": [[1, "asc"]],
-		"info": true,
-		"stateSave": false,
-        "fixedColumns":   {
-            "heightMatch": 'none'
-        },
+        "paging": true,
         "scrollY": "350px",
         "scrollCollapse": true,
         "scrollX": true,
-        "buttons": true,
-        "search": {
-            "search": "",
-            "caseInsensitive": true,
-            "smart": false
-        },
-        "paging": true,
-        "lengthChange": true,
-        "lengthMenu": [[5, 10, 50], [5, 10, 50]],
-        "pagingType": "full_numbers", // [number | simple | full | full_numbers | first_last_numbers]
-        
-        "columns": [
-        	{ "data": "edit", "name": "edit", "width": "5%", "className": "text-center", "autoWidth": false, "orderable": false, render: editIcon },
-        	{ "data": "codUsuario", "name": "codUsuario", "width": "5%", "className": "text-center", "autoWidth": false },
-        	{ "data": "nombreCompleto", "name": "nombreCompleto", "width": "35%", "className": "text-center", "autoWidth": false },
-        	{ "data": "usuario", "name": "usuario", "width": "5%", "className": "text-center", "autoWidth": false },
-        	{ "data": "correo", "name": "correo", "width": "20%", "className": "text-center", "autoWidth": false },
-        	{ "data": "estadoDesc", "name": "estadoDesc", "width": "5%", "className": "text-center", "autoWidth": false },
-        	{ "data": "delete", "name": "delete", "width": "5%", "className": "text-center", "autoWidth": false, "orderable": false, render: deleteIcon }
-        ],
-        
-        "processing": false,
-        "serverSide": false,
-        "filter": false,
-        "orderMulti": false*/
+        "info": true,
+        "lengthChange": true
 	};
 	
-	window.tbUsuario = $('#' + tableId).DataTable(jsonDT);
+	window.tbUsuario = $('#' + tableId).DataTable();
+}
+
+function fCargarLista() {
+	let nombres = $('#txtNombreBusqueda').val();
+	let apellidos = $('#txtApellidoBusqueda').val();
+	
+	$.get('buscar', { nombres: nombres, apellidos: apellidos })
+	.done(function (data) {
+		console.log(data);
+		$('#tbUsuario tbody').html('');
+		data.map(function(e, i) {
+			$('#tbUsuario tbody').append('<tr>' +
+											'<td>' + 'edit' + '</td>' +
+											'<td>' + e.codUsuario + '</td>' +
+											'<td>' + e.nombres + '</td>' +
+											'<td>' + e.apellidos + '</td>' +
+											'<td>' + e.username + '</td>' +
+											'<td>' + e.correo + '</td>' +
+											'<td>' + e.estado + '</td>' +
+											'<td>' + 'del' + '</td>' +
+										 '</tr>');
+		});
+	})
+	.fail(function(data) {
+		swal('Error', 'Los sentimo, ocurró un error', 'error');
+	});
 }
 
 function reloadGrid() {
