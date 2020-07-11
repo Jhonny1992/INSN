@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ecosystems.entity.BienBean;
+import com.ecosystems.entity.UsuarioBean;
 
 
 @Repository
@@ -39,7 +40,10 @@ public class BienDAOImpl implements BienDAO{
 	public BienBean actualizar(BienBean bean) {
 		try {
 			Session sesion = factory.getCurrentSession();
-			
+			BienBean ant = sesion.get(BienBean.class, bean.getCodBien());
+			ant.setNombre(bean.getNombre());
+			ant.setDescripcion(bean.getDescripcion());
+			ant.setTipo(bean.getTipo());
 			sesion.update(bean);
 			
 			return bean;
@@ -75,6 +79,7 @@ public class BienDAOImpl implements BienDAO{
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Transactional(readOnly=true)
 	@Override
 	public List<BienBean> list() {
@@ -89,6 +94,7 @@ public class BienDAOImpl implements BienDAO{
 		return query.getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Transactional(readOnly=true)
 	@Override
 	public List<BienBean> buscarXFecha(Date fecha1, Date fecha2) {

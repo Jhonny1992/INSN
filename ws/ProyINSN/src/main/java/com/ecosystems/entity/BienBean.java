@@ -1,5 +1,6 @@
 package com.ecosystems.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,10 +16,35 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "bien")
-public class BienBean {
+public class BienBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+
+	public BienBean(String nombre, String descripcion, int tipo, Date fechaRegistro) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.tipo = tipo;
+		this.fechaRegistro = fechaRegistro;
+		
+	}
+	
+	
+
+	public BienBean() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idBien")
+	@Column(name = "codBien")
 	private int codBien;
 	
 	@Column(name = "nombre")
@@ -32,11 +58,10 @@ public class BienBean {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fechaRegistro")
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date fechaRegistro;
 	
-	@Column(name = "estado")
-	private int estado;
+
 
 	public int getCodBien() {
 		return codBien;
@@ -78,13 +103,7 @@ public class BienBean {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	public int getEstado() {
-		return estado;
-	}
 
-	public void setEstado(int estado) {
-		this.estado = estado;
-	}
 	
 	
 	
