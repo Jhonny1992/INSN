@@ -45,7 +45,7 @@ public class UsuarioBean implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date fechaRegistro;
 	
-	
+
 	public UsuarioBean() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -59,7 +59,6 @@ function fConfigurarGrilla(data) {
 		r[3] = e['apellidos'];
 		r[4] = e['username'];
 		r[5] = e['correo'];
-		r[6] = e['estado'];
 		r[7] = "<i title='eliminar' class='far fa-trash-alt fa-lg text-danger cursorHand' onclick=fEliminar(" + e['codUsuario'] + ")></i>";
 		
 		rows.push(r);
