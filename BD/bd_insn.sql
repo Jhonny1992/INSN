@@ -1,4 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `bd_insn` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+DROP DATABASE IF EXISTS bd_insn;
+
+CREATE DATABASE `bd_insn` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `bd_insn`;
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
@@ -403,13 +405,13 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `cod_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `ape_usua` varchar(45) DEFAULT NULL,
-  `nom_usua` varchar(45) DEFAULT NULL,
-  `login` varchar(45) DEFAULT NULL,
-  `clave` varchar(45) DEFAULT NULL,
-  `correo` varchar(45) DEFAULT NULL,
-  `fec_reg` date DEFAULT NULL,
-  `estado` bit DEFAULT 0,
+  `ape_usua` varchar(45) NOT NULL,
+  `nom_usua` varchar(45) NOT NULL,
+  `login` varchar(10) NOT NULL,
+  `clave` varchar(15) NOT NULL,
+  `correo` varchar(30) NOT NULL,
+  `fec_reg` date NULL,
+  `estado` bit NOT NULL DEFAULT 1,
   PRIMARY KEY (`cod_usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -436,5 +438,8 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+ALTER TABLE usuario
+CHANGE COLUMN fec_reg fec_reg DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
 -- Dump completed on 2020-07-08 13:54:15
