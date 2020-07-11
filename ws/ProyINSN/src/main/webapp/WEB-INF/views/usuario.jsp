@@ -52,7 +52,7 @@
 										                            <div class="input-group-prepend">
 										                                <label for="txtApellidoBusqueda" class="input-group-text"><i class="fa fa-search"></i></label>
 										                            </div>
-										                            <input type="text" class="form-control" placeholder="Ingrese nombres" id="txtApellidoBusqueda" />
+										                            <input type="text" class="form-control" placeholder="Ingrese apellidos" id="txtApellidoBusqueda" />
 										                        </div>
 										                    </div>
 										                </div>
