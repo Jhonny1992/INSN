@@ -109,6 +109,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
+                        	<input type="hidden" id="id" name="id">
                             <div class="form-group col-md-6">
                                 <label for="nombres" class="col-form-label">Nombres:</label>
                                 <input type="text" class="form-control" id="nombres" name="nombres">
@@ -134,7 +135,8 @@
                                 <input type="text" class="form-control" id="correo" name="correo">
                                 <span class="error" for="correo"></span>
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6 text-right">
+                            	<label for="clave" class="col-form-label"> </label>
 							    <div class="form-check">
 							    	<input class="form-check-input" type="checkbox" id="estado">
 							    	<label class="form-check-label" for="estado">Activo</label>
@@ -144,7 +146,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <button type="submit" class="btn btn-primary" id="btnGrabar"></button>
                     </div>
                 </form>
             </div>

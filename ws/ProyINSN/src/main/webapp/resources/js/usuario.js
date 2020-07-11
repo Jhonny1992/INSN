@@ -46,14 +46,14 @@ function fConfigurarGrilla(data) {
 	var rows = [];
 	data.map(function(e, i) {
 		var r = [];
-		r[0] = "<i title='editar' class='far fa-edit text-warning cursorHand' onclick=fEditar(" + e['codUsuario']  + ")></i>";
+		r[0] = "<i title='editar' class='far fa-edit fa-lg text-warning cursorHand' onclick=fEditar(" + e['codUsuario']  + ")></i>";
 		r[1] = e['codUsuario'];
 		r[2] = e['nombres'];
 		r[3] = e['apellidos'];
 		r[4] = e['username'];
 		r[5] = e['correo'];
 		r[6] = e['estado'];
-		r[7] = "<i title='eliminar' class='far fa-trash-alt text-danger cursorHand' onclick=fEliminar(" + e['codUsuario'] + ")></i>";
+		r[7] = "<i title='eliminar' class='far fa-trash-alt fa-lg text-danger cursorHand' onclick=fEliminar(" + e['codUsuario'] + ")></i>";
 		
 		rows.push(r);
 	});
@@ -89,6 +89,7 @@ function fEditar(id) {
 	.done(function (data) {
 		console.log(data);
 		
+		$('#id').val(data.codusuario);
 		$('#nombres').val(data.nombres);
 		$('#apellidos').val(data.apellidos);
 		$('#username').val(data.username);
@@ -97,6 +98,7 @@ function fEditar(id) {
 		$('#estado').prop('checked', data.estado);
 		
 		$('#modalUsuario .modal-title').html('Editar usuario');
+		$('#btnGrabar').html('Actualizar');
 		$('#modalUsuario').modal('show');
 	})
 	.fail(function(data) {
