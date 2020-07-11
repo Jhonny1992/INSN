@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,5 +36,26 @@ public class UsuarioController {
 	@ResponseBody
 	public UsuarioBean obtenerPorId(@RequestParam("id") int id) {
 		return service.obtenerPorId(id);
+	}
+	
+	@RequestMapping(value = "/actualizar", method = RequestMethod.POST)
+	@ResponseBody
+	public UsuarioBean actualizar(@RequestParam("codUsuario") int codUsuario,
+								  @RequestParam("nombres") String nombres,
+								  @RequestParam("apellidos") String apellidos,
+								  @RequestParam("username") String username,
+								  @RequestParam("clave") String clave,
+								  @RequestParam("correo") String correo,
+								  @RequestParam("estado") boolean estado) {
+		UsuarioBean bean = new UsuarioBean();
+		bean.setCodUsuario(codUsuario);
+		bean.setNombres(nombres);
+		bean.setApellidos(apellidos);
+		bean.setUsername(username);
+		bean.setPassword(clave);
+		bean.setCorreo(correo);
+		bean.setEstado(estado);
+		
+		return service.actualizar(bean);
 	}
 }

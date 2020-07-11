@@ -24,6 +24,24 @@ function fConfigurarEventos() {
     $('#modalUsuario').on('hide.bs.modal', function (e) {
     	fLimpiarFormulario();
     });
+    
+    $('#btnGrabar').bind('click', function() {
+    	var reg = {
+			codUsuario: $('#id').val(),
+			nombres: $('#nombres').val(),
+			apellidos: $('#apellidos').val(),
+			username: $('#username').val(),
+			clave: $('#clave').val(),
+			correo: $('#correo').val(),
+			estado: $('#estado').prop('checked')
+    	};
+    	
+    	const id = $('#id').val();
+    	if (id == '')
+    		fAddUsuario(reg);
+    	else
+    		fEditUsuario(reg);
+    });
 }
 
 function fCargarLista() {
@@ -79,17 +97,12 @@ function fConfigurarGrilla(data) {
 	window.tbUsuario = $('#' + tableId).DataTable(jsonDT);
 }
 
-function reloadGrid() {
-	$('#alertMessages').html('');
-	window.tbMaestro.ajax.reload();
-}
-
 function fEditar(id) {
 	$.get('obtener', { id: id })
 	.done(function (data) {
 		console.log(data);
 		
-		$('#id').val(data.codusuario);
+		$('#id').val(data.codUsuario);
 		$('#nombres').val(data.nombres);
 		$('#apellidos').val(data.apellidos);
 		$('#username').val(data.username);
@@ -123,6 +136,22 @@ function fEliminar(id) {
     };
 
     var ajax = uf_ajaxRequest(jsonReq);
+}
+
+function fAddUsuario() {
+	
+}
+
+function fEditUsuario(reg) {
+	$.post('actualizar', reg)
+	.done(function (data) {
+		fCargarLista();
+		$('#modalUsuario').modal('hide');
+		swal('Correcto', 'Se ha actualizado con éxito', 'success');
+	})
+	.fail(function(data) {
+		swal('Error', 'Los sentimo, ocurró un error', 'error');
+	});
 }
 
 function fLimpiarFormulario() {
