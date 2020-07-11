@@ -1,23 +1,69 @@
 $(function() {
-	//fInicializar();
+	fInicializar();
 });
 
 function fInicializar() {
-	fConfigurarGrilla();
-	swal("Bienvenido!", "Mantenedor de usuarios!", "success");
+	fConfigurarFormulario();
+	fConfigurarEventos();
+	fCargarLista();
 }
 
-function fConfigurarGrilla() {
+function fConfigurarEventos() {
+	$('#txtNombreBusqueda, #txtApellidoBusqueda').bind('keyup', function () {
+		fCargarLista();
+    });
+	
+	$('#btnBuscar').bind('click', function () {
+		fCargarLista();
+    });
+
+    $('#btnLimpiar').bind('click', function () {
+        $('#txtNombreBusqueda, #txtApellidoBusqueda').val('');
+        fCargarLista();
+    });
+    
+    $('#modalUsuario').on('hide.bs.modal', function (e) {
+    	fLimpiarFormulario();
+    });
+    
+    $('#frmRegistro').bind('submit', frmRegistro_submit);
+    
+    $('#btnGrabar').bind('click', function() {
+    	
+    });
+}
+
+function fCargarLista() {
+	let nombres = $('#txtNombreBusqueda').val();
+	let apellidos = $('#txtApellidoBusqueda').val();
+	
+	$.get('buscar', { nombres: nombres, apellidos: apellidos })
+	.done(function (data) {
+		fConfigurarGrilla(data);
+	})
+	.fail(function(data) {
+		swal('Error', 'Los sentimo, ocurró un error', 'error');
+	});
+}
+
+function fConfigurarGrilla(data) {
 	var strJSON = window.localStorage.getItem('dts');
 	var tableId = 'tbUsuario';
 	
-	var editIcon = function (data, type, row, meta) {
-		return "<i title='editar' class='far fa-edit cursorHand' onclick=fEditar(" + row.usuarioId  + ")></i>";
-	};
-	
-	var deleteIcon = function (data, type, row, meta) {
-		return "<i title='eliminar' class='far fa-trash-alt cursorHand' onclick=fEliminar(" + row.usuarioId + ")></i>";
-	};
+	var rows = [];
+	data.map(function(e, i) {
+		var r = [];
+		r[0] = "<i title='editar' class='far fa-edit fa-lg text-warning cursorHand' onclick=fEditar(" + e['codUsuario']  + ")></i>";
+		r[1] = e['codUsuario'];
+		r[2] = e['nombres'];
+		r[3] = e['apellidos'];
+		r[4] = e['username'];
+		r[5] = e['correo'];
+		r[6] = e['estado'];
+		r[7] = "<i title='eliminar' class='far fa-trash-alt fa-lg text-danger cursorHand' onclick=fEliminar(" + e['codUsuario'] + ")></i>";
+		
+		rows.push(r);
+	});
 	
 	var jsonDT = {
 		"language": JSON.parse(strJSON),
@@ -26,72 +72,40 @@ function fConfigurarGrilla() {
 		       "<'row.text-center'<'col-sm-12'l>>",
         
         "responsive": true,
-		"searching": false,
-		"ordering": false,
-		"order": [[1, "asc"]],
-		"info": true,
-		"stateSave": false,
-        "fixedColumns":   {
-            "heightMatch": 'none'
-        },
+        "paging": true,
         "scrollY": "350px",
         "scrollCollapse": true,
         "scrollX": true,
-        "buttons": true,
-        "search": {
-            "search": "",
-            "caseInsensitive": true,
-            "smart": false
-        },
-        "paging": true,
+        "info": true,
         "lengthChange": true,
-        "lengthMenu": [[5, 10, 50], [5, 10, 50]],
-        "pagingType": "full_numbers", // [number | simple | full | full_numbers | first_last_numbers]
-        
-        "columns": [
-        	{ "data": "edit", "name": "edit", "width": "5%", "className": "text-center", "autoWidth": false, "orderable": false, render: editIcon },
-        	{ "data": "codUsuario", "name": "codUsuario", "width": "5%", "className": "text-center", "autoWidth": false },
-        	{ "data": "nombreCompleto", "name": "nombreCompleto", "width": "35%", "className": "text-center", "autoWidth": false },
-        	{ "data": "usuario", "name": "usuario", "width": "5%", "className": "text-center", "autoWidth": false },
-        	{ "data": "correo", "name": "correo", "width": "20%", "className": "text-center", "autoWidth": false },
-        	{ "data": "estadoDesc", "name": "estadoDesc", "width": "5%", "className": "text-center", "autoWidth": false },
-        	{ "data": "delete", "name": "delete", "width": "5%", "className": "text-center", "autoWidth": false, "orderable": false, render: deleteIcon }
-        ],
-        
-        "processing": false,
-        "serverSide": true,
-        "filter": false,
-        "orderMulti": false,
-        "ajax": {
-            "url": 'Usuario',
-            "type": "post",
-            "dataType": "json",
-            "data": function (d) {
-            	d.op = '2';
-            	
-                d.usuario = $.trim($("#usuario").val());
-                d.nombreApellido = $.trim($("#nombreApellido").val());
-                d.estado = $('#estado').val();
-            },
-            "dataSrc": function (json) {
-	        	var r = json.data;
-	        	
-	        	if (r != null) return r;
-	        	window.location.href = json.Data
-	    	}
-        }
+        "lengthMenu": [[2, 10, 50, -1], ['2', '10', '50', 'Todo']],
+        "destroy": true,
+        "data": rows
 	};
 	
-	window.tbMaestro = $('#' + tableId).DataTable(jsonDT);
-}
-
-function reloadGrid() {
-	$('#alertMessages').html('');
-	window.tbMaestro.ajax.reload();
+	window.tbUsuario = $('#' + tableId).DataTable(jsonDT);
 }
 
 function fEditar(id) {
-	window.location.href = 'Usuario?op=5&id=' + id;
+	$.get('obtener', { id: id })
+	.done(function (data) {
+		console.log(data);
+		
+		$('#id').val(data.codUsuario);
+		$('#nombres').val(data.nombres);
+		$('#apellidos').val(data.apellidos);
+		$('#username').val(data.username);
+		$('#clave').val(data.password);
+		$('#correo').val(data.correo);
+		$('#estado').prop('checked', data.estado);
+		
+		$('#modalUsuario .modal-title').html('Editar usuario');
+		$('#btnGrabar').html('Actualizar');
+		$('#modalUsuario').modal('show');
+	})
+	.fail(function(data) {
+		swal('Error', 'Los sentimo, ocurró un error', 'error');
+	});
 }
 
 function fEliminar(id) {
@@ -111,4 +125,103 @@ function fEliminar(id) {
     };
 
     var ajax = uf_ajaxRequest(jsonReq);
+}
+
+function fAddUsuario() {
+	
+}
+
+function fEditUsuario(reg) {
+	$.post('actualizar', reg)
+	.done(function (data) {
+		fCargarLista();
+		$('#modalUsuario').modal('hide');
+		swal('Correcto', 'Se ha actualizado con éxito', 'success');
+	})
+	.fail(function(data) {
+		swal('Error', 'Los sentimo, ocurró un error', 'error');
+	});
+}
+
+function fLimpiarFormulario() {
+	$('#frmRegistro input').val('');
+	window.validator.resetForm();
+}
+
+function frmRegistro_submit(e) {
+    var isValid = $('#frmRegistro').valid();
+
+    if (isValid) {
+        e.preventDefault();
+        
+        var reg = {
+			codUsuario: $('#id').val(),
+			nombres: $('#nombres').val(),
+			apellidos: $('#apellidos').val(),
+			username: $('#username').val(),
+			clave: $('#clave').val(),
+			correo: $('#correo').val(),
+			estado: $('#estado').prop('checked')
+    	};
+        
+    	if (reg.codUsuario == '')
+    		fAddUsuario(reg);
+    	else
+    		fEditUsuario(reg);
+    }
+}
+
+function fConfigurarFormulario() {
+    window.validator = $("#frmRegistro").validate({
+        rules: {
+          nombres: {
+              required: true,
+              maxlength: 45
+          },
+          apellidos: {
+              required: true,
+              maxlength: 45
+          },
+          username: {
+              required: true,
+              minlength: 3,
+              maxlength: 10
+          },
+          clave: {
+              required: true,
+              minlength: 6,
+              maxlength: 15
+          },
+          correo: {
+              required: true,
+              maxlength: 30,
+              email: true
+          },
+        },
+        messages: {
+            nombres: {
+                required: "Debe ingresar nombre",
+                maxlength: "Maximo {0} caracteres"
+            },
+            apellidos: {
+                required: "Debe ingresar apellidos",
+                maxlength: "Maximo {0} caracteres"
+            },
+            username: {
+                required: "Debe ingresar usuario",
+                minlength: "Debe tener al menos {0} caracteres",
+                maxlength: "Máximo {0} caracteres"
+            },
+            clave: {
+                required: "Debe ingresar clave",
+                minlength: "Debe tener al menos {0} caracteres",
+                maxlength: "Máximo {0} caracteres"
+            },
+            correo: {
+                required: "Debe ingresar correo",
+                maxlength: "Máximo {0} caracteres",
+                email: "Ingrese un correo válido"
+            },
+        }
+  });
 }

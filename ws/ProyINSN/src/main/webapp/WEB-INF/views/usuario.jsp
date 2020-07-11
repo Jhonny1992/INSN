@@ -52,7 +52,7 @@
 										                            <div class="input-group-prepend">
 										                                <label for="txtApellidoBusqueda" class="input-group-text"><i class="fa fa-search"></i></label>
 										                            </div>
-										                            <input type="text" class="form-control" placeholder="Ingrese nombres" id="txtApellidoBusqueda" />
+										                            <input type="text" class="form-control" placeholder="Ingrese apellidos" id="txtApellidoBusqueda" />
 										                        </div>
 										                    </div>
 										                </div>
@@ -95,6 +95,59 @@
 			</section>
 		</div>
 	</div>
+	
+	<div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="frmRegistro" autocomplete="off">
+                    <div class="modal-header bg-info text-white p-2">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                        	<input type="hidden" id="id" name="id">
+                            <div class="form-group col-md-6">
+                                <label for="nombres" class="col-form-label">Nombres:</label>
+                                <input type="text" class="form-control" id="nombres" name="nombres">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="apellidos" class="col-form-label">Apellidos:</label>
+                                <input type="text" class="form-control" id="apellidos" name="apellidos">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="username" class="col-form-label">Usuario:</label>
+                                <input type="text" class="form-control" id="username" name="username">
+                                <span class="error" for="username"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="clave" class="col-form-label">Clave:</label>
+                                <input type="text" class="form-control" id="clave" name="clave">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="clave" class="col-form-label">Correo:</label>
+                                <input type="text" class="form-control" id="correo" name="correo">
+                            </div>
+                            <div class="form-group col-md-6 text-right">
+                            	<label for="clave" class="col-form-label"> </label>
+							    <div class="form-check">
+							    	<input class="form-check-input" type="checkbox" id="estado">
+							    	<label class="form-check-label" for="estado">Activo</label>
+							    </div>
+						  </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="btnGrabar"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 <jsp:include page="include_scripts.jsp" />
 <script type="text/javascript" src="../resources/js/usuario.js"></script>

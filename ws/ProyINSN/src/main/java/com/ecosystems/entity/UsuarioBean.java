@@ -1,5 +1,6 @@
 package com.ecosystems.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,18 +14,23 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "usuario")
-public class UsuarioBean {
+public class UsuarioBean implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cod_usuario")
 	private int codUsuario;
 	
-	@Column(name = "ape_usua")
-	private String apellidos;
-	
 	@Column(name = "nom_usua")
 	private String nombres;
+	
+	@Column(name = "ape_usua")
+	private String apellidos;
 	
 	@Column(name = "login")
 	private String username;

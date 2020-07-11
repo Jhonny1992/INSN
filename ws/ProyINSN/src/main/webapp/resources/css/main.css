@@ -1,0 +1,8 @@
+.cursorHand {
+	cursor: pointer;
+}
+
+.error {
+	color: red;
+	font-weight: initial !important;
+}
