@@ -35,7 +35,6 @@ public class UnidadOrganicaBean implements Serializable{
 	@Column(name="anexo")
 	private String anexo;
 	
-	
 	//HACER JOIN.
 	@Column(name="jefeEncargado")
 	private int jefeEncargado;
