@@ -1,6 +1,5 @@
 package com.ecosystems.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -44,7 +43,8 @@ public class BienDAOImpl implements BienDAO{
 			ant.setNombre(bean.getNombre());
 			ant.setDescripcion(bean.getDescripcion());
 			ant.setTipo(bean.getTipo());
-			sesion.update(bean);
+			
+			sesion.update(ant);
 			
 			return bean;
 		} catch (Exception e) {
@@ -80,35 +80,24 @@ public class BienDAOImpl implements BienDAO{
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	@Override
-	public List<BienBean> list() {
-		Session session=factory.getCurrentSession();
-		Query query=null;
+	public List<BienBean> buscar(String nombre) {
 		try {
-			String hql="select b from BienBean b";
-			query=session.createQuery(hql);
+			Session sesion = factory.getCurrentSession();
+			
+			String hql = "from BienBean WHERE (:nombre = '' or nombre like CONCAT('%', :nombre, '%'))";
+			
+			Query query = sesion.createQuery(hql);
+			query.setParameter("nombre", nombre == null ? "" : nombre);
+			
+			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return query.getResultList();
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Transactional(readOnly=true)
-	@Override
-	public List<BienBean> buscarXFecha(Date fecha1, Date fecha2) {
-		Session session=factory.getCurrentSession();
-		Query query=null;
-		try {
-			
-			query=session.createQuery("select b from BienBean b where b.fechaRegistro between ?1 and ?2");
-			query.setParameter(1, fecha1);
-			query.setParameter(2, fecha2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return query.getResultList();
-	}
+	
 
 }

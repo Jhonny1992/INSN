@@ -8,10 +8,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ecosystems.entity.BienBean;
+import com.ecosystems.entity.UsuarioBean;
 import com.ecosystems.services.BienService;
 
 @Controller
@@ -25,42 +27,33 @@ public class BienController {
 	public String index() {
 		return "bien";
 	}
-
-	@RequestMapping(value = "/lista")
-	public String lista(Model model) {
-		List<BienBean> lista = bienService.list();
-		model.addAttribute("bienes", lista);
-		return "listabien";
-	}
-
-	@RequestMapping(value = "/listAllBien")
+	
+	@RequestMapping("/buscar")
 	@ResponseBody
-	public List<BienBean> listAllReferencias() {
-		List<BienBean> lista = bienService.list();
-		return lista;
-	}
-
-	@RequestMapping(value = "/findID")
-	@ResponseBody
-	public BienBean findID(@RequestParam("idBien") int id) {
-		BienBean bean;
-		bean = bienService.obtenerPorId(id);
-		return bean;
+	public List<BienBean> buscar(@RequestParam("nombre") String nombre) {
+		return bienService.buscar(nombre);
 	}
 	
-	@RequestMapping(value = "/deleteBien")
-	public String deleteBien(@RequestParam("codigo") int id, Model m) {
-		bienService.eliminar(id);
-		m.addAttribute("MENSAJE", "Registro eliminado correctamente");
-		return "listabien";
-		} 
-	
-	@RequestMapping("/buscarXFecha")
+	@RequestMapping("/obtener")
 	@ResponseBody
-	public List<BienBean> buscarXFecha(@RequestParam("fechaInicio") Date fechaInicio,
-										@RequestParam("fechaFin") Date fechaFin){
-		List<BienBean> lista=bienService.buscarXFecha(fechaInicio, fechaFin);
-		return lista;
+	public BienBean obtenerPorId(@RequestParam("id") int id) {
+		return bienService.obtenerPorId(id);
 	}
+	
+	@RequestMapping(value = "/actualizar", method = RequestMethod.POST)
+	@ResponseBody
+	public BienBean actualizar(@RequestParam("codBien") int codBien,
+								  @RequestParam("nombre") String nombre,
+								  @RequestParam("descripcion") String descripcion,
+								  @RequestParam("tipo") int tipo) {
+		BienBean bean = new BienBean();
+		bean.setCodBien(codBien);
+		bean.setNombre(nombre);
+		bean.setDescripcion(descripcion);
+		bean.setTipo(tipo);
+		
+		return bienService.actualizar(bean);
+	}
+	
 
 }
