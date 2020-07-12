@@ -25,11 +25,12 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			Session sesion = factory.getCurrentSession();
 			
 			sesion.save(bean);
+			
+			return bean;
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		
-		return bean;
 	}
 
 	@Override
@@ -41,9 +42,11 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			UsuarioBean ant = sesion.get(UsuarioBean.class, bean.getCodUsuario());
 			ant.setNombres(bean.getNombres());
 			ant.setApellidos(bean.getApellidos());
+			ant.setNroDocumento(bean.getNroDocumento());
 			ant.setUsername(bean.getUsername());
 			ant.setPassword(bean.getPassword());
 			ant.setCorreo(bean.getCorreo());
+			ant.setCargo(bean.getCargo());
 			
 			sesion.update(ant);
 			

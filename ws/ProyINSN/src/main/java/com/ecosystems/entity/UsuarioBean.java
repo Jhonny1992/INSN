@@ -118,4 +118,12 @@ public class UsuarioBean implements Serializable {
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
+
+	public CargoBean getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(CargoBean cargo) {
+		this.cargo = cargo;
+	}
 }

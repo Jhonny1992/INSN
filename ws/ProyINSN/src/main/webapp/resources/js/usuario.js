@@ -65,7 +65,7 @@ function fConfigurarGrilla(data) {
 		r[5] = e['username'];
 		r[6] = e['correo'];
 		r[7] = e['cargo']['nombre'];
-		r[7] = "<i title='eliminar' class='far fa-trash-alt fa-lg text-danger cursorHand' onclick=fEliminar(" + e['codUsuario'] + ")></i>";
+		r[8] = "<i title='eliminar' class='far fa-trash-alt fa-lg text-danger cursorHand' onclick=fEliminar(" + e['codUsuario'] + ")></i>";
 		
 		rows.push(r);
 	});
@@ -114,11 +114,11 @@ function fEditar(id) {
 		$('#id').val(data.codUsuario);
 		$('#nombres').val(data.nombres);
 		$('#apellidos').val(data.apellidos);
-		$('#dni').val(data.dni);
+		$('#dni').val(data.nroDocumento);
 		$('#username').val(data.username);
 		$('#clave').val(data.password);
 		$('#correo').val(data.correo);
-		$('#cargo').val(data.cargo);
+		$('#cargo').val(data.cargo.codCargo);
 		$('#estado').prop('checked', data.estado);
 		
 		$('#modalUsuario .modal-title').html('Editar usuario');
@@ -192,7 +192,7 @@ function frmRegistro_submit(e) {
 			username: $('#username').val(),
 			clave: $('#clave').val(),
 			correo: $('#correo').val(),
-			cargo: $('#cargo').val()
+			codCargo: $('#cargo').val()
     	};
         
     	if (reg.codUsuario == '')

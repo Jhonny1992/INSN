@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ecosystems.entity.CargoBean;
 import com.ecosystems.entity.UsuarioBean;
 import com.ecosystems.services.UsuarioService;
 
@@ -43,16 +44,24 @@ public class UsuarioController {
 	public UsuarioBean actualizar(@RequestParam("codUsuario") int codUsuario,
 								  @RequestParam("nombres") String nombres,
 								  @RequestParam("apellidos") String apellidos,
+								  @RequestParam("dni") String dni,
 								  @RequestParam("username") String username,
 								  @RequestParam("clave") String clave,
-								  @RequestParam("correo") String correo) {
+								  @RequestParam("correo") String correo,
+								  @RequestParam("codCargo") int codCargo) {
+		
 		UsuarioBean bean = new UsuarioBean();
+		CargoBean cargo = new CargoBean();
+		cargo.setCodCargo(codCargo);
+		
 		bean.setCodUsuario(codUsuario);
 		bean.setNombres(nombres);
 		bean.setApellidos(apellidos);
+		bean.setNroDocumento(dni);
 		bean.setUsername(username);
 		bean.setPassword(clave);
 		bean.setCorreo(correo);
+		bean.setCargo(cargo);
 		
 		return service.actualizar(bean);
 	}
@@ -65,14 +74,19 @@ public class UsuarioController {
 							   @RequestParam("username") String username,
 							   @RequestParam("clave") String clave,
 						  	   @RequestParam("correo") String correo,
-						  	   @RequestParam("cargo") int cargo) {
+						  	   @RequestParam("codCargo") int codCargo) {
+		
 		UsuarioBean bean = new UsuarioBean();
+		CargoBean cargo = new CargoBean();
+		cargo.setCodCargo(codCargo);
+		
 		bean.setNombres(nombres);
 		bean.setApellidos(apellidos);
 		bean.setNroDocumento(dni);
 		bean.setUsername(username);
 		bean.setPassword(clave);
 		bean.setCorreo(correo);
+		bean.setCargo(cargo);
 		
 		return service.agregar(bean);
 	}
