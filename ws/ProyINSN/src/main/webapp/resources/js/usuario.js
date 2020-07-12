@@ -63,9 +63,9 @@ function fConfigurarGrilla(data) {
 		r[3] = e['apellidos'];
 		r[4] = e['nroDocumento'];
 		r[5] = e['username'];
-		r[6] = e['correo'];
-		r[7] = e['cargo']['nombre'];
-		r[8] = "<i title='eliminar' class='far fa-trash-alt fa-lg text-danger cursorHand' onclick=fEliminar(" + e['codUsuario'] + ")></i>";
+		//r[6] = e['correo'];
+		r[6] = e['cargo']['nombre'];
+		r[7] = "<i title='eliminar' class='far fa-trash-alt fa-lg text-danger cursorHand' onclick=fEliminar(" + e['codUsuario'] + ")></i>";
 		
 		rows.push(r);
 	});
