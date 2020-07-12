@@ -25,7 +25,37 @@ public class UnidadOrganicaController {
 	
 	@RequestMapping("/buscar")
 	@ResponseBody
-	private List<UnidadOrganicaBean> buscar(@RequestParam(name="nombre") String nombre){
+	private List<UnidadOrganicaBean> buscar(@RequestParam("nombre") String nombre){
 		return unidadorganicaService.buscar(nombre);
 	}
+	
+	@RequestMapping("/obtener")
+	@ResponseBody
+	private UnidadOrganicaBean obtenerPorId(@RequestParam("id") int id) {
+		return unidadorganicaService.obtenerPorId(id);
+	}
+	
+	@RequestMapping("/actualizar")
+	@ResponseBody
+	public UnidadOrganicaBean actualizar(@RequestParam("codUnidadOrganica") int codUnidadOrganica,
+								  @RequestParam("nombre") String nombre,
+								  @RequestParam("descripcion") String descripcion,
+								  @RequestParam("anexo") String anexo,
+								  @RequestParam("jefeEncargado") int jefeEncargado) {
+		UnidadOrganicaBean bean = new UnidadOrganicaBean();
+		bean.setcodUnidadOrganica(codUnidadOrganica);
+		bean.setNombre(nombre);
+		bean.setDescripcion(descripcion);
+		bean.setAnexo(anexo);
+		bean.setJefeEncargado(jefeEncargado);
+		
+		return unidadorganicaService.actualizar(bean);
+	}
+
+	@RequestMapping("/eliminar")
+	@ResponseBody
+	public void eliminar(@RequestParam(name="id") int id) {
+		unidadorganicaService.eliminar(id);
+	}
+
 }

@@ -88,7 +88,7 @@
 		</div>
 	</div>
 	
-	<div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioLabel"
+	<div class="modal fade" id="modalUnidadOrganica" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -103,33 +103,21 @@
                         <div class="row">
                         	<input type="hidden" id="id" name="id">
                             <div class="form-group col-md-6">
-                                <label for="nombres" class="col-form-label">Nombres:</label>
+                                <label for="nombres" class="col-form-label">Nombre:</label>
                                 <input type="text" class="form-control" id="nombre" name="nombres">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="apellidos" class="col-form-label">Apellidos:</label>
-                                <input type="text" class="form-control" id="apellidos" name="apellidos">
+                                <label for="apellidos" class="col-form-label">Descripcion:</label>
+                                <input type="text" class="form-control" id="descripcion" name="descripcion">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="username" class="col-form-label">Usuario:</label>
-                                <input type="text" class="form-control" id="username" name="username">
-                                <span class="error" for="username"></span>
+                                <label for="username" class="col-form-label">Anexo:</label>
+                                <input type="text" class="form-control" id="anexo" name="anexo">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="clave" class="col-form-label">Clave:</label>
-                                <input type="text" class="form-control" id="clave" name="clave">
+                                <label for="clave" class="col-form-label">JefeEncargado:</label>
+                                <input type="text" class="form-control" id="jefeEncargado" name="jefeEncargado">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="clave" class="col-form-label">Correo:</label>
-                                <input type="text" class="form-control" id="correo" name="correo">
-                            </div>
-                            <div class="form-group col-md-6 text-right">
-                            	<label for="clave" class="col-form-label"> </label>
-							    <div class="form-check">
-							    	<input class="form-check-input" type="checkbox" id="estado">
-							    	<label class="form-check-label" for="estado">Activo</label>
-							    </div>
-						  </div>
                         </div>
                     </div>
                     <div class="modal-footer">

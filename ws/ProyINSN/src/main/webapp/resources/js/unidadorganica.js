@@ -89,20 +89,18 @@ function fEditar(id) {
 	.done(function (data) {
 		console.log(data);
 		
-		$('#id').val(data.codUsuario);
-		$('#nombres').val(data.nombres);
-		$('#apellidos').val(data.apellidos);
-		$('#username').val(data.username);
-		$('#clave').val(data.password);
-		$('#correo').val(data.correo);
-		$('#estado').prop('checked', data.estado);
+		$('#id').val(data.codUnidadOrganica);
+		$('#nombre').val(data.nombre);
+		$('#descripcion').val(data.descripcion);
+		$('#anexo').val(data.anexo);
+		$('#jefeEncargado').val(data.jefeEncargado);
 		
-		$('#modalUsuario .modal-title').html('Editar usuario');
+		$('#modalUnidadOrganica .modal-title').html('Editar Unidad Organica');
 		$('#btnGrabar').html('Actualizar');
-		$('#modalUsuario').modal('show');
+		$('#modalUnidadOrganica').modal('show');
 	})
 	.fail(function(data) {
-		swal('Error', 'Los sentimo, ocurró un error', 'error');
+		swal('Error', 'Los sentimos, ocurrió un error', 'error');
 	});
 }
 
@@ -110,7 +108,7 @@ function fEliminar(id) {
 	var jsonReq = {};
 	jsonReq["type"] = 'post';
 	jsonReq["async"] = true;
-	jsonReq["url"] = 'Usuario';
+	jsonReq["url"] = 'eliminar';
 	jsonReq["data"] = {'op': 6,
 						'id': id
 					};
@@ -129,15 +127,15 @@ function fAddUsuario() {
 	
 }
 
-function fEditUsuario(reg) {
+function fEditUnidadOrganica(reg) {
 	$.post('actualizar', reg)
 	.done(function (data) {
 		fCargarLista();
-		$('#modalUsuario').modal('hide');
+		$('#modalUnidadOrganica').modal('hide');
 		swal('Correcto', 'Se ha actualizado con éxito', 'success');
 	})
 	.fail(function(data) {
-		swal('Error', 'Los sentimo, ocurró un error', 'error');
+		swal('Error', 'Los sentimos, ocurrió un error', 'error');
 	});
 }
 
@@ -153,19 +151,17 @@ function frmRegistro_submit(e) {
         e.preventDefault();
         
         var reg = {
-			codUsuario: $('#id').val(),
-			nombres: $('#nombres').val(),
-			apellidos: $('#apellidos').val(),
-			username: $('#username').val(),
-			clave: $('#clave').val(),
-			correo: $('#correo').val(),
-			estado: $('#estado').prop('checked')
+        	codUnidadOrganica: $('#id').val(),
+			nombre: $('#nombre').val(),
+			descripcion: $('#descripcion').val(),
+			anexo: $('#anexo').val(),
+			jefeEncargado: $('#jefeEncargado').val()
     	};
         
-    	if (reg.codUsuario == '')
-    		fAddUsuario(reg);
+    	if (reg.codUnidadOrganica == '')
+    		fEditUnidadOrganica(reg);
     	else
-    		fEditUsuario(reg);
+    		fEditUnidadOrganica(reg);
     }
 }
 
