@@ -20,20 +20,20 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService service;
 
-	@RequestMapping("/")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
 		return "usuario";
 	}
 	
 	
-	@RequestMapping("/buscar")
+	@RequestMapping(value = "/buscar", method = RequestMethod.GET)
 	@ResponseBody
 	public List<UsuarioBean> buscar(@RequestParam("nombres") String nombres,
 									@RequestParam("apellidos") String apellidos) {
 		return service.buscar(nombres, apellidos);
 	}
 	
-	@RequestMapping("/obtener")
+	@RequestMapping(value = "/obtener", method = RequestMethod.GET)
 	@ResponseBody
 	public UsuarioBean obtenerPorId(@RequestParam("id") int id) {
 		return service.obtenerPorId(id);
@@ -89,5 +89,13 @@ public class UsuarioController {
 		bean.setCargo(cargo);
 		
 		return service.agregar(bean);
+	}
+	
+	@RequestMapping(value = "/eliminar", method = RequestMethod.POST)
+	@ResponseBody
+	public int eliminar(@RequestParam("id") int id) {
+		service.eliminar(id);
+		
+		return 1;
 	}
 }

@@ -131,22 +131,26 @@ function fEditar(id) {
 }
 
 function fEliminar(id) {
-	var jsonReq = {};
-	jsonReq["type"] = 'post';
-	jsonReq["async"] = true;
-	jsonReq["url"] = 'Usuario';
-	jsonReq["data"] = {'op': 6,
-						'id': id
-					};
-	jsonReq["success"] = fEliminarSuccess;
-	jsonReq["error"] = uf_ajaxRequestFailed;
-	jsonReq["cache"] = false;
-	jsonReq["processData"] = true;
-	jsonReq['error'] = function (e) {
-		uf_createAlert({ "element": $("#alertMessages"), "alertType": 'danger', "closable": true, "message": e });
-    };
-
-    var ajax = uf_ajaxRequest(jsonReq);
+	swal({
+		  title: "¿Está seguro de eliminar el registro?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+				$.post('eliminar',{id: id })
+				.done(function(data) {
+					fCargarLista();
+					uf_showAlert('Correcto', 'Eliminado con éxito');
+				})
+				.fail(function(data) {
+					uf_showError();
+				});
+		  } else {
+		    console.log('Se cancela eliminación')
+		  }
+		});
 }
 
 function fAddUsuario(reg) {

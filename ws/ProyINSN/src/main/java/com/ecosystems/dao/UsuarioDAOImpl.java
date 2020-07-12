@@ -91,7 +91,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional
 	public void eliminar(int id) {		
 		try {
 			Session sesion = factory.getCurrentSession();
@@ -99,6 +99,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			sesion.delete(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 }
