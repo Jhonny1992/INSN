@@ -27,7 +27,7 @@ CREATE TABLE `usuario` (
   `clave` varchar(15) NOT NULL,
   `correo` varchar(30) NOT NULL,
   `fechaRegistro` date NOT NULL,
-  `codCargo` int(11) DEFAULT NULL,
+  `codCargo` int(11) NOT NULL,
   
   constraint pk_usuario PRIMARY KEY (`codUsuario`),
   constraint fk_usuario_cargo foreign key(codCargo) references cargo(codCargo)
