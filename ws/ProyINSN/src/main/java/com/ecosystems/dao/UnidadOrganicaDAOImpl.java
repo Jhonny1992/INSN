@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ecosystems.entity.UnidadOrganicaBean;
-import com.ecosystems.entity.UsuarioBean;
 @Repository
 public class UnidadOrganicaDAOImpl implements UnidadOrganicaDAO {
 
@@ -37,11 +36,11 @@ public class UnidadOrganicaDAOImpl implements UnidadOrganicaDAO {
 		try {
 			Session sesion = factory.getCurrentSession();
 			
-			UnidadOrganicaBean ant = sesion.get(UnidadOrganicaBean.class, bean.getcodUnidadOrganica());
+			UnidadOrganicaBean ant = sesion.get(UnidadOrganicaBean.class, bean.getCodUnidadOrganica());
 			ant.setNombre(bean.getNombre());
 			ant.setDescripcion(bean.getDescripcion());
 			ant.setAnexo(bean.getAnexo());
-			ant.setJefeEncargado(bean.getJefeEncargado());
+			ant.setUsuario(bean.getUsuario());
 
 			sesion.update(ant);
 			

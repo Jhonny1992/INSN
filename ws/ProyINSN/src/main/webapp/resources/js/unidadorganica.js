@@ -6,6 +6,8 @@ function fInicializar() {
 	fConfigurarFormulario();
 	fConfigurarEventos();
 	fCargarLista();
+	
+	fCargarComboUsuario();
 }
 
 function fConfigurarEventos() {
@@ -57,7 +59,7 @@ function fConfigurarGrilla(data) {
 		r[2] = e['nombre'];
 		r[3] = e['descripcion'];
 		r[4] = e['anexo'];
-		r[5] = e['jefeEncargado'];
+		r[5] = e['usuario']['nombres'];
 		r[6] = "<i title='eliminar' class='far fa-trash-alt fa-lg text-danger cursorHand' onclick=fEliminar(" + e['codUnidadOrganica'] + ")></i>";
 		
 		rows.push(r);
@@ -84,6 +86,21 @@ function fConfigurarGrilla(data) {
 	window.tbUnidadOrganica = $('#' + tableId).DataTable(jsonDT);
 }
 
+function fCargarComboUsuario() {
+	$.get('../usuario/listar')
+	.done(function (data) {
+		data.map(function(e, i){
+			$('#jefeEncargado').append($('<option>', {
+				value: e.codUsuario,
+				text: e.nombres
+			}));
+		});
+	})
+	.fail(function(data) {
+		uf_showError();
+	});
+}
+
 function fEditar(id) {
 	$.get('obtener', { id: id })
 	.done(function (data) {
@@ -93,7 +110,7 @@ function fEditar(id) {
 		$('#nombre').val(data.nombre);
 		$('#descripcion').val(data.descripcion);
 		$('#anexo').val(data.anexo);
-		$('#jefeEncargado').val(data.jefeEncargado);
+		$('#jefeEncargado').val(data.usuario.codUsuario);
 		
 		$('#modalUnidadOrganica .modal-title').html('Editar Unidad Organica');
 		$('#btnGrabar').html('Actualizar');
@@ -105,22 +122,26 @@ function fEditar(id) {
 }
 
 function fEliminar(id) {
-	var jsonReq = {};
-	jsonReq["type"] = 'post';
-	jsonReq["async"] = true;
-	jsonReq["url"] = 'eliminar';
-	jsonReq["data"] = {'op': 6,
-						'id': id
-					};
-	jsonReq["success"] = fEliminarSuccess;
-	jsonReq["error"] = uf_ajaxRequestFailed;
-	jsonReq["cache"] = false;
-	jsonReq["processData"] = true;
-	jsonReq['error'] = function (e) {
-		uf_createAlert({ "element": $("#alertMessages"), "alertType": 'danger', "closable": true, "message": e });
-    };
-
-    var ajax = uf_ajaxRequest(jsonReq);
+	swal({
+		  title: "¿Está seguro de eliminar el registro?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+				$.post('eliminar',{id: id })
+				.done(function(data) {
+					fCargarLista();
+					uf_showAlert('Correcto', 'Eliminado con éxito');
+				})
+				.fail(function(data) {
+					uf_showError();
+				});
+		  } else {
+		    console.log('Se cancela eliminación')
+		  }
+		});
 }
 
 function fAddUsuario() {

@@ -38,4 +38,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public void eliminar(int id) {
 		dao.eliminar(id);
 	}
+
+	@Override
+	public List<UsuarioBean> listarUsuario() {
+		return dao.listarUsuario();
+	}
 }

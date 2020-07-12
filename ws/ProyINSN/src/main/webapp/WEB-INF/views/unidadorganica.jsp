@@ -115,8 +115,10 @@
                                 <input type="text" class="form-control" id="anexo" name="anexo">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="clave" class="col-form-label">JefeEncargado:</label>
-                                <input type="text" class="form-control" id="jefeEncargado" name="jefeEncargado">
+                                <label for="jefeEncargado" class="col-form-label">Jefe Encargado:</label>
+                                <select id="jefeEncargado" name="jefeEncargado" class="form-control">
+                                	<option value=''>::: Seleccione :::</option>
+                                </select>
                             </div>
                         </div>
                     </div>

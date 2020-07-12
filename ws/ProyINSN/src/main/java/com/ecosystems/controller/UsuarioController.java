@@ -98,4 +98,10 @@ public class UsuarioController {
 		
 		return 1;
 	}
+	
+	@RequestMapping(value="/listar")
+	@ResponseBody
+	public List<UsuarioBean> listarUsuario(){
+		return service.listarUsuario();
+	}
 }

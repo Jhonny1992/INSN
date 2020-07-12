@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,9 +37,9 @@ public class UnidadOrganicaBean implements Serializable{
 	@Column(name="anexo")
 	private String anexo;
 	
-	//HACER JOIN.
-	@Column(name="jefeEncargado")
-	private int jefeEncargado;
+	@ManyToOne
+	@JoinColumn(name="jefeEncargado")
+	private UsuarioBean usuario;
 	
 	@Column(name="fechaRegistro")
 	@Temporal(TemporalType.DATE)
@@ -49,26 +51,14 @@ public class UnidadOrganicaBean implements Serializable{
 	}
 
 
-	public UnidadOrganicaBean(String nombre, String descripcion, String anexo, int jefeEncargado,
+	public UnidadOrganicaBean(String nombre, String descripcion, String anexo,
 			Date fechaRegistro) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.anexo = anexo;
-		this.jefeEncargado = jefeEncargado;
 		this.fechaRegistro = fechaRegistro;
 	}
-
-
-	public int getcodUnidadOrganica() {
-		return codUnidadOrganica;
-	}
-
-
-	public void setcodUnidadOrganica(int codUnidadOrganica) {
-		this.codUnidadOrganica = codUnidadOrganica;
-	}
-
 
 	public String getNombre() {
 		return nombre;
@@ -100,16 +90,6 @@ public class UnidadOrganicaBean implements Serializable{
 	}
 
 
-	public int getJefeEncargado() {
-		return jefeEncargado;
-	}
-
-
-	public void setJefeEncargado(int jefeEncargado) {
-		this.jefeEncargado = jefeEncargado;
-	}
-
-
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
@@ -117,6 +97,26 @@ public class UnidadOrganicaBean implements Serializable{
 
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
+	}
+
+
+	public int getCodUnidadOrganica() {
+		return codUnidadOrganica;
+	}
+
+
+	public void setCodUnidadOrganica(int codUnidadOrganica) {
+		this.codUnidadOrganica = codUnidadOrganica;
+	}
+
+
+	public UsuarioBean getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(UsuarioBean usuario) {
+		this.usuario = usuario;
 	}
 	
 	

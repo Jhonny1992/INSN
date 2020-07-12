@@ -10,4 +10,5 @@ public interface UsuarioService {
 	public List<UsuarioBean> buscar(String nombres, String apellidos);
 	public UsuarioBean obtenerPorId(int id);
 	public void eliminar(int id);
+	public List<UsuarioBean> listarUsuario();
 }

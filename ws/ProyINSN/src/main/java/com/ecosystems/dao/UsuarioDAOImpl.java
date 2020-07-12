@@ -102,4 +102,18 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			throw new RuntimeException(e);
 		}
 	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly=true)
+	@Override
+	public List<UsuarioBean> listarUsuario() {
+		Session session=factory.getCurrentSession();
+		Query query=null;
+		try {
+			query=session.createQuery("select ub from UsuarioBean ub");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return query.getResultList();
+	}
 }

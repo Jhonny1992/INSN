@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ecosystems.entity.UnidadOrganicaBean;
+import com.ecosystems.entity.UsuarioBean;
 import com.ecosystems.services.UnidadOrganicaService;
 
 @Controller
@@ -43,19 +44,24 @@ public class UnidadOrganicaController {
 								  @RequestParam("anexo") String anexo,
 								  @RequestParam("jefeEncargado") int jefeEncargado) {
 		UnidadOrganicaBean bean = new UnidadOrganicaBean();
-		bean.setcodUnidadOrganica(codUnidadOrganica);
+		UsuarioBean usuario=new UsuarioBean();
+		usuario.setCodUsuario(jefeEncargado);
+		
+		bean.setCodUnidadOrganica(codUnidadOrganica);
 		bean.setNombre(nombre);
 		bean.setDescripcion(descripcion);
 		bean.setAnexo(anexo);
-		bean.setJefeEncargado(jefeEncargado);
+		bean.setUsuario(usuario);
 		
 		return unidadorganicaService.actualizar(bean);
 	}
 
 	@RequestMapping("/eliminar")
 	@ResponseBody
-	public void eliminar(@RequestParam(name="id") int id) {
+	public int eliminar(@RequestParam("id") int id) {
 		unidadorganicaService.eliminar(id);
+		
+		return 1;
 	}
 
 }
