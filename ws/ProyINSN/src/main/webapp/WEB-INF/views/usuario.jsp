@@ -142,13 +142,6 @@
                                 	<option value=''>::: Seleccione :::</option>
                                 </select>
                             </div>
-                            <div class="form-group col-md-6 text-right">
-                            	<label for="clave" class="col-form-label"> </label>
-							    <div class="form-check">
-							    	<input class="form-check-input" type="checkbox" id="estado" checked="checked">
-							    	<label class="form-check-label" for="estado">Activo</label>
-							    </div>
-						  </div>
                         </div>
                     </div>
                     <div class="modal-footer">

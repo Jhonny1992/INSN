@@ -174,7 +174,7 @@ function fEditUsuario(reg) {
 }
 
 function fLimpiarFormulario() {
-	$('#frmRegistro input').val('');
+	$('#frmRegistro input, #cargo').val('');
 	window.validator.resetForm();
 }
 
