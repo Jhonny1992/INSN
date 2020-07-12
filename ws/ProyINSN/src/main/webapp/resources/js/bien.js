@@ -22,15 +22,19 @@ function fConfigurarEventos() {
         fCargarLista();
     });
     
-    $('#modalUsuario').on('hide.bs.modal', function (e) {
+    $('#modalBien').on('hide.bs.modal', function (e) {
     	fLimpiarFormulario();
+    });
+    
+    $('#btnAgregar').bind('click', function() {
+    	$('#modalBien .modal-title').html('Agregar Bien');
+		$('#btnGrabar').html('Registrar');
+		$('#modalBien').modal('show');
     });
     
     $('#frmRegistro').bind('submit', frmRegistro_submit);
     
-    $('#btnGrabar').bind('click', function() {
-    	
-    });
+    
 }
 
 function fCargarLista() {
@@ -94,6 +98,7 @@ function fEditar(id) {
 		$('#nombre').val(data.nombre);
 		$('#descripcion').val(data.descripcion);
 		$('#tipo').val(data.tipo);
+		$('#fechaRegistro').val(data.fechaRegistro);
 				
 		$('#modalBien .modal-title').html('Editar Bien');
 		$('#btnGrabar').html('Actualizar');
@@ -105,26 +110,38 @@ function fEditar(id) {
 }
 
 function fEliminar(id) {
-	var jsonReq = {};
-	jsonReq["type"] = 'post';
-	jsonReq["async"] = true;
-	jsonReq["url"] = 'eliminar';
-	jsonReq["data"] = {'op': 6,
-						'id': id
-					};
-	jsonReq["success"] = fEliminarSuccess;
-	jsonReq["error"] = uf_ajaxRequestFailed;
-	jsonReq["cache"] = false;
-	jsonReq["processData"] = true;
-	jsonReq['error'] = function (e) {
-		uf_createAlert({ "element": $("#alertMessages"), "alertType": 'danger', "closable": true, "message": e });
-    };
-
-    var ajax = uf_ajaxRequest(jsonReq);
+	swal({
+		  title: "¿Está seguro de eliminar el registro?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+				$.post('eliminar',{id: id })
+				.done(function(data) {
+					fCargarLista();
+					uf_showAlert('Correcto', 'Eliminado con éxito');
+				})
+				.fail(function(data) {
+					uf_showError();
+				});
+		  } else {
+		    console.log('Se cancela eliminación')
+		  }
+		});
 }
 
-function fAddUsuario() {
-	
+function fAddBien(reg) {
+	$.post('agregar', reg)
+	.done(function (data) {
+		//fCargarLista();
+		$('#modalBien').modal('hide');
+		uf_showAlert('Correcto', 'Registrado con éxito');
+	})
+	.fail(function(data) {
+		uf_showError();
+	});
 }
 
 function fEditBien(reg) {
@@ -156,10 +173,11 @@ function frmRegistro_submit(e) {
 			descripcion: $('#descripcion').val(),
 			tipo: $('#tipo').val()
 			
+			
     	};
         
     	if (reg.codBien == '')
-    		fEditBien(reg);
+    		fAddBien(reg);
     	else
     		fEditBien(reg);
     }
@@ -176,7 +194,9 @@ function fConfigurarFormulario() {
               required: true,
               maxlength: 45
           },
-                             
+          tipo: {
+              required: true
+          },               
         },
         messages: {
             nombre: {
@@ -187,6 +207,9 @@ function fConfigurarFormulario() {
                 required: "Debe ingresar una Descripcion",
                 maxlength: "Maximo {0} caracteres"
             },
+            tipo: {
+            	required: "Debe seleccionar Tipo"
+            }
             
            }
   });
