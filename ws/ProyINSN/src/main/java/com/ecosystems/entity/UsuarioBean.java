@@ -32,6 +32,9 @@ public class UsuarioBean implements Serializable {
 	@Column(name = "apellidos")
 	private String apellidos;
 	
+	@Column(name = "nroDocumento")
+	private String nroDocumento;
+	
 	@Column(name = "login")
 	private String username;
 	
@@ -78,6 +81,12 @@ public class UsuarioBean implements Serializable {
 	}
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
+	}
+	public String getNroDocumento() {
+		return nroDocumento;
+	}
+	public void setNroDocumento(String nroDocumento) {
+		this.nroDocumento = nroDocumento;
 	}
 	public String getUsername() {
 		return username;

@@ -98,5 +98,4 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			e.printStackTrace();
 		}
 	}
-
 }

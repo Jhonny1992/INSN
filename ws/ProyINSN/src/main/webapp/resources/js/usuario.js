@@ -6,6 +6,8 @@ function fInicializar() {
 	fConfigurarFormulario();
 	fConfigurarEventos();
 	fCargarLista();
+	
+	fCargarComboCargo();
 }
 
 function fConfigurarEventos() {
@@ -26,11 +28,13 @@ function fConfigurarEventos() {
     	fLimpiarFormulario();
     });
     
-    $('#frmRegistro').bind('submit', frmRegistro_submit);
-    
-    $('#btnGrabar').bind('click', function() {
-    	
+    $('#btnAgregar').bind('click', function() {
+    	$('#modalUsuario .modal-title').html('Agregar usuario');
+		$('#btnGrabar').html('Registrar');
+		$('#modalUsuario').modal('show');
     });
+    
+    $('#frmRegistro').bind('submit', frmRegistro_submit);
 }
 
 function fCargarLista() {
@@ -42,7 +46,7 @@ function fCargarLista() {
 		fConfigurarGrilla(data);
 	})
 	.fail(function(data) {
-		swal('Error', 'Los sentimos, ocurrió un error', 'error');
+		uf_showError();
 	});
 }
 
@@ -85,6 +89,21 @@ function fConfigurarGrilla(data) {
 	window.tbUsuario = $('#' + tableId).DataTable(jsonDT);
 }
 
+function fCargarComboCargo() {
+	$.get('../cargo/listar')
+	.done(function (data) {
+		data.map(function(e, i){
+			$('#cargo').append($('<option>', {
+				value: e.codCargo,
+				text: e.nombre
+			}));
+		});
+	})
+	.fail(function(data) {
+		uf_showError();
+	});
+}
+
 function fEditar(id) {
 	$.get('obtener', { id: id })
 	.done(function (data) {
@@ -103,7 +122,7 @@ function fEditar(id) {
 		$('#modalUsuario').modal('show');
 	})
 	.fail(function(data) {
-		swal('Error', 'Los sentimo, ocurró un error', 'error');
+		uf_mostrarError();
 	});
 }
 
@@ -126,8 +145,16 @@ function fEliminar(id) {
     var ajax = uf_ajaxRequest(jsonReq);
 }
 
-function fAddUsuario() {
-	
+function fAddUsuario(reg) {
+	$.post('agregar', reg)
+	.done(function (data) {
+		fCargarLista();
+		$('#modalUsuario').modal('hide');
+		uf_showAlert('Correcto', 'Registrado con éxito');
+	})
+	.fail(function(data) {
+		uf_showError();
+	});
 }
 
 function fEditUsuario(reg) {
@@ -135,10 +162,10 @@ function fEditUsuario(reg) {
 	.done(function (data) {
 		fCargarLista();
 		$('#modalUsuario').modal('hide');
-		swal('Correcto', 'Se ha actualizado con éxito', 'success');
+		uf_showAlert('Correcto', 'Actualizado con éxito');
 	})
 	.fail(function(data) {
-		swal('Error', 'Los sentimo, ocurró un error', 'error');
+		uf_showError();
 	});
 }
 
@@ -181,6 +208,12 @@ function fConfigurarFormulario() {
               required: true,
               maxlength: 45
           },
+          dni: {
+              required: true,
+              minlength: 8,
+              maxlength: 8,
+              digits: true
+          },
           username: {
               required: true,
               minlength: 3,
@@ -196,6 +229,9 @@ function fConfigurarFormulario() {
               maxlength: 30,
               email: true
           },
+          cargo: {
+              required: true
+          },
         },
         messages: {
             nombres: {
@@ -205,6 +241,12 @@ function fConfigurarFormulario() {
             apellidos: {
                 required: "Debe ingresar apellidos",
                 maxlength: "Maximo {0} caracteres"
+            },
+            dni: {
+                required: "Debe ingresar dni",
+                minlength: "Debe tener {0} dígitos",
+                maxlength: "Debe tener {0} dígitos",
+                number: "Debe ingresar un dni válido"
             },
             username: {
                 required: "Debe ingresar usuario",
@@ -221,6 +263,9 @@ function fConfigurarFormulario() {
                 maxlength: "Máximo {0} caracteres",
                 email: "Ingrese un correo válido"
             },
+            cargo: {
+            	required: "Debe seleccionar cargo"
+            }
         }
   });
 }

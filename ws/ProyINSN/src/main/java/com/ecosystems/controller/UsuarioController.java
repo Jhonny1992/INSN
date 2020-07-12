@@ -56,4 +56,21 @@ public class UsuarioController {
 		
 		return service.actualizar(bean);
 	}
+	
+	@RequestMapping(value = "/agregar", method = RequestMethod.POST)
+	@ResponseBody
+	public UsuarioBean agregar(@RequestParam("nombres") String nombres,
+							   @RequestParam("apellidos") String apellidos,
+							   @RequestParam("username") String username,
+							   @RequestParam("clave") String clave,
+						  	   @RequestParam("correo") String correo) {
+		UsuarioBean bean = new UsuarioBean();
+		bean.setNombres(nombres);
+		bean.setApellidos(apellidos);
+		bean.setUsername(username);
+		bean.setPassword(clave);
+		bean.setCorreo(correo);
+		
+		return service.agregar(bean);
+	}
 }

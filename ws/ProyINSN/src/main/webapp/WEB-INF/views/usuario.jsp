@@ -61,7 +61,7 @@
 										            <div class="row">
 										                <div class="col-sm-12">
 										                    <input type="button" class="btn btn-sm btn-primary btn-block" value="Buscar" id="btnBuscar" name="btnBuscar" />
-										                    <a href="crear" class="btn btn-sm btn-success btn-block">Agregar</a>
+										                    <input type="button" class="btn btn-sm btn-success btn-block" value="Agregar" id="btnAgregar" name="btnAgregar" />
 										                    <input type="button" class="btn btn-sm btn-danger btn-block" value="Limpiar" id="btnLimpiar" name="btnLimpiar" />
 										                </div>
 										            </div>
@@ -120,9 +120,12 @@
                                 <input type="text" class="form-control" id="apellidos" name="apellidos">
                             </div>
                             <div class="form-group col-md-6">
+                                <label for="dni" class="col-form-label">Dni:</label>
+                                <input type="text" class="form-control" id="dni" name="dni">
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label for="username" class="col-form-label">Usuario:</label>
                                 <input type="text" class="form-control" id="username" name="username">
-                                <span class="error" for="username"></span>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="clave" class="col-form-label">Clave:</label>
@@ -131,6 +134,12 @@
                             <div class="form-group col-md-6">
                                 <label for="clave" class="col-form-label">Correo:</label>
                                 <input type="text" class="form-control" id="correo" name="correo">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cargo" class="col-form-label">Cargo:</label>
+                                <select id="cargo" name="cargo" class="form-control">
+                                	<option value=''>::: Seleccione :::</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-6 text-right">
                             	<label for="clave" class="col-form-label"> </label>
