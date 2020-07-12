@@ -74,3 +74,11 @@ FOR EACH ROW BEGIN
     Set new.fechaRegistro = now();
 END
 $$
+
+INSERT INTO cargo
+(nombre)
+VALUES
+('Administrador'),
+('Gestor de cuenta'),
+('Asesor');
+$$
