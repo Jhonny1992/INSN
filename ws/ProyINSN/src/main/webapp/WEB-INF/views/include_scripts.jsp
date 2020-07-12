@@ -19,5 +19,10 @@
 <script src="../resources/libs/DataTables/Buttons-1.5.6/js/buttons.print.js"></script>
 <script src="../resources/libs/DataTables/Select-1.3.0/js/dataTables.select.js"></script>
 <script src="../resources/libs/DataTables/Select-1.3.0/js/select.bootstrap4.js"></script>
+<script src="../resources/libs/Spin/js/spin.js"></script>
+<script src="../resources/libs/Spin/js/jquery.spin.js"></script>
 
 <script src="../resources/js/util.js"></script>
+
+<div class="spinners">
+</div>
