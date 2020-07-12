@@ -1,13 +1,17 @@
 package com.ecosystems.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "cargo")
@@ -34,6 +38,10 @@ public class CargoBean implements Serializable {
 	
 	@Column(name = "nombre")
 	private String nombre;
+	
+	@OneToMany(mappedBy = "cargo")
+	@JsonIgnore
+	private List<UsuarioBean> usuarios;
 
 	public int getCodCargo() {
 		return codCargo;
@@ -50,4 +58,13 @@ public class CargoBean implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public List<UsuarioBean> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<UsuarioBean> usuarios) {
+		this.usuarios = usuarios;
+	}
+	
 }

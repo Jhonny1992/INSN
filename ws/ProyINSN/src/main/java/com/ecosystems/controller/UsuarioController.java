@@ -61,12 +61,15 @@ public class UsuarioController {
 	@ResponseBody
 	public UsuarioBean agregar(@RequestParam("nombres") String nombres,
 							   @RequestParam("apellidos") String apellidos,
+							   @RequestParam("dni") String dni,
 							   @RequestParam("username") String username,
 							   @RequestParam("clave") String clave,
-						  	   @RequestParam("correo") String correo) {
+						  	   @RequestParam("correo") String correo,
+						  	   @RequestParam("cargo") int cargo) {
 		UsuarioBean bean = new UsuarioBean();
 		bean.setNombres(nombres);
 		bean.setApellidos(apellidos);
+		bean.setNroDocumento(dni);
 		bean.setUsername(username);
 		bean.setPassword(clave);
 		bean.setCorreo(correo);

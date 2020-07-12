@@ -80,9 +80,10 @@
 													<th>Id</th>
 													<th>Nombres</th>
 													<th>Apellidos</th>
+													<th>Dni</th>
 													<th>Username</th>
 													<th>Correo</th>
-													<th>Estado</th>
+													<th>Cargo</th>
 													<th></th>
 												</tr>
 											</thead>
@@ -144,7 +145,7 @@
                             <div class="form-group col-md-6 text-right">
                             	<label for="clave" class="col-form-label"> </label>
 							    <div class="form-check">
-							    	<input class="form-check-input" type="checkbox" id="estado">
+							    	<input class="form-check-input" type="checkbox" id="estado" checked="checked">
 							    	<label class="form-check-label" for="estado">Activo</label>
 							    </div>
 						  </div>

@@ -61,7 +61,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		try {
 			Session sesion = factory.getCurrentSession();
 			
-			String hql = "from UsuarioBean WHERE (:nombres = '' or nombres like CONCAT('%', :nombres, '%')) AND (:apellidos is null or apellidos like CONCAT('%', :apellidos, '%'))";
+			String hql = "select u from UsuarioBean u join CargoBean c on c.codCargo = u.cargo WHERE (:nombres = '' or u.nombres like CONCAT('%', :nombres, '%')) AND (:apellidos is null or u.apellidos like CONCAT('%', :apellidos, '%'))";
 			
 			Query query = sesion.createQuery(hql);
 			query.setParameter("nombres", nombres == null ? "" : nombres);
