@@ -42,19 +42,12 @@
 										                    <div class="form-group">
 										                        <div class="input-group input-group-sm">
 										                            <div class="input-group-prepend">
-										                                <label for="txtFecha1Busqueda" class="input-group-text"><i class="fa fa-calendar"></i></label>
+										                                <label for="txtNombreBusqueda" class="input-group-text"><i class="fa fa-search"></i></label>
 										                            </div>
-										                            <input type="text" class="form-control" placeholder="Ingrese Fecha Inicio" id="txtFecha1Busqueda" />
+										                            <input type="text" class="form-control" placeholder="Ingrese Fecha Inicio" id="txtNombreBusqueda" />
 										                        </div>
 										                    </div>
-										                    <div class="form-group">
-										                        <div class="input-group input-group-sm">
-										                            <div class="input-group-prepend">
-										                                <label for="txtFecha2Busqueda" class="input-group-text"><i class="fa fa-calendar"></i></label>
-										                            </div>
-										                            <input type="text" class="form-control" placeholder="Ingrese Fecha Fin" id="txtFecha2Busqueda" />
-										                        </div>
-										                    </div>
+										                    
 										                </div>
 										            </div>
 										            <div class="row">
@@ -81,7 +74,7 @@
 													<th>Descripcion</th>
 													<th>Tipo</th>
 													<th>Fecha</th>
-													<th>Estado</th>
+													
 													<th></th>
 												</tr>
 											</thead>
@@ -96,6 +89,45 @@
 			</section>
 		</div>
 	</div>
+	
+	<div class="modal fade" id="modalBien" tabindex="-1" role="dialog" aria-labelledby="modalBienLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="frmRegistro" autocomplete="off">
+                    <div class="modal-header bg-info text-white p-2">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                        	<input type="hidden" id="id" name="id">
+                            <div class="form-group col-md-6">
+                                <label for="nombre" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="apellidos" class="col-form-label">Descripcion:</label>
+                                <input type="text" class="form-control" id="descripcion" name="descripcion">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="username" class="col-form-label">Tipo:</label>
+                                <input type="text" class="form-control" id="tipo" name="tipo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="btnGrabar"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+	
+	
 </body>
 <jsp:include page="include_scripts.jsp" />
 <script type="text/javascript" src="../resources/js/bien.js"></script>

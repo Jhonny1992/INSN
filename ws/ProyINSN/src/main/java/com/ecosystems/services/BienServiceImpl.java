@@ -1,6 +1,5 @@
 package com.ecosystems.services;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +36,10 @@ public class BienServiceImpl implements BienService {
 	}
 
 	@Override
-	public List<BienBean> list() {
-		return bienDAO.list();
+	public List<BienBean> buscar(String nombre) {
+		return bienDAO.buscar(nombre);
 	}
 
-	@Override
-	public List<BienBean> buscarXFecha(Date fecha1, Date fecha2) {
-		return bienDAO.buscarXFecha(fecha1, fecha2);
-	}
+	
 
 }
