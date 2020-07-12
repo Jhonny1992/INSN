@@ -68,7 +68,7 @@ FOR EACH ROW BEGIN
 END
 $$
 
-CREATE TRIGGER `tgr_unidadOrganica_binsert` BEFORE INSERT ON `unidadOrganica`
+CREATE TRIGGER `tgr_unidadOrganica_binsert` BEFORE INSERT ON `unidadorganica`
 FOR EACH ROW BEGIN
         -- Set the udpate date
     Set new.fechaRegistro = now();
