@@ -62,7 +62,7 @@ function fConfigurarGrilla(data) {
 		r[2] = e['nombre'];
 		r[3] = e['descripcion'];
 		r[4] = e['anexo'];
-		r[5] = e['usuario']['nombres'];
+		r[5] = e['usuario']['nombres']+[" "]+ e['usuario']['apellidos'];
 		r[6] = "<i title='eliminar' class='far fa-trash-alt fa-lg text-danger cursorHand' onclick=fEliminar(" + e['codUnidadOrganica'] + ")></i>";
 		
 		rows.push(r);
@@ -81,7 +81,7 @@ function fConfigurarGrilla(data) {
         "scrollX": true,
         "info": true,
         "lengthChange": true,
-        "lengthMenu": [[2, 10, 50, -1], ['2', '10', '50', 'Todo']],
+        "lengthMenu": [[5, 10, 50, -1], ['5', '10', '50', 'Todo']],
         "destroy": true,
         "data": rows
 	};
@@ -95,7 +95,7 @@ function fCargarComboUsuario() {
 		data.map(function(e, i){
 			$('#jefeEncargado').append($('<option>', {
 				value: e.codUsuario,
-				text: e.nombres
+				text: e.nombres +" "+ e.apellidos
 			}));
 		});
 	})
@@ -211,34 +211,30 @@ function fConfigurarFormulario() {
           },
           anexo: {
               required: true,
-              minlength: 3,
-              maxlength: 10
+              minlength:2,
+              maxlength: 5
+          },
+          jefeEncargado:{
+        	  required: true
           },
         },
         messages: {
-            nombres: {
+            nombre: {
                 required: "Debe ingresar nombre",
                 maxlength: "Maximo {0} caracteres"
             },
-            apellidos: {
-                required: "Debe ingresar apellidos",
+            descripcion: {
+                required: "Debe ingresar Descripción",
                 maxlength: "Maximo {0} caracteres"
             },
-            username: {
-                required: "Debe ingresar usuario",
+            anexo: {
+                required: "Debe ingresar Anexo",
                 minlength: "Debe tener al menos {0} caracteres",
                 maxlength: "Máximo {0} caracteres"
             },
-            clave: {
-                required: "Debe ingresar clave",
-                minlength: "Debe tener al menos {0} caracteres",
-                maxlength: "Máximo {0} caracteres"
-            },
-            correo: {
-                required: "Debe ingresar correo",
-                maxlength: "Máximo {0} caracteres",
-                email: "Ingrese un correo válido"
-            },
+            jefeEncargado: {
+                required: "Debe seleccionar un Jefe Encargado",
+            }
         }
   });
 }
