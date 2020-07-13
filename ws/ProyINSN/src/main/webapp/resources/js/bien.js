@@ -58,7 +58,7 @@ function fConfigurarGrilla(data) {
 		r[1] = e['codBien'];
 		r[2] = e['nombre'];
 		r[3] = e['descripcion'];
-		r[4] = e['tipo'];
+		r[4] = e['tipoDesc'];
 		r[5] = e['fechaRegistro'];
 		r[6] = "<i title='eliminar' class='far fa-trash-alt fa-lg text-danger cursorHand' onclick=fEliminar(" + e['codBien'] + ")></i>";
 		
