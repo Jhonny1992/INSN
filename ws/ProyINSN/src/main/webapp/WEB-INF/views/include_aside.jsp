@@ -74,13 +74,13 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="<c:url value="/donacion/"/>" class="nav-link">
+									<a href="<c:url value="/gestion/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Gestión de requerimientos</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<c:url value="/ordenCompra/"/>" class="nav-link">
+									<a href="<c:url value="/consolidado/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Consolidado anual</p>
 									</a>
