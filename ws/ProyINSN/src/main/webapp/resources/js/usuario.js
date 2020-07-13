@@ -134,7 +134,7 @@ function fEliminar(id) {
 	swal({
 		  title: "¿Está seguro de eliminar el registro?",
 		  icon: "warning",
-		  buttons: true,
+		  buttons: ['Cancelar', 'Sí'],
 		  dangerMode: true,
 		})
 		.then((willDelete) => {
