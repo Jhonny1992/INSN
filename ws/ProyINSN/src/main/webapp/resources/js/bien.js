@@ -32,21 +32,18 @@ function fConfigurarEventos() {
 		$('#modalBien').modal('show');
     });
     
-    $('#frmRegistro').bind('submit', frmRegistro_submit);
-    
-    
+    $('#frmRegistro').bind('submit', frmRegistro_submit); 
 }
 
 function fCargarLista() {
 	let nombre = $('#txtNombreBusqueda').val();
-	
 	
 	$.get('buscar', { nombre: nombre })
 	.done(function (data) {
 		fConfigurarGrilla(data);
 	})
 	.fail(function(data) {
-		swal('Error', 'Los sentimo, ocurró un error', 'error');
+		uf_showError();
 	});
 }
 
@@ -105,7 +102,7 @@ function fEditar(id) {
 		$('#modalBien').modal('show');
 	})
 	.fail(function(data) {
-		swal('Error', 'Los sentimo, ocurró un error', 'error');
+		uf_showError();
 	});
 }
 
@@ -135,7 +132,7 @@ function fEliminar(id) {
 function fAddBien(reg) {
 	$.post('agregar', reg)
 	.done(function (data) {
-		//fCargarLista();
+		fCargarLista();
 		$('#modalBien').modal('hide');
 		uf_showAlert('Correcto', 'Registrado con éxito');
 	})
@@ -149,10 +146,10 @@ function fEditBien(reg) {
 	.done(function (data) {
 		fCargarLista();
 		$('#modalBien').modal('hide');
-		swal('Correcto', 'Se ha actualizado con éxito', 'success');
+		uf_showAlert('Correcto', 'Actualizado con éxito');
 	})
 	.fail(function(data) {
-		swal('Error', 'Los sentimo, ocurró un error', 'error');
+		uf_showError();
 	});
 }
 
@@ -172,8 +169,6 @@ function frmRegistro_submit(e) {
 			nombre: $('#nombre').val(),
 			descripcion: $('#descripcion').val(),
 			tipo: $('#tipo').val()
-			
-			
     	};
         
     	if (reg.codBien == '')
@@ -204,13 +199,12 @@ function fConfigurarFormulario() {
                 maxlength: "Maximo {0} caracteres"
             },
             descripcion: {
-                required: "Debe ingresar una Descripcion",
+                required: "Debe ingresar descripcion",
                 maxlength: "Maximo {0} caracteres"
             },
             tipo: {
-            	required: "Debe seleccionar Tipo"
+            	required: "Debe seleccionar tipo"
             }
-            
-           }
+       }
   });
 }
