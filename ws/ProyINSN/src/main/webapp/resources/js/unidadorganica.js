@@ -24,15 +24,18 @@ function fConfigurarEventos() {
         fCargarLista();
     });
     
-    $('#modalUsuario').on('hide.bs.modal', function (e) {
+    $('#modalUnidadOrganica').on('hide.bs.modal', function (e) {
     	fLimpiarFormulario();
+    });
+    
+    $('#btnAgregar').bind('click', function() {
+    	$('#modalUnidadOrganica .modal-title').html('Agregar Unidad Organica');
+		$('#btnGrabar').html('Registrar');
+		$('#modalUnidadOrganica').modal('show');
     });
     
     $('#frmRegistro').bind('submit', frmRegistro_submit);
     
-    $('#btnGrabar').bind('click', function() {
-    	
-    });
 }
 
 function fCargarLista() {
@@ -101,6 +104,19 @@ function fCargarComboUsuario() {
 	});
 }
 
+function fAddUnidadOrganica(reg) {
+	$.post('agregar', reg)
+	.done(function (data) {
+		fCargarLista();
+		$('#modalUnidadOrganica').modal('hide');
+		uf_showAlert('Correcto', 'Registrado con éxito');
+	})
+	.fail(function(data) {
+		uf_showError();
+	});
+}
+
+
 function fEditar(id) {
 	$.get('obtener', { id: id })
 	.done(function (data) {
@@ -144,10 +160,6 @@ function fEliminar(id) {
 		});
 }
 
-function fAddUsuario() {
-	
-}
-
 function fEditUnidadOrganica(reg) {
 	$.post('actualizar', reg)
 	.done(function (data) {
@@ -180,7 +192,7 @@ function frmRegistro_submit(e) {
     	};
         
     	if (reg.codUnidadOrganica == '')
-    		fEditUnidadOrganica(reg);
+    		fAddUnidadOrganica(reg);
     	else
     		fEditUnidadOrganica(reg);
     }
@@ -189,28 +201,18 @@ function frmRegistro_submit(e) {
 function fConfigurarFormulario() {
     window.validator = $("#frmRegistro").validate({
         rules: {
-          nombres: {
+          nombre: {
               required: true,
               maxlength: 45
           },
-          apellidos: {
+          descripcion: {
               required: true,
               maxlength: 45
           },
-          username: {
+          anexo: {
               required: true,
               minlength: 3,
               maxlength: 10
-          },
-          clave: {
-              required: true,
-              minlength: 6,
-              maxlength: 15
-          },
-          correo: {
-              required: true,
-              maxlength: 30,
-              email: true
           },
         },
         messages: {

@@ -22,7 +22,6 @@ public class UnidadOrganicaDAOImpl implements UnidadOrganicaDAO {
 	public UnidadOrganicaBean agregar(UnidadOrganicaBean bean) {
 		try {
 			Session sesion = factory.getCurrentSession();
-			
 			sesion.save(bean);
 		} catch (Exception e) {
 			e.printStackTrace();

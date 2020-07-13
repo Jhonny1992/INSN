@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -55,6 +56,26 @@ public class UnidadOrganicaController {
 		
 		return unidadorganicaService.actualizar(bean);
 	}
+	
+	@RequestMapping("/agregar")
+	@ResponseBody
+	public UnidadOrganicaBean agregar(@RequestParam("nombre") String nombre,
+			  @RequestParam("descripcion") String descripcion,
+			  @RequestParam("anexo") String anexo,
+			  @RequestParam("jefeEncargado") int jefeEncargado) {
+		UnidadOrganicaBean bean = new UnidadOrganicaBean();
+		UsuarioBean usuario=new UsuarioBean();
+		usuario.setCodUsuario(jefeEncargado);
+		
+		bean.setNombre(nombre);
+		bean.setDescripcion(descripcion);
+		bean.setAnexo(anexo);
+		bean.setUsuario(usuario);
+		
+		return unidadorganicaService.agregar(bean);
+	}
+	
+	
 
 	@RequestMapping("/eliminar")
 	@ResponseBody

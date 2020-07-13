@@ -53,7 +53,7 @@
 										            <div class="row">
 										                <div class="col-sm-12">
 										                    <input type="button" class="btn btn-sm btn-primary btn-block" value="Buscar" id="btnBuscar" name="btnBuscar" />
-										                    <a href="crear" class="btn btn-sm btn-success btn-block">Agregar</a>
+										                    <input type="button" class="btn btn-sm btn-success btn-block" value="Agregar" id="btnAgregar" name="btnAgregar" />
 										                    <input type="button" class="btn btn-sm btn-danger btn-block" value="Limpiar" id="btnLimpiar" name="btnLimpiar" />
 										                </div>
 										            </div>
@@ -104,7 +104,7 @@
                         	<input type="hidden" id="id" name="id">
                             <div class="form-group col-md-6">
                                 <label for="nombres" class="col-form-label">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombres">
+                                <input type="text" class="form-control" id="nombre" name="nombre">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="apellidos" class="col-form-label">Descripcion:</label>
