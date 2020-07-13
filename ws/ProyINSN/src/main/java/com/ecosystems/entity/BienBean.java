@@ -11,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
+import com.ecosystems.util.Constantes;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -62,6 +64,9 @@ public class BienBean implements Serializable{
 	private Date fechaRegistro;
 	
 
+	// Otros campos descriptivos
+	@Transient
+	private String tipoDesc;
 
 	public int getCodBien() {
 		return codBien;
@@ -103,9 +108,14 @@ public class BienBean implements Serializable{
 		this.fechaRegistro = fechaRegistro;
 	}
 
-
-	
-	
-	
-
+	public String getTipoDesc() {
+		if (this.tipo == Constantes.COD_TIPO_BIEN_MOBILIARIO)
+			this.tipoDesc = Constantes.DESC_TIPO_BIEN_MOBILIARIO;
+		else if (this.tipo == Constantes.COD_TIPO_BIEN_VEHICULAR)
+			this.tipoDesc = Constantes.DESC_TIPO_BIEN_VEHICULAR;
+		else
+			this.tipoDesc = Constantes.DESC_TIPO_BIEN_ECONOMICO;
+		
+		return this.tipoDesc;
+	}
 }

@@ -66,8 +66,8 @@ public class BienDAOImpl implements BienDAO{
 		}
 	}
 	
-	@Transactional(readOnly = true)
 	@Override
+	@Transactional
 	public void eliminar(int id) {
 		try {
 			Session sesion = factory.getCurrentSession();

@@ -82,7 +82,7 @@
 													<th>Apellidos</th>
 													<th>Dni</th>
 													<th>Username</th>
-													<th>Correo</th>
+													<th>Cargo</th>
 													<!-- <th>Cargo</th> -->
 													<th></th>
 												</tr>

@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <jsp:include page="include_head.jsp" />
 </head>
 <body
@@ -19,7 +20,7 @@
 					<div class="container-fluid">
 						<div class="card">
 							<div class="card-header p-1 bg-info text-white">
-								<h4 class="text-center">Mantenedor de bienes</h4>
+								<h4 class="text-center">Mantenedor de Bienes</h4>
 							</div>
 							<div class="card-body">
 								<div class="row">
@@ -44,7 +45,7 @@
 										                            <div class="input-group-prepend">
 										                                <label for="txtNombreBusqueda" class="input-group-text"><i class="fa fa-search"></i></label>
 										                            </div>
-										                            <input type="text" class="form-control" placeholder="Ingrese Fecha Inicio" id="txtNombreBusqueda" />
+										                            <input type="text" class="form-control" placeholder="Ingrese nombres" id="txtNombreBusqueda" />
 										                        </div>
 										                    </div>
 										                    
@@ -53,7 +54,7 @@
 										            <div class="row">
 										                <div class="col-sm-12">
 										                    <input type="button" class="btn btn-sm btn-primary btn-block" value="Buscar" id="btnBuscar" name="btnBuscar" />
-										                    <a href="crear" class="btn btn-sm btn-success btn-block">Agregar</a>
+										                    <input type="button" class="btn btn-sm btn-success btn-block" value="Agregar" id="btnAgregar" name="btnAgregar" />
 										                    <input type="button" class="btn btn-sm btn-danger btn-block" value="Limpiar" id="btnLimpiar" name="btnLimpiar" />
 										                </div>
 										            </div>
@@ -78,7 +79,6 @@
 													<th></th>
 												</tr>
 											</thead>
-											
 										</table>
 									</div>
 								</div>
@@ -105,17 +105,22 @@
                         <div class="row">
                         	<input type="hidden" id="id" name="id">
                             <div class="form-group col-md-6">
-                                <label for="nombre" class="col-form-label">Nombre:</label>
+                                <label for="nombre" class="col-form-label">Nombres:</label>
                                 <input type="text" class="form-control" id="nombre" name="nombre">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="apellidos" class="col-form-label">Descripcion:</label>
+                                <label for="descripcion" class="col-form-label">Descripcion:</label>
                                 <input type="text" class="form-control" id="descripcion" name="descripcion">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="username" class="col-form-label">Tipo:</label>
-                                <input type="text" class="form-control" id="tipo" name="tipo">
-                            </div>
+                                <label for="tipo" class="col-form-label">Tipo:</label>
+                                <select id="tipo" name="tipo" class="form-control">
+                                	<option value=''>::: Seleccione :::</option>
+                                	<option value='1'>Mobiliario</option>
+                                	<option value='2'>Vehicular</option>
+                                	<option value='3'>Economico</option>
+                                </select>
+                            </div>                       
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -126,10 +131,8 @@
             </div>
         </div>
     </div>
-	
-	
+    
 </body>
 <jsp:include page="include_scripts.jsp" />
 <script type="text/javascript" src="../resources/js/bien.js"></script>
-
 </html>
