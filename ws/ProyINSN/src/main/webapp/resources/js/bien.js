@@ -154,7 +154,7 @@ function fEditBien(reg) {
 }
 
 function fLimpiarFormulario() {
-	$('#frmRegistro input').val('');
+	$('#frmRegistro input, #tipo').val('');
 	window.validator.resetForm();
 }
 
