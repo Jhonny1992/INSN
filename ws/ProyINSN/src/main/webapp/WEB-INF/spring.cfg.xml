@@ -34,15 +34,9 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl"
-<<<<<<< HEAD
-			value="jdbc:mysql://www.db4free.net/bd_insn?useSSL=false" />
-		<property name="user" value="usuariodaw2" />
-		<property name="password" value="usuariodaw2" />
-=======
 			value="jdbc:mysql://mysql-bdinsn.alwaysdata.net:3306/bdinsn_daw2?useSSL=false" />
 		<property name="user" value="bdinsn" />
 		<property name="password" value="bdinsn_password" />
->>>>>>> a55f3d5cd33f98900b1cea27045d588f9f48f9d6
 
 		<!-- these are connection pool properties for C3P0 -->
 		<property name="minPoolSize" value="5" />
