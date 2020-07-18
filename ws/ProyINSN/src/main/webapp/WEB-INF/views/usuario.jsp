@@ -130,7 +130,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="clave" class="col-form-label">Clave:</label>
-                                <input type="text" class="form-control" id="clave" name="clave">
+                                <input type="password" class="form-control" id="clave" name="clave">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="clave" class="col-form-label">Correo:</label>
