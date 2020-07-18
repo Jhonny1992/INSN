@@ -55,19 +55,22 @@ $(function () {
 	
 	// Cada vez que se hace una petición
 	$(document).ajaxSend(function (e, jqXHR, options) {
-		var cfg = {
-	     "lines": 12,
-	     "top": "50%",
-	     "right": "20%",
-	     "position": "fixed"
-	    };
-		
-		var id = 'id_' + Math.floor(1 + Math.random() * 999999);
-		var spinner = uf_createSpinner(id, cfg);
-		
-		// Asociar el id y el spinner al request
-		jqXHR.id = id;
-		jqXHR.spinner = spinner;
+		let spin = $('[id*=spinner_id]');
+		if (spin.length == 0) {
+			var cfg = {
+		     "lines": 12,
+		     "top": "50%",
+		     "right": "20%",
+		     "position": "fixed"
+		    };
+				
+			var id = 'spinner_id_' + Math.floor(1 + Math.random() * 999999);
+			var spinner = uf_createSpinner(id, cfg);
+			
+			// Asociar el id y el spinner al request
+			jqXHR.id = id;
+			jqXHR.spinner = spinner;
+		}
 		
 		window.console.log('Ajax send');
 	});
