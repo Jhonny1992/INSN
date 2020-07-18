@@ -203,11 +203,11 @@ function fConfigurarFormulario() {
         rules: {
           nombre: {
               required: true,
-              maxlength: 45
+              maxlength: 90
           },
           descripcion: {
               required: true,
-              maxlength: 45
+              maxlength: 250
           },
           anexo: {
               required: true,
