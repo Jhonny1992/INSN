@@ -44,6 +44,28 @@ CREATE TABLE `unidadorganica` (
   CONSTRAINT fk_unidadorganica_usuario foreign key(jefeEncargado) references usuario(codUsuario)
 );
 
+CREATE TABLE `requerimiento` (
+  `codRequerimiento` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(500) NOT NULL,
+  `codUnidad` int(11) NOT NULL,
+  `codUsuario` int(11) NOT NULL,
+  `fechaEntrega` date NOT NULL,
+  `fechaRegistro` date NOT NULL,
+  CONSTRAINT pk_requerimiento PRIMARY KEY (`codRequerimiento`),
+  CONSTRAINT fk_requerimiento_unidadorganica foreign key(codUnidad) references unidadorganica(codUnidad),
+  CONSTRAINT fk_requerimiento_usuario foreign key(codUsuario) references usuario(codUsuario)
+);
+
+CREATE TABLE `detallerequerimiento` (
+  `codRequerimiento` int(11) NOT NULL,
+  `codBien` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `valorEstimado` decimal(19,2) NOT NULL,
+  CONSTRAINT pk_detallerequerimiento PRIMARY KEY (`codRequerimiento`,`codBien`),
+  CONSTRAINT fk_codRequerimiento_requerimiento foreign key(codRequerimiento) references requerimiento(codRequerimiento),
+  CONSTRAINT fk_codBien_bien foreign key(codBien) references bien(codBien)
+);
+
 DELIMITER $$
 CREATE UNIQUE INDEX id_cargo_nombre ON cargo(nombre)
 $$
@@ -75,10 +97,17 @@ FOR EACH ROW BEGIN
 END
 $$
 
+CREATE TRIGGER `tgr_requerimiento_binsert` BEFORE INSERT ON `requerimiento`
+FOR EACH ROW BEGIN
+        -- Set the udpate date
+    Set new.fechaRegistro = now();
+END
+$$
+
 INSERT INTO cargo
 (nombre)
 VALUES
-('Administrador'),
-('Gestor de cuenta'),
-('Asesor');
+('Director'),
+('Especialista'),
+('Técnico');
 $$
