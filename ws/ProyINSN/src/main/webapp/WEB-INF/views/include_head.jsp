@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charse=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ecosystems</title>
+<title>INSN</title>
 <link rel="shortcut icon" type="image/x-icon" href="../resources/img/favicon.png" />
 <link rel="stylesheet" href="../resources/libs/bootstrap/Core/css/bootstrap-reboot.min.css">
 <link rel="stylesheet" href="../resources/libs/bootstrap/Core/css/bootstrap.min.css">
