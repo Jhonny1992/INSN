@@ -2,12 +2,14 @@ package com.ecosystems.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -63,6 +65,9 @@ public class BienBean implements Serializable{
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date fechaRegistro;
 	
+	@OneToMany(mappedBy="bien")
+	private List<DetalleRequerimientoBean> detalleRequerimiento;
+	
 
 	// Otros campos descriptivos
 	@Transient
@@ -107,6 +112,20 @@ public class BienBean implements Serializable{
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
+	
+	
+
+	public List<DetalleRequerimientoBean> getDetalleRequerimiento() {
+		return detalleRequerimiento;
+	}
+
+
+
+	public void setDetalleRequerimiento(List<DetalleRequerimientoBean> detalleRequerimiento) {
+		this.detalleRequerimiento = detalleRequerimiento;
+	}
+
+
 
 	public String getTipoDesc() {
 		if (this.tipo == Constantes.COD_TIPO_BIEN_MATERIAL)
