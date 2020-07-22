@@ -48,7 +48,7 @@
                                          <div class="btn-toolbar mt-2">
                                              <div class="btn-group">
                                              	<button type="button" class="btn btn-outline-success" id="btnAgregarBien">Agregar bien</button>
-                                             	<button type="button" class="btn btn-outline-danger" id="quitarTodosBienes">Quitar todos</button>
+                                             	<button type="button" class="btn btn-outline-danger" id="quitarTodosBienes">Remover bienes</button>
                                              </div>
                                          </div>
                                      </div>
