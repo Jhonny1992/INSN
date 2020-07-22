@@ -109,12 +109,10 @@ public class BienBean implements Serializable{
 	}
 
 	public String getTipoDesc() {
-		if (this.tipo == Constantes.COD_TIPO_BIEN_MOBILIARIO)
-			this.tipoDesc = Constantes.DESC_TIPO_BIEN_MOBILIARIO;
-		else if (this.tipo == Constantes.COD_TIPO_BIEN_VEHICULAR)
-			this.tipoDesc = Constantes.DESC_TIPO_BIEN_VEHICULAR;
+		if (this.tipo == Constantes.COD_TIPO_BIEN_MATERIAL)
+			this.tipoDesc = Constantes.DESC_TIPO_BIEN_MATERIAL;
 		else
-			this.tipoDesc = Constantes.DESC_TIPO_BIEN_ECONOMICO;
+			this.tipoDesc = Constantes.DESC_TIPO_BIEN_SERVICIO;
 		
 		return this.tipoDesc;
 	}

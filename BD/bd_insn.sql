@@ -13,7 +13,7 @@ CREATE TABLE `bien` (
   `codBien` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(90) NOT NULL,
   `descripcion` varchar(500) NOT NULL,
-  `tipo` int(11) NOT NULL,
+  `tipo` int(11) NOT NULL,	/* 1=Material, 2=Servicio */
   `fechaRegistro` date NOT NULL,
   PRIMARY KEY (`codBien`)
 );
@@ -44,16 +44,22 @@ CREATE TABLE `unidadorganica` (
   CONSTRAINT fk_unidadorganica_usuario foreign key(jefeEncargado) references usuario(codUsuario)
 );
 
+CREATE TABLE estado_requerimiento (
+	codEstado int NOT NULL auto_increment,
+    nombre Varchar(150) Not Null,
+    constraint pk_estado_requerimiento primary key (codEstado)
+);
+
 CREATE TABLE `requerimiento` (
   `codRequerimiento` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(500) NOT NULL,
   `codUnidad` int(11) NOT NULL,
-  `codUsuario` int(11) NOT NULL,
   `fechaEntrega` date NOT NULL,
   `fechaRegistro` date NOT NULL,
+  estado int NOT NULL,	/* 1=Pendiente, 2=Observado, 3=Aprobado */
   CONSTRAINT pk_requerimiento PRIMARY KEY (`codRequerimiento`),
   CONSTRAINT fk_requerimiento_unidadorganica foreign key(codUnidad) references unidadorganica(codUnidad),
-  CONSTRAINT fk_requerimiento_usuario foreign key(codUsuario) references usuario(codUsuario)
+  CONSTRAINT fk_requerimiento_estado foreign key(estado) references estado_requerimiento(codEstado)
 );
 
 CREATE TABLE `detallerequerimiento` (
@@ -110,4 +116,11 @@ VALUES
 ('Director'),
 ('Especialista'),
 ('Técnico');
+
+INSERT INTO estado_requerimiento
+(nombre)
+values
+('Pendiente'),
+('Observado'),
+('Aprobado');
 $$

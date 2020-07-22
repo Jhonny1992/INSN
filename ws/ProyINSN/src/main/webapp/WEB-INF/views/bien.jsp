@@ -116,9 +116,8 @@
                                 <label for="tipo" class="col-form-label">Tipo:</label>
                                 <select id="tipo" name="tipo" class="form-control">
                                 	<option value=''>::: Seleccione :::</option>
-                                	<option value='1'>Mobiliario</option>
-                                	<option value='2'>Vehicular</option>
-                                	<option value='3'>Economico</option>
+                                	<option value='1'>Material</option>
+                                	<option value='2'>Servicio</option>
                                 </select>
                             </div>                       
                         </div>
