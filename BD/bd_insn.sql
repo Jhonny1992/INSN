@@ -63,11 +63,12 @@ CREATE TABLE `requerimiento` (
 );
 
 CREATE TABLE `detallerequerimiento` (
+  codDetalleRequerimiento int(11) NOT NULL,
   `codRequerimiento` int(11) NOT NULL,
   `codBien` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `valorEstimado` decimal(19,2) NOT NULL,
-  CONSTRAINT pk_detallerequerimiento PRIMARY KEY (`codRequerimiento`,`codBien`),
+  CONSTRAINT pk_detallerequerimiento PRIMARY KEY (`codDetalleRequerimiento`),
   CONSTRAINT fk_codRequerimiento_requerimiento foreign key(codRequerimiento) references requerimiento(codRequerimiento),
   CONSTRAINT fk_codBien_bien foreign key(codBien) references bien(codBien)
 );
