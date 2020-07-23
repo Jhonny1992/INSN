@@ -27,12 +27,11 @@ public class RequerimientoBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public RequerimientoBean(int codRequerimiento, String descripcion, UnidadOrganicaBean codUnidad, Date fechaEntrega,
+	public RequerimientoBean(String descripcion, UnidadOrganicaBean codUnidad, Date fechaEntrega,
 			Date fechaRegistro, EstadoRequerimientoBean estado) {
 		super();
-		this.codRequerimiento = codRequerimiento;
 		this.descripcion = descripcion;
-		this.codUnidad = codUnidad;
+		this.unidadOrganica = codUnidad;
 		this.fechaEntrega = fechaEntrega;
 		this.fechaRegistro = fechaRegistro;
 		this.estado = estado;
@@ -52,7 +51,7 @@ public class RequerimientoBean implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name="codUnidad")
-	private UnidadOrganicaBean codUnidad;
+	private UnidadOrganicaBean unidadOrganica;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fechaEntrega")
@@ -88,12 +87,12 @@ public class RequerimientoBean implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public UnidadOrganicaBean getCodUnidad() {
-		return codUnidad;
+	public UnidadOrganicaBean getUnidadOrganica() {
+		return unidadOrganica;
 	}
 
-	public void setCodUnidad(UnidadOrganicaBean codUnidad) {
-		this.codUnidad = codUnidad;
+	public void setUnidadOrganica(UnidadOrganicaBean unidadOrganica) {
+		this.unidadOrganica = unidadOrganica;
 	}
 
 	public Date getFechaEntrega() {
@@ -126,8 +125,5 @@ public class RequerimientoBean implements Serializable {
 
 	public void setDetalleRequerimiento(List<DetalleRequerimientoBean> detalleRequerimiento) {
 		this.detalleRequerimiento = detalleRequerimiento;
-	}	
-
-	
-	
+	}
 }

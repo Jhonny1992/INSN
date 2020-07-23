@@ -2,6 +2,7 @@ package com.ecosystems.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,9 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="unidadorganica")
@@ -44,7 +48,10 @@ public class UnidadOrganicaBean implements Serializable{
 	@Column(name="fechaRegistro")
 	@Temporal(TemporalType.DATE)
 	private Date fechaRegistro;
-		
+	
+	@OneToMany(mappedBy = "unidadOrganica")
+	@JsonIgnore
+	private List<RequerimientoBean> requerimientos;
 	
 	public UnidadOrganicaBean() {
 		super();
@@ -59,6 +66,17 @@ public class UnidadOrganicaBean implements Serializable{
 		this.anexo = anexo;
 		this.fechaRegistro = fechaRegistro;
 	}
+
+
+	public int getCodUnidadOrganica() {
+		return codUnidadOrganica;
+	}
+
+
+	public void setCodUnidadOrganica(int codUnidadOrganica) {
+		this.codUnidadOrganica = codUnidadOrganica;
+	}
+
 
 	public String getNombre() {
 		return nombre;
@@ -90,6 +108,16 @@ public class UnidadOrganicaBean implements Serializable{
 	}
 
 
+	public UsuarioBean getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(UsuarioBean usuario) {
+		this.usuario = usuario;
+	}
+
+
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
@@ -100,27 +128,12 @@ public class UnidadOrganicaBean implements Serializable{
 	}
 
 
-	public int getCodUnidadOrganica() {
-		return codUnidadOrganica;
+	public List<RequerimientoBean> getRequerimientos() {
+		return requerimientos;
 	}
 
 
-	public void setCodUnidadOrganica(int codUnidadOrganica) {
-		this.codUnidadOrganica = codUnidadOrganica;
+	public void setRequerimientos(List<RequerimientoBean> requerimientos) {
+		this.requerimientos = requerimientos;
 	}
-
-
-	public UsuarioBean getUsuario() {
-		return usuario;
-	}
-
-
-	public void setUsuario(UsuarioBean usuario) {
-		this.usuario = usuario;
-	}
-	
-	
-	
-	
-	
 }

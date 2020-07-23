@@ -181,7 +181,7 @@ function fEditUnidadOrganica(reg) {
 }
 
 function fLimpiarFormulario() {
-	$('#frmRegistro input').val('');
+	$('#frmRegistro input, textarea').val('');
 	window.validator.resetForm();
 }
 

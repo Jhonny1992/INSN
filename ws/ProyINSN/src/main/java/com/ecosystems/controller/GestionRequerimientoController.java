@@ -1,6 +1,5 @@
 package com.ecosystems.controller;
 
-import java.nio.charset.CodingErrorAction;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ecosystems.entity.BienBean;
+import com.ecosystems.entity.EstadoRequerimientoBean;
+import com.ecosystems.entity.RequerimientoBean;
 import com.ecosystems.entity.UnidadOrganicaBean;
 import com.ecosystems.entity.UsuarioBean;
 import com.ecosystems.services.BienService;
+import com.ecosystems.services.RequerimientoService;
 import com.ecosystems.services.UnidadOrganicaService;
+import com.ecosystems.util.Constantes;
 import com.ecosystems.util.Util;
 
 @Controller
@@ -27,7 +30,7 @@ import com.ecosystems.util.Util;
 public class GestionRequerimientoController {
 	private @Autowired UnidadOrganicaService unidadOrganicaService;
 	private @Autowired BienService bienService;
-	
+	private @Autowired RequerimientoService requerimientoService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -116,6 +119,24 @@ public class GestionRequerimientoController {
 		request.getSession().setAttribute("ListaBienesTemp", null);
 		
 		return 1;
+	}
+	
+	@RequestMapping(value = "/agregar", method = RequestMethod.POST)
+	@ResponseBody
+	public RequerimientoBean agregar(@RequestParam("coUnidadOrganica") String coUnidadOrganica,
+							   @RequestParam("descripcion") String descripcion) {
+		
+		RequerimientoBean req = new RequerimientoBean();
+		UnidadOrganicaBean unidad = new UnidadOrganicaBean();
+		req.setUnidadOrganica(unidad);
+		
+		EstadoRequerimientoBean estado = new EstadoRequerimientoBean();
+		estado.setCodEstado(Constantes.COD_ESTADO_PENDIENTE);
+		req.setEstado(estado);
+		
+		req.setDescripcion(descripcion);
+		
+		return requerimientoService.agregar(req);
 	}
 	
 	@SuppressWarnings("unchecked")

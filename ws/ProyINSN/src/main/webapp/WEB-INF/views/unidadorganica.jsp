@@ -90,7 +90,7 @@
 	
 	<div class="modal fade" id="modalUnidadOrganica" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <form id="frmRegistro" autocomplete="off">
                     <div class="modal-header bg-info text-white p-2">
@@ -108,7 +108,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="apellidos" class="col-form-label">Descripcion:</label>
-                                <input type="text" class="form-control" id="descripcion" name="descripcion">
+                                <textarea rows="3" class="form-control" id="descripcion" name="descripcion"></textarea>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="username" class="col-form-label">Anexo:</label>

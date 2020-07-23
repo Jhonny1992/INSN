@@ -1,13 +1,17 @@
 package com.ecosystems.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "estado_requerimiento")
@@ -37,6 +41,10 @@ public class EstadoRequerimientoBean implements Serializable{
 	
 	@Column(name = "nombre")
 	private String nombre;
+	
+	@OneToMany(mappedBy = "estado")
+	@JsonIgnore
+	private List<RequerimientoBean> requerimientos;
 
 	public int getCodEstado() {
 		return codEstado;
@@ -53,8 +61,13 @@ public class EstadoRequerimientoBean implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
-	
+
+	public List<RequerimientoBean> getRequerimientos() {
+		return requerimientos;
+	}
+
+	public void setRequerimientos(List<RequerimientoBean> requerimientos) {
+		this.requerimientos = requerimientos;
+	}
 
 }
