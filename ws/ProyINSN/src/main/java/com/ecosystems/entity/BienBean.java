@@ -38,14 +38,10 @@ public class BienBean implements Serializable{
 		
 	}
 	
-	
-
 	public BienBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,6 +70,9 @@ public class BienBean implements Serializable{
 	// Otros campos descriptivos
 	@Transient
 	private String tipoDesc;
+	
+	@Transient
+	private int cantidad;
 
 	public int getCodBien() {
 		return codBien;
@@ -115,19 +114,13 @@ public class BienBean implements Serializable{
 		this.fechaRegistro = fechaRegistro;
 	}
 	
-	
-
 	public List<DetalleRequerimientoBean> getDetalleRequerimiento() {
 		return detalleRequerimiento;
 	}
 
-
-
 	public void setDetalleRequerimiento(List<DetalleRequerimientoBean> detalleRequerimiento) {
 		this.detalleRequerimiento = detalleRequerimiento;
 	}
-
-
 
 	public String getTipoDesc() {
 		if (this.tipo == Constantes.COD_TIPO_BIEN_MATERIAL)
@@ -136,5 +129,13 @@ public class BienBean implements Serializable{
 			this.tipoDesc = Constantes.DESC_TIPO_BIEN_SERVICIO;
 		
 		return this.tipoDesc;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 }

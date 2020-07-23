@@ -1,5 +1,6 @@
 package com.ecosystems.controller;
 
+import java.nio.charset.CodingErrorAction;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ecosystems.entity.BienBean;
 import com.ecosystems.entity.UnidadOrganicaBean;
 import com.ecosystems.entity.UsuarioBean;
+import com.ecosystems.services.BienService;
 import com.ecosystems.services.UnidadOrganicaService;
 import com.ecosystems.util.Util;
 
@@ -24,6 +26,7 @@ import com.ecosystems.util.Util;
 
 public class GestionRequerimientoController {
 	private @Autowired UnidadOrganicaService unidadOrganicaService;
+	private @Autowired BienService bienService;
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -41,13 +44,74 @@ public class GestionRequerimientoController {
 		return unidadOrganica;
 	}
 	
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/agregarBienTemp", method = RequestMethod.POST)
+	@RequestMapping("/listarBienes")
 	@ResponseBody
-	public List<BienBean> agregarBienTemp(HttpServletRequest request) {
+	public List<BienBean> buscar(HttpServletRequest request,
+								 @RequestParam("nombre") String nombre) {
+		List<BienBean> listaTemporal = obtenerListaBienTemp(request);
+		List<BienBean> listaBD = bienService.buscar(nombre);
+		List<BienBean> listaFinal = new ArrayList<BienBean>();
 		
-		String cb = request.getParameter("codBien");
+		for (BienBean b : listaBD) {
+			int i;
+			for (i = 0; i < listaTemporal.size() && listaTemporal.get(i).getCodBien() != b.getCodBien(); ++i) ;
+			
+			if (i == listaTemporal.size()) {
+				listaFinal.add(b);
+			}
+		}
 		
+		
+		return listaFinal;
+	}
+	
+	@RequestMapping(value = "/agregarBienTemp", method = RequestMethod.GET)
+	@ResponseBody
+	public List<BienBean> agregarBienTemp(HttpServletRequest request,
+										  @RequestParam(name = "codBien") int codBien,
+										  @RequestParam(name = "cantidad") int cantidad) {
+		List<BienBean> lista = obtenerListaBienTemp(request);
+
+		BienBean bien = bienService.obtenerPorId(codBien);
+		bien.setCantidad(cantidad);
+		lista.add(bien);
+		
+		request.getSession().setAttribute("ListaBienesTemp", lista);
+
+		return lista;
+	}
+	
+	@RequestMapping("/listarDetalle")
+	@ResponseBody
+	public List<BienBean> listarDetalle(HttpServletRequest request) {
+		return obtenerListaBienTemp(request);
+	}
+	
+	@RequestMapping(value = "/eliminarDetalle", method = RequestMethod.POST)
+	@ResponseBody
+	public int eliminarDetalle(HttpServletRequest request,
+							   @RequestParam("codBien") int codBien) {
+		List<BienBean> lista = obtenerListaBienTemp(request);
+		
+		BienBean reg = null;
+		for (BienBean b : lista) {
+			if (b.getCodBien() == codBien)
+			{
+				reg = b;
+				break;
+			}
+		}
+		
+		if (reg != null)
+			lista.remove(reg);
+		
+		request.getSession().setAttribute("ListaBienesTemp", lista);
+		
+		return 1;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private List<BienBean> obtenerListaBienTemp(HttpServletRequest request) {
 		List<BienBean> lista;
 		Object obj = request.getSession().getAttribute("ListaBienesTemp");
 		if (obj == null) {
@@ -57,11 +121,6 @@ public class GestionRequerimientoController {
 			lista = (List<BienBean>)obj;
 		}
 		
-		BienBean bien = new BienBean();
-		//bien.setCodBien(codBien);
-		lista.add(bien);
-
 		return lista;
 	}
-
 }
