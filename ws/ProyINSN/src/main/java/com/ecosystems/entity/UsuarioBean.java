@@ -62,10 +62,8 @@ public class UsuarioBean implements Serializable {
 	@JsonIgnore
 	private List<UnidadOrganicaBean> unidadOrganica;
 	
-
 	public UsuarioBean() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public UsuarioBean(String apellidos, String nombres, String username, String password, String correo,

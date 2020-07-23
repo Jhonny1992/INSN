@@ -123,4 +123,19 @@ public class UnidadOrganicaDAOImpl implements UnidadOrganicaDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	@Override
+	@Transactional(readOnly=true)
+	public UnidadOrganicaBean obtenerPorJefeId(int codUsuario) {
+		try {
+			Session sesion = factory.getCurrentSession();
+			String hql = "Select uo From UnidadOrganicaBean uo inner join UsuarioBean u on u.codUsuario = uo.usuario where u.codUsuario = ?1";
+			Query query = sesion.createQuery(hql);
+			query.setParameter(1, codUsuario);
+
+			return (UnidadOrganicaBean) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 }

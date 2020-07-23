@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="com.ecosystems.util.Util"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="ISO-8859-1"%>
@@ -36,7 +38,7 @@
 									</div>
 									<div class="form-group col-md-6">
                                 		<label for="fechaRegistro" class="col-form-label">Fecha de registro:</label>
-                                		<input type="text" class="form-control text-center" id="fechaRegistro" name="fechaRegistro" disabled="disabled">
+                                		<input type="text" class="form-control text-center" id="fechaRegistro" name="fechaRegistro" disabled="disabled" value="<% out.print(Util.fechaToString(new Date(), "dd/MM/yyyy")); %>">
                            			 </div>
                            			 <div class="form-group col-md-6">
                                 		<label for="descripcion" class="col-form-label">Descripción:</label>

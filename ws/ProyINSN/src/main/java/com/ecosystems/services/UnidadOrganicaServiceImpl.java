@@ -13,36 +13,41 @@ import com.ecosystems.entity.UsuarioBean;
 public class UnidadOrganicaServiceImpl implements UnidadOrganicaService{
 
 	@Autowired
-	private UnidadOrganicaDAO unidadorganicaDAO;
+	private UnidadOrganicaDAO dao;
 	
 	
 	@Override
 	public UnidadOrganicaBean agregar(UnidadOrganicaBean bean) {
-		return unidadorganicaDAO.agregar(bean);
+		return dao.agregar(bean);
 	}
 
 	@Override
 	public UnidadOrganicaBean actualizar(UnidadOrganicaBean bean) {
-		return unidadorganicaDAO.actualizar(bean);
+		return dao.actualizar(bean);
 	}
 
 	@Override
 	public List<UnidadOrganicaBean> buscar(String nombre) {
-		return unidadorganicaDAO.buscar(nombre);
+		return dao.buscar(nombre);
 	}
 
 	@Override
 	public UnidadOrganicaBean obtenerPorId(int id) {
-		return unidadorganicaDAO.obtenerPorId(id);
+		return dao.obtenerPorId(id);
 	}
 
 	@Override
 	public void eliminar(int id) {
-		unidadorganicaDAO.eliminar(id);
+		dao.eliminar(id);
 	}
 
 	@Override
 	public List<UsuarioBean> posiblesJefesUnidadOrganica(int codUsuarioEdit) {
-		return unidadorganicaDAO.posiblesJefesUnidadOrganica(codUsuarioEdit);
+		return dao.posiblesJefesUnidadOrganica(codUsuarioEdit);
+	}
+
+	@Override
+	public UnidadOrganicaBean obtenerPorJefeId(int codUsuario) {
+		return dao.obtenerPorJefeId(codUsuario);
 	}
 }

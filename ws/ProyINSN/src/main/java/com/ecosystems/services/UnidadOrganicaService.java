@@ -14,4 +14,5 @@ public interface UnidadOrganicaService {
 	public void eliminar(int id);
 
 	public List<UsuarioBean> posiblesJefesUnidadOrganica(int codUsuarioEdit);
+	public UnidadOrganicaBean obtenerPorJefeId(int codUsuario);
 }
