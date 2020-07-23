@@ -12,7 +12,7 @@ CREATE TABLE `cargo` (
 CREATE TABLE `bien` (
   `codBien` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(90) NOT NULL,
-  `descripcion` varchar(500) NOT NULL,
+  `descripcion` varchar(500) NULL,
   `tipo` int(11) NOT NULL,	/* 1=Material, 2=Servicio */
   `fechaRegistro` date NOT NULL,
   PRIMARY KEY (`codBien`)
@@ -36,7 +36,7 @@ CREATE TABLE `usuario` (
 CREATE TABLE `unidadorganica` (
   `codUnidad` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(90) NOT NULL,
-  `descripcion` varchar(250) NOT NULL,
+  `descripcion` varchar(250)  NULL,
   `anexo` varchar(5) NOT NULL,
   `jefeEncargado` int(11) NOT NULL,
   `fechaRegistro` date NOT NULL,
@@ -125,3 +125,4 @@ values
 ('Observado'),
 ('Aprobado');
 $$
+
