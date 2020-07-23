@@ -108,11 +108,11 @@ public class UnidadOrganicaDAOImpl implements UnidadOrganicaDAO {
 			//String hql = "Select u from UsuarioBean u left join UnidadOrganicaBean uo on uo.usuario = u.codUsuario Where uo.usuario is null";
 			
 			if (codUsuarioEdit == 0) {
-				hql = "Select u from UsuarioBean u Where u.codUsuario not in(select distinct uo.usuario from UnidadOrganicaBean uo)";
+				hql = "Select u from UsuarioBean u Where u.cargo in (2, 3) and u.codUsuario not in(select distinct uo.usuario from UnidadOrganicaBean uo)";
 				query = sesion.createQuery(hql);
 			}
 			else {
-				hql = "Select u from UsuarioBean u Where u.codUsuario not in(select distinct uo.usuario from UnidadOrganicaBean uo) or u.codUsuario = ?1";
+				hql = "Select u from UsuarioBean u Where u.cargo in (2, 3) and u.codUsuario not in(select distinct uo.usuario from UnidadOrganicaBean uo) or u.codUsuario = ?1";
 				query = sesion.createQuery(hql);
 				query.setParameter(1, codUsuarioEdit);
 			}
