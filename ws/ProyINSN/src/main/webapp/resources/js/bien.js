@@ -186,7 +186,7 @@ function fConfigurarFormulario() {
               maxlength: 90
           },
           descripcion: {
-              required: true,
+              //required: true,
               maxlength: 500
           },
           tipo: {
