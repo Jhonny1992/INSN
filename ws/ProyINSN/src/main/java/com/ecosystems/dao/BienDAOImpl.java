@@ -86,7 +86,7 @@ public class BienDAOImpl implements BienDAO{
 		try {
 			Session sesion = factory.getCurrentSession();
 			
-			String hql = "from BienBean WHERE (:nombre = '' or nombre like CONCAT('%', :nombre, '%'))";
+			String hql = "from BienBean WHERE (:nombre = '' or nombre like CONCAT('%', :nombre, '%')) ORDER BY codBien DESC";
 			
 			Query query = sesion.createQuery(hql);
 			query.setParameter("nombre", nombre == null ? "" : nombre);

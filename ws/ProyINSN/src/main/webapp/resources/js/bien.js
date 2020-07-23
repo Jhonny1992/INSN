@@ -183,11 +183,11 @@ function fConfigurarFormulario() {
         rules: {
           nombre: {
               required: true,
-              maxlength: 45
+              maxlength: 90
           },
           descripcion: {
-              required: true,
-              maxlength: 45
+              //required: true,
+              maxlength: 500
           },
           tipo: {
               required: true

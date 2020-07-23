@@ -14,19 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ecosystems.entity.BienBean;
-import com.ecosystems.entity.DetalleRequerimientoBean;
+
 import com.ecosystems.entity.EstadoRequerimientoBean;
 import com.ecosystems.entity.RequerimientoBean;
 import com.ecosystems.entity.UnidadOrganicaBean;
-import com.ecosystems.services.DetalleRequerimientoService;
+
 import com.ecosystems.services.RequerimientoService;
 
 @Controller
 @RequestMapping(value = "/requerimiento")
 public class RequerimientoController {
 	
-	@Autowired
-	private DetalleRequerimientoService detalleRequerimientoService;
+	
 	
 	@Autowired
 	private RequerimientoService requerimientoService;
@@ -66,12 +65,6 @@ public class RequerimientoController {
 		return requerimientoService.agregar(bean);
 	}
 	
-	//detalleRequerimiento
 	
-	@RequestMapping(value = "/buscarRequerimiento", method = RequestMethod.GET)
-	@ResponseBody
-	public List<DetalleRequerimientoBean> buscarRequerimiento(@RequestParam("requerimiento") int codRequerimiento) {
-		return detalleRequerimientoService.buscar(codRequerimiento);
-	}
 
 }
