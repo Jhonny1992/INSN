@@ -11,4 +11,5 @@ public interface UsuarioDAO {
 	public UsuarioBean obtenerPorId(int id);
 	public void eliminar(int id);
 	public List<UsuarioBean> listarUsuario();
+	public UsuarioBean autenticar(String usuario, String clave);
 }

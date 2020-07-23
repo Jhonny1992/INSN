@@ -116,4 +116,20 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		}
 		return query.getResultList();
 	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public UsuarioBean autenticar(String usuario, String clave) {
+		try {
+			Session sesion = factory.getCurrentSession();
+			String hql = "From UsuarioBean where username = ?1 and password = ?2";
+			Query query = sesion.createQuery(hql);
+			query.setParameter(1, usuario);
+			query.setParameter(2, clave);
+
+			return (UsuarioBean) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

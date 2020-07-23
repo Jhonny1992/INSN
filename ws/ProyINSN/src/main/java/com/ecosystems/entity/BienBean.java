@@ -17,6 +17,7 @@ import javax.persistence.Transient;
 
 import com.ecosystems.util.Constantes;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "bien")
@@ -66,6 +67,7 @@ public class BienBean implements Serializable{
 	private Date fechaRegistro;
 	
 	@OneToMany(mappedBy="bien")
+	@JsonIgnore
 	private List<DetalleRequerimientoBean> detalleRequerimiento;
 	
 

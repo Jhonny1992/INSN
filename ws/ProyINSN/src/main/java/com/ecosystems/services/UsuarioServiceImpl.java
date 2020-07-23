@@ -43,4 +43,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public List<UsuarioBean> listarUsuario() {
 		return dao.listarUsuario();
 	}
+
+	@Override
+	public UsuarioBean autenticar(String usuario, String clave) {
+		return dao.autenticar(usuario, clave);
+	}
 }

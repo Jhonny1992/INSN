@@ -2,9 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="ISO-8859-1"%>
 
-<c:choose>
-	<c:when test="${sessionScope.user == null}">
-		<!-- Main Sidebar Container -->
+<%if (session.getAttribute("usuario") == null) {%>
+	<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="https://www.cibertec.edu.pe/" target="_blank"
@@ -13,9 +12,8 @@
 				class="brand-text font-weight-light">Proyecto INSN</span>
 			</a>
 		</aside>
-	</c:when>
-	<c:otherwise>
-		<!-- Main Sidebar Container -->
+<%} else {%>
+	<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="<c:url value="/"/>" class="brand-link"> <img
@@ -93,5 +91,5 @@
 			</div>
 			<!-- /.sidebar -->
 		</aside>
-	</c:otherwise>
-</c:choose>
+<%} %>
+

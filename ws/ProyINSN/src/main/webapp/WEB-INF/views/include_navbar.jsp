@@ -9,26 +9,22 @@
 		<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 			href="#"><i class="fas fa-bars"></i></a></li>
 	</ul>
-	<c:choose>
-		<c:when test="${sessionScope.user == null}">
-			<!-- Right navbar links -->
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="<c:url value="/login/"/>" id="loginLink">Iniciar sesión</a></li>
-			</ul>
-		</c:when>
-		<c:otherwise>
-			
-			<!-- Right navbar links -->
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<!-- <form action="logout" id="logoutForm" method="post">
-						<a class="nav-link"
-							href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
-					</form> -->
-					
-					<li class="nav-item"><a class="nav-link" href="<c:url value="/login/"/>" id="loginLink">Cerrar sesión</a></li>
-				</li>
-			</ul>
-		</c:otherwise>
-	</c:choose>
+	<%if (session.getAttribute("usuario") == null) {%>
+		<!-- Right navbar links -->
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link" href="<c:url value="/login/"/>" id="loginLink">Iniciar sesión</a></li>
+		</ul>
+	<%} else {%>
+		<!-- Right navbar links -->
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<!-- <form action="logout" id="logoutForm" method="post">
+					<a class="nav-link"
+						href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
+				</form> -->
+				
+				<li class="nav-item"><a class="nav-link" href="<c:url value="/login/"/>" id="loginLink">Cerrar sesión</a></li>
+			</li>
+		</ul>
+	<%} %>
 </nav>
