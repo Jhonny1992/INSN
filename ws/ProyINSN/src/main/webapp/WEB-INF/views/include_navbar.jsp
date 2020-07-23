@@ -1,3 +1,4 @@
+<%@page import="com.ecosystems.entity.UsuarioBean"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="ISO-8859-1"%>
@@ -18,10 +19,9 @@
 		<!-- Right navbar links -->
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<!-- <form action="logout" id="logoutForm" method="post">
-					<a class="nav-link"
-						href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
-				</form> -->
+				<li class="nav-item">
+					<a class="nav-link">Hola <%((UsuarioBean)session.getAttribute("usuario")).getNombres();%>!</a>
+				</li>
 				
 				<li class="nav-item"><a class="nav-link" href="<c:url value="/login/"/>" id="loginLink">Cerrar sesión</a></li>
 			</li>

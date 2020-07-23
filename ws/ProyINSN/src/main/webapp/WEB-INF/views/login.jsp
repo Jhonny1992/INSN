@@ -19,14 +19,14 @@
 					<div class="container d-flex justify-content-center">
 						<div class="transparent-form">
 							<div class="card border-info">
-								<div class="card-header p-1">
+								<div class="card-header bg-info p-1">
 									<h4 class="text-center">Iniciar sesión</h4>
 								</div>
 								<div class="card-body">
 									<div class="row">
 										<div class="col-sm-12">
 											<form action="auth" method="post" class="form" role="form"
-												id="frmLogin">
+												id="frmLogin" autocomplete="off">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="form-group">

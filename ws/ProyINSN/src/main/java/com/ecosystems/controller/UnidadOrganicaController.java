@@ -3,18 +3,17 @@ package com.ecosystems.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ecosystems.entity.UnidadOrganicaBean;
 import com.ecosystems.entity.UsuarioBean;
 import com.ecosystems.services.UnidadOrganicaService;
+import com.ecosystems.util.Util;
 
 @Controller
 @RequestMapping("/unidadorganica")
@@ -25,8 +24,8 @@ public class UnidadOrganicaController {
 	
 	@RequestMapping("/")
 	private String index(HttpServletRequest request) {
-		HttpSession sesion = request.getSession();
-		UsuarioBean usuario = (UsuarioBean)sesion.getAttribute("user");
+		UsuarioBean usuario = Util.getUsuario(request.getSession());
+		System.out.println(usuario);
 		
 		return "unidadorganica";
 	}
