@@ -91,7 +91,7 @@
 	
 	<div class="modal fade" id="modalBien" tabindex="-1" role="dialog" aria-labelledby="modalBienLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-info text-white p-2">
                     <h5 class="modal-title" id="exampleModalLabel">Lista de Bienes</h5>
@@ -102,25 +102,22 @@
                 <div class="modal-body">
                 	<div class="row">
                 		<div class="col-md-12">
-                       		<table id="tbUsuario" class="table table-sm table-hover table-bordered display" style="width: 100%">
+                       		<table id="tbBien" class="table table-sm table-hover table-bordered display" style="width: 100%">
 							<thead>
 								<tr>
-									<th></th>
 									<th>Id</th>
 									<th>Bien</th>
 									<th>Descripción</th>
 									<th>Tipo</th>
+									<th>Cantidad</th>
 									<th></th>
 								</tr>
 							</thead>
 							</table>
                        	</div>
                 	</div>
-                	<div class="row">
-                		<div class="col-md-12 text-center">
-                			<button type="button" class="btn btn-info">
-                				<i class="fas fa-check mr-1"></i>Seleccionar
-                			</button>
+                	<div class="row pt-2">
+                		<div class="col-md-12 text-right">
                 			<button type="button" class="btn btn-danger" data-dismiss="modal">
                 				<i class="fas fa-ban mr-1"></i>Cancelar
                 			</button>
