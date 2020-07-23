@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ecosystems.dao.UnidadOrganicaDAO;
 import com.ecosystems.entity.UnidadOrganicaBean;
+import com.ecosystems.entity.UsuarioBean;
 
 @Service
 public class UnidadOrganicaServiceImpl implements UnidadOrganicaService{
@@ -38,7 +39,10 @@ public class UnidadOrganicaServiceImpl implements UnidadOrganicaService{
 	@Override
 	public void eliminar(int id) {
 		unidadorganicaDAO.eliminar(id);
-		
 	}
 
+	@Override
+	public List<UsuarioBean> posiblesJefesUnidadOrganica(int codUsuarioEdit) {
+		return unidadorganicaDAO.posiblesJefesUnidadOrganica(codUsuarioEdit);
+	}
 }

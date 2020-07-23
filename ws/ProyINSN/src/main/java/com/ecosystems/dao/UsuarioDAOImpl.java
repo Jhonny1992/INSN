@@ -131,5 +131,5 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		} catch (Exception e) {
 			return null;
 		}
-	}
+	}	
 }

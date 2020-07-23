@@ -3,6 +3,7 @@ package com.ecosystems.dao;
 import java.util.List;
 
 import com.ecosystems.entity.UnidadOrganicaBean;
+import com.ecosystems.entity.UsuarioBean;
 
 public interface UnidadOrganicaDAO {
 	
@@ -11,5 +12,6 @@ public interface UnidadOrganicaDAO {
 	public List<UnidadOrganicaBean> buscar(String nombre);
 	public UnidadOrganicaBean obtenerPorId(int id);
 	public void eliminar(int id);
-
+	
+	public List<UsuarioBean> posiblesJefesUnidadOrganica(int codUsuarioEdit);
 }

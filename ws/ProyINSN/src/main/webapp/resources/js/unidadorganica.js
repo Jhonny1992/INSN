@@ -6,8 +6,6 @@ function fInicializar() {
 	fConfigurarFormulario();
 	fConfigurarEventos();
 	fCargarLista();
-	
-	fCargarComboUsuario();
 }
 
 function fConfigurarEventos() {
@@ -29,9 +27,13 @@ function fConfigurarEventos() {
     });
     
     $('#btnAgregar').bind('click', function() {
-    	$('#modalUnidadOrganica .modal-title').html('Agregar Unidad Organica');
-		$('#btnGrabar').html('Registrar');
-		$('#modalUnidadOrganica').modal('show');
+    	let callback = function() {
+    		$('#modalUnidadOrganica .modal-title').html('Agregar Unidad Organica');
+    		$('#btnGrabar').html('Registrar');
+    		$('#modalUnidadOrganica').modal('show');
+    	}
+    	
+    	fCargarComboUsuario(0, callback);
     });
     
     $('#frmRegistro').bind('submit', frmRegistro_submit);
@@ -89,8 +91,10 @@ function fConfigurarGrilla(data) {
 	window.tbUnidadOrganica = $('#' + tableId).DataTable(jsonDT);
 }
 
-function fCargarComboUsuario() {
-	$.get('../usuario/listar')
+function fCargarComboUsuario(codUsuarioEdit, callback) {
+	$('#jefeEncargado').html('<option value="">::: Seleccione :::</option>');
+	
+	$.get('posiblesJefes', { codUsuarioEdit: codUsuarioEdit })
 	.done(function (data) {
 		data.map(function(e, i){
 			$('#jefeEncargado').append($('<option>', {
@@ -98,6 +102,8 @@ function fCargarComboUsuario() {
 				text: e.nombres +" "+ e.apellidos
 			}));
 		});
+		
+		callback();
 	})
 	.fail(function(data) {
 		uf_showError();
@@ -120,20 +126,22 @@ function fAddUnidadOrganica(reg) {
 function fEditar(id) {
 	$.get('obtener', { id: id })
 	.done(function (data) {
-		console.log(data);
+		let callback = function() {
+			$('#id').val(data.codUnidadOrganica);
+			$('#nombre').val(data.nombre);
+			$('#descripcion').val(data.descripcion);
+			$('#anexo').val(data.anexo);
+			$('#jefeEncargado').val(data.usuario.codUsuario);
+			
+			$('#modalUnidadOrganica .modal-title').html('Editar Unidad Organica');
+			$('#btnGrabar').html('Actualizar');
+			$('#modalUnidadOrganica').modal('show');
+		}
 		
-		$('#id').val(data.codUnidadOrganica);
-		$('#nombre').val(data.nombre);
-		$('#descripcion').val(data.descripcion);
-		$('#anexo').val(data.anexo);
-		$('#jefeEncargado').val(data.usuario.codUsuario);
-		
-		$('#modalUnidadOrganica .modal-title').html('Editar Unidad Organica');
-		$('#btnGrabar').html('Actualizar');
-		$('#modalUnidadOrganica').modal('show');
+		fCargarComboUsuario(data.usuario.codUsuario, callback);
 	})
 	.fail(function(data) {
-		swal('Error', 'Los sentimos, ocurrió un error', 'error');
+		uf_showError();
 	});
 }
 
@@ -168,7 +176,7 @@ function fEditUnidadOrganica(reg) {
 		swal('Correcto', 'Se ha actualizado con éxito', 'success');
 	})
 	.fail(function(data) {
-		swal('Error', 'Los sentimos, ocurrió un error', 'error');
+		uf_showError();
 	});
 }
 

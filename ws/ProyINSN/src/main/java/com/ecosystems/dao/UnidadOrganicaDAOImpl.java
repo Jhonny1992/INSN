@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ecosystems.entity.UnidadOrganicaBean;
+import com.ecosystems.entity.UsuarioBean;
 @Repository
 public class UnidadOrganicaDAOImpl implements UnidadOrganicaDAO {
 
@@ -95,5 +96,31 @@ public class UnidadOrganicaDAOImpl implements UnidadOrganicaDAO {
 		
 	}
 	
-
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional(readOnly=true)
+	public List<UsuarioBean> posiblesJefesUnidadOrganica(int codUsuarioEdit) {
+		try {
+			Session sesion = factory.getCurrentSession();
+			String hql;
+			Query query;
+			
+			//String hql = "Select u from UsuarioBean u left join UnidadOrganicaBean uo on uo.usuario = u.codUsuario Where uo.usuario is null";
+			
+			if (codUsuarioEdit == 0) {
+				hql = "Select u from UsuarioBean u Where u.codUsuario not in(select distinct uo.usuario from UnidadOrganicaBean uo)";
+				query = sesion.createQuery(hql);
+			}
+			else {
+				hql = "Select u from UsuarioBean u Where u.codUsuario not in(select distinct uo.usuario from UnidadOrganicaBean uo) or u.codUsuario = ?1";
+				query = sesion.createQuery(hql);
+				query.setParameter(1, codUsuarioEdit);
+			}
+			
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 }

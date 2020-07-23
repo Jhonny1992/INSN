@@ -3,6 +3,7 @@ package com.ecosystems.services;
 import java.util.List;
 
 import com.ecosystems.entity.UnidadOrganicaBean;
+import com.ecosystems.entity.UsuarioBean;
 
 public interface UnidadOrganicaService {
 	
@@ -12,4 +13,5 @@ public interface UnidadOrganicaService {
 	public UnidadOrganicaBean obtenerPorId(int id);
 	public void eliminar(int id);
 
+	public List<UsuarioBean> posiblesJefesUnidadOrganica(int codUsuarioEdit);
 }

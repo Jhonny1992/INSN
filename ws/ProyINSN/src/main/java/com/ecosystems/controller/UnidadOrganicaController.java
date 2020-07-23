@@ -80,8 +80,6 @@ public class UnidadOrganicaController {
 		return unidadorganicaService.agregar(bean);
 	}
 	
-	
-
 	@RequestMapping("/eliminar")
 	@ResponseBody
 	public int eliminar(@RequestParam("id") int id) {
@@ -90,4 +88,9 @@ public class UnidadOrganicaController {
 		return 1;
 	}
 
+	@RequestMapping(value="/posiblesJefes")
+	@ResponseBody
+	public List<UsuarioBean> listarUsuario(@RequestParam(name = "codUsuarioEdit") int codUsuarioEdit){
+		return unidadorganicaService.posiblesJefesUnidadOrganica(codUsuarioEdit);
+	}
 }
