@@ -37,7 +37,7 @@
 																		class="fa fa-user"></i></span>
 																</div>
 																<input type="text" class="form-control" id="usuario"
-																	name="usuario">
+																	name="usuario" placeholder="Usuario">
 															</div>
 															<label for="usuario" class="error text-danger"></label>
 														</div>
@@ -53,7 +53,7 @@
 																		class="fa fa-lock"></i></span>
 																</div>
 																<input type="password" class="form-control" id="clave"
-																	name="clave">
+																	name="clave" placeholder="clave">
 															</div>
 															<label for="clave" class="error text-danger"></label>
 														</div>

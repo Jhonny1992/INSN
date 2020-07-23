@@ -119,7 +119,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="dni" class="col-form-label">Dni:</label>
-                                <input type="text" class="form-control" id="dni" name="dni">
+                                <input type="text" class="form-control" id="dni" name="dni" maxlength="8">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="username" class="col-form-label">Usuario:</label>
