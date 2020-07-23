@@ -74,7 +74,7 @@
                                  	</div>
                                  </div>
                                  <div class="row">
-                                 	<div class="col-md-12 text-center">
+                                 	<div class="col-md-12 text-right">
                                  		<button class="btn btn-primary">
                                  			<i class="fas fa-save pr-1"></i> Guardar
                                  		</button>

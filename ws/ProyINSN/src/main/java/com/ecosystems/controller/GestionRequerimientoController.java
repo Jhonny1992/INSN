@@ -110,6 +110,14 @@ public class GestionRequerimientoController {
 		return 1;
 	}
 	
+	@RequestMapping(value = "/eliminarTodoDetalle", method = RequestMethod.POST)
+	@ResponseBody
+	public int eliminarTodoDetalle(HttpServletRequest request) {
+		request.getSession().setAttribute("ListaBienesTemp", null);
+		
+		return 1;
+	}
+	
 	@SuppressWarnings("unchecked")
 	private List<BienBean> obtenerListaBienTemp(HttpServletRequest request) {
 		List<BienBean> lista;

@@ -17,6 +17,29 @@ function fConfigurarEventos() {
     	fCargarListaBien(callback);
     });
     
+    $('#btnRemoverBienes').bind('click', function() {
+    	swal({
+  		  title: "¿Está seguro de eliminar todos los bienes?",
+  		  icon: "warning",
+  		  buttons: ['Cancelar', 'Sí'],
+  		  dangerMode: true,
+  		})
+  		.then((willDelete) => {
+  			if (willDelete) {
+  				$.post('eliminarTodoDetalle')
+  				.done(function(data) {
+  					fCargarListaDetalle();
+  					uf_showAlert('Correcto', 'Eliminado con éxito');
+  				})
+  				.fail(function(data) {
+  					uf_showError();
+  				});
+  		  } else {
+  		    console.log('Se cancela eliminación')
+  		  }
+  		});
+    });
+    
     $('#nombreBienBuscar').bind('keyup', function () {
     	fCargarListaBien();
     });
