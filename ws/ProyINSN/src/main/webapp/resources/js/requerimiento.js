@@ -96,7 +96,7 @@ function fConfigurarGrillaBien(data) {
 		r[1] = e['nombre'];
 		r[2] = e['descripcion'];
 		r[3] = e['tipoDesc'];
-		r[4] = `<input type='number' id='${id_cantidad}' class='form-control form-control-sm' maxlength='3' style='width:100px' />`;
+		r[4] = `<input type='number' min='1' max='100' id='${id_cantidad}' class='form-control form-control-sm' maxlength='3' style='width:100px' />`;
 		r[5] = `<i title='agregar' class='fas fa-plus-circle fa-lg text-warning cursorHand' onclick='fAgregarBienTemp(${codBien}, "${id_cantidad}")';></i>`;
 		
 		rows.push(r);
@@ -176,10 +176,16 @@ function fModalBien_shown(e) {
 }
 
 function fAgregarBienTemp(codBien, idCantidad) {
-	var t = $('#' + idCantidad).val();
+	let t = $('#' + idCantidad).val();
 	
 	if (t == '') {
 		uf_showAlert('Advertencia', 'Debe ingresar cantidad', 'warning');
+		return;
+	}
+	
+	let esEntero = validaEntero(t);
+	if (!esEntero) {
+		uf_showAlert('Advertencia', 'Debe ingresar un número entero', 'warning');
 		return;
 	}
 	

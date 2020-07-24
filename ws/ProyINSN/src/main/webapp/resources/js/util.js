@@ -110,3 +110,9 @@ function uf_stopSpinner(jqXHR) {
      $('#' + jqXHR.id).remove();
  }
 };
+
+function validaEntero(input) {
+	var reg = new RegExp('^\\d+$');
+
+	return reg.test(input);
+}
