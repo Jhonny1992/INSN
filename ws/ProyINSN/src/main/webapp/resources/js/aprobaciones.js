@@ -29,7 +29,7 @@ function fConfigurarEventos() {
 
     $('#btnLimpiar').bind('click', function () {
         $('#estadoBusqueda').val('0');
-        fInicializarFechas
+        fInicializarFechas();
         fCargarLista();
     });
     
