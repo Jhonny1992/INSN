@@ -41,7 +41,7 @@
 						<li class="nav-header">Mis opciones</li>
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link"><i class="nav-icon fas fa-circle"></i>
-								<p>Mantenedores <i class="right fas fa-angle-left"></i></p>
+								<p>Mantenimientos <i class="right fas fa-angle-left"></i></p>
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
@@ -86,7 +86,7 @@
 								<li class="nav-item">
 									<a href="<c:url value="/consolidado/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Consolidado anual</p>
+										<p>Plan Anual de <br>Contrataciones</p>
 									</a>
 								</li>
 							</ul>
