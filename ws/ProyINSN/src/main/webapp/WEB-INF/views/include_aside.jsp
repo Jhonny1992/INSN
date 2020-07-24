@@ -1,3 +1,4 @@
+<%@page import="com.ecosystems.entity.UsuarioBean"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="ISO-8859-1"%>
@@ -36,9 +37,11 @@
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column"
 						data-widget="treeview" role="menu" data-accordion="false">
+						
 						<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-
 						<li class="nav-header">Mis opciones</li>
+						
+						<%if (((UsuarioBean)session.getAttribute("usuario")).getCargo().getCodCargo() == 1) {%>
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link"><i class="nav-icon fas fa-circle"></i>
 								<p>Mantenedores <i class="right fas fa-angle-left"></i></p>
@@ -64,6 +67,8 @@
 								</li>
 							</ul>
 						</li>
+						
+						<%}%>
 
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link">
@@ -71,18 +76,26 @@
 								<p>Procesos <i class="right fas fa-angle-left"></i></p>
 							</a>
 							<ul class="nav nav-treeview">
+								<%if (((UsuarioBean)session.getAttribute("usuario")).getCargo().getCodCargo() == 2 || ((UsuarioBean)session.getAttribute("usuario")).getCargo().getCodCargo() == 3) {%>
+							
 								<li class="nav-item">
 									<a href="<c:url value="/requerimiento/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Requerimientos</p>
 									</a>
 								</li>
+								<%}%>
+								
+								<%if (((UsuarioBean)session.getAttribute("usuario")).getCargo().getCodCargo() == 1) {%>
+								
 								<li class="nav-item">
 									<a href="<c:url value="/aprobaciones/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Aprobaciones</p>
 									</a>
 								</li>
+								<%}%>
+								
 								<li class="nav-item d-none">
 									<a href="<c:url value="/consolidado/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
