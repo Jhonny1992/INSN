@@ -174,7 +174,7 @@ function fConfigurarGrillaDetalle(data) {
 		var r = [];
 		r[0] = e['codDetalleRequerimiento'];
 		r[1] = e['bien']['nombre'];
-		r[2] = '';
+		r[2] = e['bien']['tipoDesc'];
 		r[3] = e['cantidad'];
 		r[4] = `<input type='number' min='1' max='99999' id='${id_valor}' class='form-control form-control-sm' maxlength='6' style='width:100px' />`;
 		
