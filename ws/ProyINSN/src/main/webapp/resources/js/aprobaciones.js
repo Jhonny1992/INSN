@@ -78,7 +78,8 @@ function fConfigurarGrilla(data) {
 		"language": JSON.parse(strJSON),
 		"dom": "<'row'<'col-sm-12'tr>>" +
 		       "<'row'<'col-lg-4'i><'col-lg-8'p>>" +
-		       "<'row.text-center'<'col-sm-12'l>>",
+		       "<'row.text-center'<'col-sm-12'l>>" +
+		       "<'row.text-right mt-2'<'col-sm-12'B>>",
         
         "responsive": true,
         "paging": true,
@@ -196,7 +197,13 @@ function fConfigurarGrillaDetalle(data) {
         "lengthChange": true,
         "lengthMenu": [[5, 10, 50, -1], ['5', '10', '50', 'Todo']],
         "destroy": true,
-        "data": rows
+        "data": rows,
+        "buttons": [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
 	};
 	
 	window.tbDetRequerimiento = $('#' + tableId).DataTable(jsonDT);
