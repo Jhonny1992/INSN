@@ -20,7 +20,7 @@
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
 				<li class="nav-item">
-					<a class="nav-link">Hola <%((UsuarioBean)session.getAttribute("usuario")).getNombres();%>!</a>
+					<a class="nav-link">Hola <%out.print(((UsuarioBean)session.getAttribute("usuario")).getNombres());%>!</a>
 				</li>
 				
 				<li class="nav-item"><a class="nav-link" href="<c:url value="/login/"/>" id="loginLink">Cerrar sesión</a></li>
