@@ -43,7 +43,7 @@
 																	<div class="input-group-prepend">
 																		<span class="input-group-text">Estado</span>
 																	</div>
-																	<select id="estado"
+																	<select id="estadoBusqueda"
 																		class="form-control form-control-sm">
 																		<option value='0'>::: Todos :::</option>
 																		<option value="1">Pendiente</option>
@@ -96,6 +96,7 @@
 													<th>Fecha entrega</th>
 													<th>Fecha registro</th>
 													<th>Estado</th>
+													<th>Observación</th>
 													<th></th>
 												</tr>
 											</thead>
@@ -109,6 +110,52 @@
 			</section>
 		</div>
 	</div>
+	
+	<div class="modal fade" id="modalAprobacion" tabindex="-1" role="dialog" aria-labelledby="modalAprobacionLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="frmRegistro" autocomplete="off">
+                    <div class="modal-header bg-info text-white p-2">
+                        <h5 class="modal-title">Gestionar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                        	<input type="hidden" id="id" name="id">
+                            <div class="form-group col-md-6">
+                                <label for="estado" class="col-form-label">Estado:</label>
+                                <select id="estado"
+									class="form-control form-control-sm">
+									<option value="1">Pendiente</option>
+									<option value="2">Observado</option>
+									<option value="3">Aprobado</option>
+								</select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="fechaEntrega" class="col-form-label">Fecha entrega:</label>
+                                <input type="date" name="fechaEntrega" id="fechaEntrega" class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="observacion" class="col-form-label">Observación:</label>
+                                <textarea rows="3" maxlength="250" class="form-control" id="observacion" name="observacion"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        	<i class="fas fa-ban mr-1"></i>Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="btnGrabar">
+                        	<i class="fas fa-save mr-1"></i>Grabar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 <jsp:include page="include_scripts.jsp" />
 <script type="text/javascript" src="../resources/js/aprobaciones.js"></script>

@@ -3,6 +3,7 @@ $(function() {
 });
 
 function fInicializar() {
+	fConfigurarFormulario();
 	fInicializarFechas();
 	fConfigurarEventos();
 	fCargarLista();
@@ -13,10 +14,12 @@ function fInicializarFechas() {
 	var hasta = moment().format('YYYY-MM-DD');
 	document.getElementById("desde").value = desde;
 	document.getElementById("hasta").value = hasta
+	
+	document.getElementById("fechaEntrega").value = hasta
 }
 
 function fConfigurarEventos() {
-	$('#estado').bind('change', function () {
+	$('#estadoBusqueda').bind('change', function () {
 		fCargarLista();
     });
 	
@@ -25,14 +28,20 @@ function fConfigurarEventos() {
     });
 
     $('#btnLimpiar').bind('click', function () {
-        $('#estado').val('');
+        $('#estadoBusqueda').val('0');
         fInicializarFechas
         fCargarLista();
     });
+    
+    $('#modalAprobacion').on('hide.bs.modal', function (e) {
+    	fLimpiarFormulario();
+    });
+    
+    $('#frmRegistro').bind('submit', frmRegistro_submit);
 }
 
 function fCargarLista() {
-	let estado = $('#estado').val();
+	let estado = $('#estadoBusqueda').val();
 	let desde = $('#desde').val();
 	let hasta = $('#hasta').val();
 	
@@ -58,7 +67,8 @@ function fConfigurarGrilla(data) {
 		r[3] = e['fechaEntrega'];
 		r[4] = e['fechaRegistro'];
 		r[5] = e['estado']['nombre'];
-		r[6] = "<i title='observar' class='far fa-trash-alt fa-lg text-danger cursorHand' onclick=fEliminar(" + e['codRequerimiento'] + ")></i>";
+		r[6] = e['observacion'];
+		r[7] = "<i title='observar' class='fas fa-check-circle fa-lg text-primary cursorHand' onclick=fGestionar(" + e['codRequerimiento'] + ")></i>";
 		
 		rows.push(r);
 	});
@@ -82,4 +92,74 @@ function fConfigurarGrilla(data) {
 	};
 	
 	window.tbRequerimiento = $('#' + tableId).DataTable(jsonDT);
+}
+
+function fGestionar(codRequerimiento) {
+	$.get('obtener', { codRequerimiento: codRequerimiento })
+	.done(function (data) {
+		var fechaEntrega = moment(data.FechaEntrega);
+		
+		$('#id').val(data.codRequerimiento);
+		$('#estado').val(data.estado.codEstado);
+		$('#fechaEntrega').val(fechaEntrega);
+		$('#observacion').val(data.observacion);
+		
+		$('#modalAprobacion').modal('show');
+	})
+	.fail(function(data) {
+		uf_showError();
+	});
+}
+
+function fLimpiarFormulario() {
+	$('#frmRegistro input, textarea').val('');
+	window.validator.resetForm();
+}
+
+function frmRegistro_submit(e) {
+    var isValid = $('#frmRegistro').valid();
+
+    if (isValid) {
+        e.preventDefault();
+        
+        var reg = {
+			codRequerimiento: $('#id').val(),
+			estado: $('#estado').val(),
+			fechaEntrega: $('#fechaEntrega').val(),
+			observacion: $('#observacion').val()
+    	};
+        
+        $.post('actualizar', reg)
+    	.done(function (data) {
+    		fCargarLista();
+    		$('#modalAprobacion').modal('hide');
+    		uf_showAlert('Correcto', 'Actualizado con éxito');
+    	})
+    	.fail(function(data) {
+    		uf_showError();
+    	});
+    }
+}
+
+function fConfigurarFormulario() {
+    window.validator = $("#frmRegistro").validate({
+        rules: {
+        	estado: {
+              required: true
+          },
+          observacion: {
+              required: true,
+              maxlength: 250
+          }
+        },
+        messages: {
+        	estado: {
+                required: "Debe ingresar nombre"
+            },
+            observacion: {
+                required: "Debe ingresar observación",
+                maxlength: "Maximo {0} caracteres"
+            }
+        }
+  });
 }

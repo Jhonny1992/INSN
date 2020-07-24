@@ -57,6 +57,7 @@ CREATE TABLE `requerimiento` (
   `fechaEntrega` date NULL,
   `fechaRegistro` date NOT NULL,
   estado int NOT NULL,	/* 1=Pendiente, 2=Observado, 3=Aprobado */
+  observacion varchar(250) NULL,
   CONSTRAINT pk_requerimiento PRIMARY KEY (`codRequerimiento`),
   CONSTRAINT fk_requerimiento_unidadorganica foreign key(codUnidad) references unidadorganica(codUnidad),
   CONSTRAINT fk_requerimiento_estado foreign key(estado) references estado_requerimiento(codEstado)

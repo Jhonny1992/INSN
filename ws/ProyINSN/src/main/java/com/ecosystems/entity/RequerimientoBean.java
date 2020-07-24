@@ -68,6 +68,9 @@ public class RequerimientoBean implements Serializable {
 	@JoinColumn(name="estado")
 	private EstadoRequerimientoBean estado;
 	
+	@Column(name = "observacion")
+	private String observacion;
+	
 	@OneToMany(mappedBy="requerimiento")
 	@JsonIgnore
 	private List<DetalleRequerimientoBean> detalleRequerimiento;
@@ -119,6 +122,14 @@ public class RequerimientoBean implements Serializable {
 
 	public void setEstado(EstadoRequerimientoBean estado) {
 		this.estado = estado;
+	}
+
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
 	}
 
 	public List<DetalleRequerimientoBean> getDetalleRequerimiento() {

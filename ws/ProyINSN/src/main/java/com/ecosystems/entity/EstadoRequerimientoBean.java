@@ -22,9 +22,8 @@ public class EstadoRequerimientoBean implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public EstadoRequerimientoBean(int codEstado, String nombre) {
+	public EstadoRequerimientoBean(String nombre) {
 		super();
-		this.codEstado = codEstado;
 		this.nombre = nombre;
 	}
 	

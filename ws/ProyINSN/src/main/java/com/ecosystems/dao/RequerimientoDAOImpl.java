@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ecosystems.entity.DetalleRequerimientoBean;
+import com.ecosystems.entity.EstadoRequerimientoBean;
 import com.ecosystems.entity.RequerimientoBean;
 
 @Repository
@@ -55,5 +56,41 @@ public class RequerimientoDAOImpl implements RequerimientoDAO{
 			e.printStackTrace();
 		}
 		return query.getResultList();
+	}
+
+	@Override
+	@Transactional
+	public RequerimientoBean actualizar(int codRequerimiento, Date fechaEntrega, int codEstado, String observacion) {
+		try {
+			Session sesion = factory.getCurrentSession();
+			RequerimientoBean ant = sesion.get(RequerimientoBean.class, codRequerimiento);
+			ant.setFechaEntrega(fechaEntrega);
+			
+			EstadoRequerimientoBean estado = new EstadoRequerimientoBean();
+			estado.setCodEstado(codEstado);
+			ant.setEstado(estado);
+			
+			ant.setObservacion(observacion);
+			
+			sesion.update(ant);
+			
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public RequerimientoBean obtenerPorId(int codRequerimiento) {
+		try {
+			Session sesion = factory.getCurrentSession();
+			
+			return sesion.get(RequerimientoBean.class, codRequerimiento);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 }

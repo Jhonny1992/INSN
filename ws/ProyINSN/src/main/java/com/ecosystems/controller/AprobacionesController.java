@@ -36,4 +36,25 @@ public class AprobacionesController {
 		
 		return service.buscar(estado, dDesde, dHasta);
 	}
+	
+	@RequestMapping("/obtener")
+	@ResponseBody
+	private RequerimientoBean obtenerPorId(@RequestParam("codRequerimiento") int codRequerimiento) {
+		return service.obtenerPorId(codRequerimiento);
+	}
+	
+	@RequestMapping("/actualizar")
+	@ResponseBody
+	public RequerimientoBean actualizar(@RequestParam("codRequerimiento") int codRequerimiento,
+								  @RequestParam("fechaEntrega") String fechaEntrega,
+								  @RequestParam("estado") int estado,
+								  @RequestParam("observacion") String observacion) throws ParseException {
+		
+		Date dFechaEntrega = null;
+		if (!fechaEntrega.isEmpty()) {
+			dFechaEntrega = Util.StringToFecha(fechaEntrega, "yyyy-MM-dd");
+		}
+		
+		return service.actualizar(codRequerimiento, dFechaEntrega, estado, observacion);
+	}
 }

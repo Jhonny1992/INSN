@@ -32,7 +32,7 @@ function fConfigurarEventos() {
 		$('#modalBien').modal('show');
     });
     
-    $('#frmRegistro').bind('submit', frmRegistro_submit); 
+    $('#frmRegistro').bind('submit', frmRegistro_submit);
 }
 
 function fCargarLista() {

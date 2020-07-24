@@ -9,4 +9,6 @@ import com.ecosystems.entity.RequerimientoBean;
 public interface RequerimientoService {
 	public RequerimientoBean agregar(RequerimientoBean bean, List<DetalleRequerimientoBean> listaDet);
 	public List<RequerimientoBean> buscar(int estado, Date fechaDesde, Date fechaHasta);
+	public RequerimientoBean actualizar(int codRequerimiento, Date fechaEntrega, int estado, String observacion);
+	public RequerimientoBean obtenerPorId(int codRequerimiento);
 }
