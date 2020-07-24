@@ -19,6 +19,12 @@ function fConfigurarEventos() {
     });
     
     $('#btnRemoverBienes').bind('click', function() {
+    	var rows = window.tbDetalle.rows().count();
+    	if (rows == 0) {
+    		uf_showAlert('Advertencia', 'No hay ningún bien para eliminar', 'warning');
+    		return;
+    	}
+    	
     	swal({
   		  title: "¿Está seguro de eliminar todos los bienes?",
   		  icon: "warning",
