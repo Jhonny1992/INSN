@@ -25,12 +25,14 @@ public class DetalleRequerimientoDAOImpl implements DetalleRequerimientoDAO {
 		Session session=factory.getCurrentSession();
 		Query query=null;
 		try {
-			query=session.createQuery("select dr from DetalleRequerimientoBean dr where (:requerimiento=-1 or :requerimiento = dr.codRequerimiento");
-			query.setParameter(1, codRequerimiento==0 ? -1 : codRequerimiento);
+			query=session.createQuery("select dr from DetalleRequerimientoBean dr where dr.requerimiento.codRequerimiento = ?1");
+			query.setParameter(1, codRequerimiento);
+			
+			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return query.getResultList();
 	}
 
 	@Transactional
@@ -40,10 +42,10 @@ public class DetalleRequerimientoDAOImpl implements DetalleRequerimientoDAO {
 		try {
 			session.save(bean);
 			
+			return bean;
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
-
 }

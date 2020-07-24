@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ecosystems.entity.DetalleRequerimientoBean;
 import com.ecosystems.entity.RequerimientoBean;
+import com.ecosystems.services.DetalleRequerimientoService;
 import com.ecosystems.services.RequerimientoService;
 import com.ecosystems.util.Util;
 
@@ -19,7 +21,8 @@ import com.ecosystems.util.Util;
 @RequestMapping(value = "/aprobaciones")
 public class AprobacionesController {
 	
-	private @Autowired RequerimientoService service;
+	private @Autowired RequerimientoService requerimientoService;
+	private @Autowired DetalleRequerimientoService detRequerimientoservice;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -34,13 +37,13 @@ public class AprobacionesController {
 		Date dDesde = Util.StringToFecha(desde, "yyyy-MM-dd");
 		Date dHasta = Util.StringToFecha(hasta, "yyyy-MM-dd");
 		
-		return service.buscar(estado, dDesde, dHasta);
+		return requerimientoService.buscar(estado, dDesde, dHasta);
 	}
 	
 	@RequestMapping("/obtener")
 	@ResponseBody
 	private RequerimientoBean obtenerPorId(@RequestParam("codRequerimiento") int codRequerimiento) {
-		return service.obtenerPorId(codRequerimiento);
+		return requerimientoService.obtenerPorId(codRequerimiento);
 	}
 	
 	@RequestMapping("/actualizar")
@@ -55,6 +58,12 @@ public class AprobacionesController {
 			dFechaEntrega = Util.StringToFecha(fechaEntrega, "yyyy-MM-dd");
 		}
 		
-		return service.actualizar(codRequerimiento, dFechaEntrega, estado, observacion);
+		return requerimientoService.actualizar(codRequerimiento, dFechaEntrega, estado, observacion);
+	}
+	
+	@RequestMapping("/listarDetalle")
+	@ResponseBody
+	private List<DetalleRequerimientoBean> listarDetalle(@RequestParam(name = "codRequerimiento") int codRequerimiento) {
+		return detRequerimientoservice.buscar(codRequerimiento);
 	}
 }

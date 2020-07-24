@@ -52,10 +52,12 @@ public class RequerimientoDAOImpl implements RequerimientoDAO{
 			query.setParameter("estado", estado == 0 ? -1 : estado);
 			query.setParameter("desde", fechaDesde == null ? (new java.util.Date(1900,1,1)) : fechaDesde, TemporalType.DATE);
 			query.setParameter("hasta", fechaHasta == null ? (new java.util.Date(3000,1,1)) : fechaHasta, TemporalType.DATE);
+			
+			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return query.getResultList();
 	}
 
 	@Override
@@ -74,7 +76,7 @@ public class RequerimientoDAOImpl implements RequerimientoDAO{
 			
 			sesion.update(ant);
 			
-			return null;
+			return ant;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

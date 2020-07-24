@@ -97,6 +97,7 @@
 													<th>Fecha registro</th>
 													<th>Estado</th>
 													<th>Observación</th>
+													<th>Detalle</th>
 													<th></th>
 												</tr>
 											</thead>
@@ -153,6 +154,44 @@
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="modalDetalleLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+           		<div class="modal-header bg-info text-white p-2">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalle del requerimiento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                	<div class="row">
+                		<div class="col-md-12">
+                       		<table id="tbDetRequerimiento" class="table table-sm table-hover table-bordered display" style="width: 100%">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Bien</th>
+									<th>Tipo</th>
+									<th>Cantidad</th>
+									<th>Valor estimado</th>
+								</tr>
+							</thead>
+							</table>
+                       	</div>
+                	</div>
+                	<div class="row pt-2">
+                		<div class="col-md-12 text-right">
+                			<button type="button" class="btn btn-danger" data-dismiss="modal">
+                				<i class="fas fa-ban mr-1"></i>Cerrar
+                			</button>
+                		</div>
+                	</div>
+                </div>
             </div>
         </div>
     </div>
