@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "requerimiento")
@@ -68,6 +69,7 @@ public class RequerimientoBean implements Serializable {
 	private EstadoRequerimientoBean estado;
 	
 	@OneToMany(mappedBy="requerimiento")
+	@JsonIgnore
 	private List<DetalleRequerimientoBean> detalleRequerimiento;
 	
 

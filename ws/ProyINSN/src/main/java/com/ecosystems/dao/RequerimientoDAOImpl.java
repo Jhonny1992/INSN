@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ecosystems.entity.DetalleRequerimientoBean;
 import com.ecosystems.entity.RequerimientoBean;
 
 @Repository
@@ -21,16 +22,21 @@ public class RequerimientoDAOImpl implements RequerimientoDAO{
 	
 	@Transactional
 	@Override
-	public RequerimientoBean agregar(RequerimientoBean bean) {
+	public RequerimientoBean agregar(RequerimientoBean bean, List<DetalleRequerimientoBean> listaDet) {
 		try {
 			Session sesion = factory.getCurrentSession();
-			
 			sesion.save(bean);
+			
+			for (DetalleRequerimientoBean det : listaDet) {
+				det.setRequerimiento(bean);
+				sesion.save(det);
+			}
+			
+			return bean;
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		
-		return bean;
 	}
 	 
 	@SuppressWarnings("unchecked")

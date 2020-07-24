@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ecosystems.entity.BienBean;
+import com.ecosystems.entity.DetalleRequerimientoBean;
 import com.ecosystems.entity.EstadoRequerimientoBean;
 import com.ecosystems.entity.RequerimientoBean;
 import com.ecosystems.entity.UnidadOrganicaBean;
 import com.ecosystems.entity.UsuarioBean;
 import com.ecosystems.services.BienService;
+import com.ecosystems.services.DetalleRequerimientoService;
 import com.ecosystems.services.RequerimientoService;
 import com.ecosystems.services.UnidadOrganicaService;
 import com.ecosystems.util.Constantes;
@@ -31,6 +33,7 @@ public class GestionRequerimientoController {
 	private @Autowired UnidadOrganicaService unidadOrganicaService;
 	private @Autowired BienService bienService;
 	private @Autowired RequerimientoService requerimientoService;
+	private @Autowired DetalleRequerimientoService detRequerimientoService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -123,12 +126,15 @@ public class GestionRequerimientoController {
 	
 	@RequestMapping(value = "/agregar", method = RequestMethod.POST)
 	@ResponseBody
-	public RequerimientoBean agregar(@RequestParam("coUnidadOrganica") String coUnidadOrganica,
-							   @RequestParam("descripcion") String descripcion) {
+	public RequerimientoBean agregar(HttpServletRequest request,
+									 @RequestParam("codUnidadOrganica") int codUnidadOrganica,
+									 @RequestParam("descripcion") String descripcion) {
 		
 		RequerimientoBean req = new RequerimientoBean();
-		UnidadOrganicaBean unidad = new UnidadOrganicaBean();
-		req.setUnidadOrganica(unidad);
+		
+		UnidadOrganicaBean unidadOrganica = new UnidadOrganicaBean();
+		unidadOrganica.setCodUnidadOrganica(codUnidadOrganica);
+		req.setUnidadOrganica(unidadOrganica);
 		
 		EstadoRequerimientoBean estado = new EstadoRequerimientoBean();
 		estado.setCodEstado(Constantes.COD_ESTADO_PENDIENTE);
@@ -136,7 +142,21 @@ public class GestionRequerimientoController {
 		
 		req.setDescripcion(descripcion);
 		
-		return requerimientoService.agregar(req);
+		// Detalle
+		List<DetalleRequerimientoBean> listaDet = new ArrayList<DetalleRequerimientoBean>();
+		for (BienBean bien : obtenerListaBienTemp(request)) {
+			DetalleRequerimientoBean det = new DetalleRequerimientoBean();
+			det.setBien(bien);
+			det.setCantidad(bien.getCantidad());
+			listaDet.add(det);
+		}
+		
+		req = requerimientoService.agregar(req, listaDet);
+		
+		// Eliminar detalle
+		request.getSession().setAttribute("ListaBienesTemp", null);
+		
+		return req;
 	}
 	
 	@SuppressWarnings("unchecked")

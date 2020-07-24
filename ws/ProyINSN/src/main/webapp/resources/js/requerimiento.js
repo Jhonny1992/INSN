@@ -3,6 +3,7 @@ $(function() {
 });
 
 function fInicializar() {
+	fConfigurarFormulario();
 	fConfigurarEventos();
 	fCargarComboUnidadOrganica();
 	fCargarListaDetalle();
@@ -43,6 +44,8 @@ function fConfigurarEventos() {
     $('#nombreBienBuscar').bind('keyup', function () {
     	fCargarListaBien();
     });
+    
+    $('#frmRegistro').bind('submit', frmRegistro_submit);
 }
 
 function fCargarComboUnidadOrganica() {
@@ -159,7 +162,7 @@ function fConfigurarGrillaDetalle(data) {
         "data": rows
 	};
 	
-	window.tbBien = $('#' + tableId).DataTable(jsonDT);
+	window.tbDetalle = $('#' + tableId).DataTable(jsonDT);
 }
 
 function fModalBien_shown(e) {
@@ -206,4 +209,73 @@ function fEliminarDetalle(codBien) {
 		    console.log('Se cancela eliminación')
 		  }
 		});
+}
+
+function frmRegistro_submit(e) {
+    var isValid = $('#frmRegistro').valid();
+
+    if (isValid) {
+        e.preventDefault();
+        
+        var rows = window.tbDetalle.rows().count();
+        if (rows == 0) {
+    		uf_showAlert('Advertencia', 'Debe seleccionar por lo menos un bien', 'warning');
+    		return;
+    	}
+        
+        swal({
+    		  title: "¿Está seguro de registrar el requerimiento?",
+    		  icon: "warning",
+    		  buttons: ['Cancelar', 'Sí'],
+    		  dangerMode: true,
+    		})
+    		.then((confirma) => {
+    			if (confirma) {
+    				var reg = {
+						codUnidadOrganica: $('#unidadOrganica').val(),
+						descripcion: $('#descripcion').val()
+			    	};
+
+			        $.post('agregar', reg)
+			    	.done(function (data) {
+			    		uf_showAlert('Correcto', 'Registrado con éxito');
+			    		fLimpiarFormulario();
+			    		fCargarListaDetalle();
+			    	})
+			    	.fail(function(data) {
+			    		uf_showError();
+			    	});
+    		  } else {
+    		    console.log('Se cancela registro')
+    		  }
+		});
+    }
+}
+
+function fLimpiarFormulario() {
+	$('#frmRegistro textarea').val('');
+	window.validator.resetForm();
+}
+
+function fConfigurarFormulario() {
+    window.validator = $("#frmRegistro").validate({
+        rules: {
+          descripcion: {
+              required: true,
+              maxlength: 500
+          },
+          unidadOrganica: {
+              required: true
+          }
+        },
+        messages: {
+            descripcion: {
+                required: "Debe ingresar Descripción",
+                maxlength: "Maximo {0} caracteres"
+            },
+            unidadOrganica: {
+            	required: "Debe contar con unidad orgánica"
+            }
+        }
+  });
 }

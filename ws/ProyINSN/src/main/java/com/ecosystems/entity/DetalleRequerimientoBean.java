@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,9 +20,12 @@ public class DetalleRequerimientoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="codDetalleRequerimiento")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codDetalleRequerimiento;
+	
 	@Column(name="cantidad")
 	private int cantidad;
+	
 	@Column(name="valorEstimado")
 	private double valorEstimado;
 	

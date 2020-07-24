@@ -54,7 +54,7 @@ CREATE TABLE `requerimiento` (
   `codRequerimiento` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(500) NOT NULL,
   `codUnidad` int(11) NOT NULL,
-  `fechaEntrega` date NOT NULL,
+  `fechaEntrega` date NULL,
   `fechaRegistro` date NOT NULL,
   estado int NOT NULL,	/* 1=Pendiente, 2=Observado, 3=Aprobado */
   CONSTRAINT pk_requerimiento PRIMARY KEY (`codRequerimiento`),
@@ -63,7 +63,7 @@ CREATE TABLE `requerimiento` (
 );
 
 CREATE TABLE `detallerequerimiento` (
-  codDetalleRequerimiento int(11) NOT NULL,
+  codDetalleRequerimiento int(11) NOT NULL auto_increment,
   `codRequerimiento` int(11) NOT NULL,
   `codBien` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
