@@ -68,7 +68,7 @@ function fConfigurarGrilla(data) {
 		r[4] = e['fechaRegistro'];
 		r[5] = e['estado']['nombre'];
 		r[6] = e['observacion'];
-		r[7] = "<i title='observar' class='fas fa-check-circle fa-lg text-primary cursorHand' onclick=fGestionar(" + e['codRequerimiento'] + ")></i>";
+		r[7] = "<i title='gestionar' class='fas fa-check-circle fa-lg text-primary cursorHand' onclick=fGestionar(" + e['codRequerimiento'] + ")></i>";
 		
 		rows.push(r);
 	});
