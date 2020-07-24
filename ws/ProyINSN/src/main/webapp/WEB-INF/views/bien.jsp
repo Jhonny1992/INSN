@@ -110,7 +110,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="descripcion" class="col-form-label">Descripcion:</label>
-                                <input type="text" class="form-control" id="descripcion" name="descripcion">
+                                <textarea rows="3" class="form-control" id="descripcion" name="descripcion"></textarea>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="tipo" class="col-form-label">Tipo:</label>
