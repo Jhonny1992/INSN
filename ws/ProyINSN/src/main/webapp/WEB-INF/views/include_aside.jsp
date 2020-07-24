@@ -72,9 +72,15 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="<c:url value="/gestion/"/>" class="nav-link">
+									<a href="<c:url value="/requerimiento/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Gestión de requerimientos</p>
+										<p>Requerimientos</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<c:url value="/aprobaciones/"/>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Aprobaciones</p>
 									</a>
 								</li>
 								<li class="nav-item">

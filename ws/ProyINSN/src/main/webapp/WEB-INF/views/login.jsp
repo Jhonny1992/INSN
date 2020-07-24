@@ -37,7 +37,7 @@
 																		class="fa fa-user"></i></span>
 																</div>
 																<input type="text" class="form-control" id="usuario"
-																	name="usuario" placeholder="Usuario">
+																	name="usuario" placeholder="Usuario" autofocus="autofocus">
 															</div>
 															<label for="usuario" class="error text-danger"></label>
 														</div>

@@ -20,24 +20,22 @@ import com.ecosystems.entity.RequerimientoBean;
 import com.ecosystems.entity.UnidadOrganicaBean;
 import com.ecosystems.entity.UsuarioBean;
 import com.ecosystems.services.BienService;
-import com.ecosystems.services.DetalleRequerimientoService;
 import com.ecosystems.services.RequerimientoService;
 import com.ecosystems.services.UnidadOrganicaService;
 import com.ecosystems.util.Constantes;
 import com.ecosystems.util.Util;
 
 @Controller
-@RequestMapping(value = "/gestion")
+@RequestMapping(value = "/requerimiento")
 
-public class GestionRequerimientoController {
+public class RequerimientoController {
 	private @Autowired UnidadOrganicaService unidadOrganicaService;
 	private @Autowired BienService bienService;
 	private @Autowired RequerimientoService requerimientoService;
-	private @Autowired DetalleRequerimientoService detRequerimientoService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
-		return "gestionrequerimiento";
+		return "requerimiento";
 	}
 	
 	@RequestMapping(value="/unidadOrgánicaXUsuario")

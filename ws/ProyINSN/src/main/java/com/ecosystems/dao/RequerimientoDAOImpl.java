@@ -42,21 +42,18 @@ public class RequerimientoDAOImpl implements RequerimientoDAO{
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	@Override
-	public List<RequerimientoBean> buscar(int codUnidad,Date fechamin, Date fechamax) {
+	public List<RequerimientoBean> buscar(int estado,Date fechaDesde, Date fechaHasta) {
 		Session session=factory.getCurrentSession();
 		Query query=null;
 		try {
 			
-			query=session.createQuery("select r from RequerimientoBean r where (:codUnidad=-1 or :codUnidad = r.codUnidadOrganica) and r.fechaRegistro between ?1 and ?2");
-			query.setParameter(1, codUnidad==0 ? -1 : codUnidad);
-			query.setParameter(2, fechamin == null ? (new java.util.Date(1900,1,1)) : fechamin, TemporalType.DATE);
-			query.setParameter(3, fechamax == null ? (new java.util.Date(3000,1,1)) : fechamax, TemporalType.DATE);
+			query=session.createQuery("select r from RequerimientoBean r where (:estado = -1 or :estado = r.estado) and r.fechaRegistro between :desde and :hasta");
+			query.setParameter("estado", estado == 0 ? -1 : estado);
+			query.setParameter("desde", fechaDesde == null ? (new java.util.Date(1900,1,1)) : fechaDesde, TemporalType.DATE);
+			query.setParameter("hasta", fechaHasta == null ? (new java.util.Date(3000,1,1)) : fechaHasta, TemporalType.DATE);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return query.getResultList();
 	}
-	
-	
-
 }

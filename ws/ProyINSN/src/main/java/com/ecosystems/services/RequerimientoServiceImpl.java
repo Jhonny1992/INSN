@@ -22,7 +22,7 @@ public class RequerimientoServiceImpl implements RequerimientoService{
 	}
 
 	@Override
-	public List<RequerimientoBean> buscar(int codUnidad, Date fechamin, Date fechamax) {
-		return requerimientoDAO.buscar(codUnidad, fechamin, fechamax);
+	public List<RequerimientoBean> buscar(int estado, Date fechaDesde, Date fechaHasta) {
+		return requerimientoDAO.buscar(estado, fechaDesde, fechaHasta);
 	}	
 }

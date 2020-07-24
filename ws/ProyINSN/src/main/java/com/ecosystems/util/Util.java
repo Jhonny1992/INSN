@@ -1,7 +1,9 @@
 package com.ecosystems.util;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +17,10 @@ public class Util {
 	public static String fechaToString(java.util.Date fecha, String patron) {
 		DateFormat formato = new SimpleDateFormat(patron);
 		return formato.format(fecha);
+	}
+	
+	public static Date StringToFecha(String fecha, String patron) throws ParseException {
+		return new SimpleDateFormat(patron).parse(fecha);  
 	}
 	
 	public static java.sql.Date ConvertJavaDateToSqlDate(java.util.Date fecha) {

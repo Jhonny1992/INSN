@@ -30,8 +30,6 @@
 								</div>
 								<div class="row">
 									<div class="col-lg-3 col-md-4 col-sm-6" id="contSearchPartial">
-										
-										
 										<div class="card">
 										    <div class="card-header p-1">
 										        <h5 class="text-center">Filtro</h5>
@@ -60,7 +58,6 @@
 										        </form>
 										    </div>
 										</div>
-										
 									</div>
 									<div class="col-lg-9 col-md-8 col-sm-6">
 										<table id="tbUnidadOrganica"

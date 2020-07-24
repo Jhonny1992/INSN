@@ -21,6 +21,7 @@
 <script src="../resources/libs/DataTables/Select-1.3.0/js/select.bootstrap4.js"></script>
 <script src="../resources/libs/Spin/js/spin.js"></script>
 <script src="../resources/libs/Spin/js/jquery.spin.js"></script>
+<script src="../resources/libs/Moment/moment.min.js"></script>
 
 <script src="../resources/js/util.js"></script>
 
