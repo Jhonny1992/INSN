@@ -83,7 +83,7 @@
 										<p>Aprobaciones</p>
 									</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item d-none">
 									<a href="<c:url value="/consolidado/"/>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Consolidado anual</p>
