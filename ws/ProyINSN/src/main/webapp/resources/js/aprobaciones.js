@@ -99,12 +99,12 @@ function fConfigurarGrilla(data) {
 function fGestionar(codRequerimiento) {
 	$.get('obtener', { codRequerimiento: codRequerimiento })
 	.done(function (data) {
-		var fechaEntrega = moment(data.fechaEntrega, 'DD/MM/YYYY');
+		var fechaEntrega = moment(data.fechaEntrega, 'DD/MM/YYYY').format('YYYY-MM-DD');
 		
 		$('#id').val(data.codRequerimiento);
 		$('#estado').val(data.estado.codEstado);
 		//$('#fechaEntrega').val(fechaEntrega);
-		document.getElementById("fechaEntrega").value
+		document.getElementById("fechaEntrega").value = fechaEntrega;
 		$('#observacion').val(data.observacion);
 		
 		$('#modalAprobacion').modal('show');
