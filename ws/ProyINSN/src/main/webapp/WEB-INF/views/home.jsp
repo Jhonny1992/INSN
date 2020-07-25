@@ -12,7 +12,7 @@
 		<div class="content-wrapper">
 			<!-- Main content -->
 			<section class="content">
-				<div class="container-fluid">
+				<div class="container-fluid mt-3">
 
 
 					<div id="carouselExampleCaptions" class="carousel slide"
